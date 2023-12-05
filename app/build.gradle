@@ -125,14 +125,12 @@ dependencies {
     // Navigation component
     implementation "androidx.navigation:navigation-ui-ktx:2.7.5"
     implementation "androidx.navigation:navigation-fragment-ktx:2.7.5"
-
     // Debug
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
-    debugImplementation "com.github.YarikSOffice.Venom:venom:$venomVersion"
-    releaseImplementation "com.github.YarikSOffice.Venom:venom-no-op:$venomVersion"
-
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:2.12"
+//    debugImplementation "com.github.YarikSOffice.Venom:venom:0.6.0"
+//    releaseImplementation "com.github.YarikSOffice.Venom:venom-no-op:0.6.0"
     // Dependencies for local unit tests
-    testImplementation project(":sharedTest")
+//    testImplementation project(":sharedTest")
 
     // Dependencies for android tests
     androidTestImplementation project(":sharedTest")
