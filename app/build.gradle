@@ -27,7 +27,6 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                // See https://developer.android.com/training/data-storage/room/migrating-db-versions
                 compilerArgumentProviders(new RoomSchemaArgProvider(new File(projectDir, "schemas")))
             }
         }
@@ -39,7 +38,6 @@ android {
     }
 
     sourceSets {
-        // This just add "kotlin" folder to source sets since the default is "java".
         main {
             java.srcDirs += "src/main/kotlin"
         }
@@ -50,7 +48,6 @@ android {
             java.srcDirs += "src/release/kotlin"
         }
 
-        // Adds exported schema location as test app assets.
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 
@@ -67,19 +64,13 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix ".debug"
-
-            // enable debug features only if not taking screenshots
-            // androidTest can seemingly only be run in debug mode, hence why it's needed.
+//            applicationIdSuffix ".debug"
             def takingScreenshots = System.getenv("taking_screenshots")
             buildConfigField "boolean", "ENABLE_DEBUG_FEATURES",
                     takingScreenshots == null ? "true" : (!takingScreenshots.toBoolean()).toString()
         }
         release {
-            // Using legacy package name 'com.maltaisn.notes.sync' which was used at the time where
-            // there was a sync flavor. Package can't be changed on Play Store so it was kept.
-            applicationIdSuffix ".sync"
-
+//            applicationIdSuffix ".sync"
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
@@ -102,14 +93,13 @@ android {
     }
 
     packagingOptions {
-        // see https://stackoverflow.com/questions/44342455
         resources.excludes.add("META-INF/*")
     }
 }
 
 dependencies {
     // App dependencies
-    implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.core:core-ktx:1.12.0"
     implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
@@ -147,9 +137,6 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
     debugImplementation "com.github.YarikSOffice.Venom:venom:$venomVersion"
     releaseImplementation "com.github.YarikSOffice.Venom:venom-no-op:$venomVersion"
-
-    // NOTE: dependencies for 'test' and 'androidTest' source sets include several
-    // dependencies declared as `api` in sharedTest/build.gradle.
 
     // Dependencies for local unit tests
     testImplementation project(":sharedTest")
