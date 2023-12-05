@@ -12,10 +12,10 @@ plugins {
 }
 
 android {
-    namespace "com.maltaisn.notes"
+    namespace "com.roy93group.notes"
 
     defaultConfig {
-        applicationId "com.maltaisn.notes"
+        applicationId "com.roy93group.notes"
         minSdkVersion 21
         compileSdk 34
         buildToolsVersion = "34.0.0"
@@ -147,7 +147,7 @@ tasks.named("build") {
 }
 
 allOpen {
-    annotation "com.maltaisn.notes.OpenClass"
+    annotation "com.roy93group.notes.OpenClass"
 }
 
 play {

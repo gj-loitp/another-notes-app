@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maltaisn.notesshared
+package com.roy93group.notesshared
 
 import android.os.Build
 import java.text.ParseException

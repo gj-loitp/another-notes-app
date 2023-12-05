@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maltaisn.notesshared
+package com.roy93group.notesshared
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.UnconfinedTestDispatcher

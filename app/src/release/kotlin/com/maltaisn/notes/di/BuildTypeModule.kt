@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.maltaisn.notes.di
+package com.roy93group.notes.di
 
-import com.maltaisn.notes.ui.home.BuildTypeBehavior
-import com.maltaisn.notes.ui.home.ReleaseBuildTypeBehavior
+import com.roy93group.notes.ui.home.BuildTypeBehavior
+import com.roy93group.notes.ui.home.ReleaseBuildTypeBehavior
 import dagger.Binds
 import dagger.Module
 

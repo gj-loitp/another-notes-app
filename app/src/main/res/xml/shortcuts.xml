@@ -28,12 +28,12 @@
         android:enabled="true"
         >
         <intent
-            android:action="com.maltaisn.notes.CREATE"
-            android:targetClass="com.maltaisn.notes.ui.main.MainActivity"
-            android:targetPackage="com.maltaisn.notes.sync"
+            android:action="com.roy93group.notes.CREATE"
+            android:targetClass="com.roy93group.notes.ui.main.MainActivity"
+            android:targetPackage="com.roy93group.notes.sync"
             >
             <extra
-                android:name="com.maltaisn.notes.NOTE_TYPE"
+                android:name="com.roy93group.notes.NOTE_TYPE"
                 android:value="0"
                 />
         </intent>
@@ -47,12 +47,12 @@
         android:enabled="true"
         >
         <intent
-            android:action="com.maltaisn.notes.CREATE"
-            android:targetClass="com.maltaisn.notes.ui.main.MainActivity"
-            android:targetPackage="com.maltaisn.notes.sync"
+            android:action="com.roy93group.notes.CREATE"
+            android:targetClass="com.roy93group.notes.ui.main.MainActivity"
+            android:targetPackage="com.roy93group.notes.sync"
             >
             <extra
-                android:name="com.maltaisn.notes.NOTE_TYPE"
+                android:name="com.roy93group.notes.NOTE_TYPE"
                 android:value="1"
                 />
         </intent>
@@ -66,9 +66,9 @@
         android:enabled="true"
         >
         <intent
-            android:action="com.maltaisn.notes.SHOW_REMINDERS"
-            android:targetClass="com.maltaisn.notes.ui.main.MainActivity"
-            android:targetPackage="com.maltaisn.notes.sync"
+            android:action="com.roy93group.notes.SHOW_REMINDERS"
+            android:targetClass="com.roy93group.notes.ui.main.MainActivity"
+            android:targetPackage="com.roy93group.notes.sync"
             />
     </shortcut>
 

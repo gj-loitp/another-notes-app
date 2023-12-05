@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.maltaisn.notes
+package com.roy93group.notes
 
 @Target(AnnotationTarget.CLASS)
 annotation class OpenForTesting

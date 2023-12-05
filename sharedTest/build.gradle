@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace "com.maltaisn.notesshared"
+    namespace "com.roy93group.notesshared"
     compileSdk 34
 
     defaultConfig {

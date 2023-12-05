@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.maltaisn.notesshared.model
+package com.roy93group.notesshared.model
 
-import com.maltaisn.notes.model.LabelsRepository
-import com.maltaisn.notes.model.entity.Label
-import com.maltaisn.notes.model.entity.LabelRef
-import com.maltaisn.notes.model.entity.Note
-import com.maltaisn.notes.model.entity.NoteWithLabels
+import com.roy93group.notes.model.LabelsRepository
+import com.roy93group.notes.model.entity.Label
+import com.roy93group.notes.model.entity.LabelRef
+import com.roy93group.notes.model.entity.Note
+import com.roy93group.notes.model.entity.NoteWithLabels
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.map
 

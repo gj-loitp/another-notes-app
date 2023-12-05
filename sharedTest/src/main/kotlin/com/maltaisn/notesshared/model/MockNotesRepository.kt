@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.maltaisn.notesshared.model
+package com.roy93group.notesshared.model
 
-import com.maltaisn.notes.model.NotesRepository
-import com.maltaisn.notes.model.PrefsManager
-import com.maltaisn.notes.model.SortDirection
-import com.maltaisn.notes.model.SortField
-import com.maltaisn.notes.model.entity.LabelRef
-import com.maltaisn.notes.model.entity.Note
-import com.maltaisn.notes.model.entity.NoteStatus
-import com.maltaisn.notes.model.entity.NoteWithLabels
+import com.roy93group.notes.model.NotesRepository
+import com.roy93group.notes.model.PrefsManager
+import com.roy93group.notes.model.SortDirection
+import com.roy93group.notes.model.SortField
+import com.roy93group.notes.model.entity.LabelRef
+import com.roy93group.notes.model.entity.Note
+import com.roy93group.notes.model.entity.NoteStatus
+import com.roy93group.notes.model.entity.NoteWithLabels
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
