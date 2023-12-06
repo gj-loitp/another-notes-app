@@ -9,7 +9,7 @@
     android:paddingTop="8dp"
     >
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/date_imv"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -21,7 +21,7 @@
         android:importantForAccessibility="no"
         />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/date_label_txv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         android:focusable="true"
         />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/time_imv"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -84,7 +84,7 @@
         android:importantForAccessibility="no"
         />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/time_label_txv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
         android:textAlignment="viewStart"
         />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/invalid_time_txv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
         android:focusable="true"
         />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/recurrence_imv"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -167,7 +167,7 @@
         android:importantForAccessibility="no"
         />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/recurrence_txv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

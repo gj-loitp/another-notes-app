@@ -53,7 +53,7 @@
             android:src="@drawable/ic_label_multiple_outline"
             />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/placeholder_txv"
             style="@style/PlaceholderTextViewStyle"
             app:layout_constraintEnd_toEndOf="parent"

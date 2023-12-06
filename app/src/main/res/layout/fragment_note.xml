@@ -55,7 +55,7 @@
             tools:src="@drawable/ic_list"
             />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/placeholder_txv"
             style="@style/PlaceholderTextViewStyle"
             app:layout_constraintEnd_toEndOf="parent"

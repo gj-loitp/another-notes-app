@@ -219,7 +219,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
                 .apply { duration = resources.getInteger(RMaterial.integer.material_motion_duration_medium_2).toLong() }
 
             val itemView: View =
-                binding.recyclerView.findViewHolderForAdapterPosition(pos)!!.itemView.findViewById(R.id.card_view)
+                binding.recyclerView.findViewHolderForAdapterPosition(pos)!!.itemView.findViewById(R.id.cardView)
 
             val extras = FragmentNavigatorExtras(
                 itemView to "noteContainer$noteId"
@@ -306,7 +306,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
                 // Change the transition names, so that the shared element transition returns to
                 // the newly created note item in the recyclerview instead of to the FAB.
                 for (c in binding.recyclerView.children) {
-                    if (c.findViewById<View>(R.id.card_view)?.transitionName == "noteContainer$noteId") {
+                    if (c.findViewById<View>(R.id.cardView)?.transitionName == "noteContainer$noteId") {
                         binding.fab.transitionName = ""
                         c.transitionName = "createNoteTransition"
 

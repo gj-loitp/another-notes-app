@@ -8,8 +8,8 @@
     android:layout_height="wrap_content"
     >
 
-    <ImageView
-        android:id="@+id/swipe_imv"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/swipeImv"
         style="@style/NoteSwipeIconStyle"
         android:visibility="invisible"
         tools:src="@drawable/ic_archive"
@@ -19,7 +19,7 @@
         />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view"
+        android:id="@+id/cardView"
         style="@style/NoteListItemCardStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,8 +33,8 @@
             android:paddingTop="8dp"
             >
 
-            <TextView
-                android:id="@+id/title_txv"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/titleTxv"
                 style="@style/NoteTitleStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -49,12 +49,12 @@
                 tools:visibility="visible"
                 />
 
-            <TextView
-                android:id="@+id/date_txv"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dateTxv"
                 style="@style/NoteDateStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/title_txv"
+                app:layout_constraintTop_toBottomOf="@id/titleTxv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
@@ -73,7 +73,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintTop_toBottomOf="@id/date_txv"
+                app:layout_constraintTop_toBottomOf="@id/dateTxv"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
@@ -85,7 +85,7 @@
                 <!--            <include layout="@layout/item_note_list_item"/>-->
                 <!--            <include layout="@layout/item_note_list_item"/>-->
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/info_txv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             </LinearLayout>
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/reminder_chip"
+                android:id="@+id/reminderChip"
                 style="@style/NoteReminderChipStyle"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -120,12 +120,12 @@
                 />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/label_group"
+                android:id="@+id/labelGroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/reminder_chip"
+                app:layout_constraintTop_toBottomOf="@id/reminderChip"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -147,13 +147,13 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/action_btn"
+                android:id="@+id/actionBtn"
                 style="@style/NoteActionButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/label_group"
+                app:layout_constraintTop_toBottomOf="@id/labelGroup"
                 android:layout_marginTop="8dp"
                 android:visibility="gone"
                 tools:icon="@drawable/ic_check"

@@ -9,7 +9,7 @@
     android:orientation="horizontal"
     >
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/checkbox_imv"
         android:layout_width="16dp"
         android:layout_height="16dp"
@@ -25,8 +25,8 @@
         app:tint="@color/material_on_background_emphasis_medium"
         />
 
-    <TextView
-        android:id="@+id/content_txv"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/contentTxv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

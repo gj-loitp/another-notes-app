@@ -14,7 +14,7 @@
     android:background="?colorSurface"
     >
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/drag_imv"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -58,7 +58,7 @@
         tools:text="Mauris rutrum massa placerat felis pharetra tristique. Nulla sed urna a dui vehicula euismod."
         />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/delete_imv"
         android:layout_width="32dp"
         android:layout_height="32dp"

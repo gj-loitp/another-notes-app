@@ -287,7 +287,7 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
     private fun showMessage(@StringRes messageId: Int) {
         val snackbar = Snackbar.make(requireView(), messageId, Snackbar.LENGTH_SHORT)
             .setGestureInsetBottomIgnored(true)
-        snackbar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).maxLines = 5
+        snackbar.view.findViewById<androidx.appcompat.widget.AppCompatTextView>(com.google.android.material.R.id.snackbar_text).maxLines = 5
         snackbar.show()
     }
 

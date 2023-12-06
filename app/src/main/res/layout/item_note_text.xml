@@ -1,124 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/swipe_imv"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/swipeImv"
         style="@style/NoteSwipeIconStyle"
         android:visibility="invisible"
-        tools:src="@drawable/ic_archive"
-        tools:layout_gravity="center_vertical|right"
-        tools:visibility="visible"
         tools:ignore="ContentDescription"
-        />
+        tools:layout_gravity="center_vertical|right"
+        tools:src="@drawable/ic_archive"
+        tools:visibility="visible" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view"
+        android:id="@+id/cardView"
         style="@style/NoteListItemCardStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:visibility="visible"
         tools:paddingBottom="@dimen/note_bottom_padding_with_action"
-        >
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            >
+            android:layout_marginTop="8dp">
 
-            <TextView
-                android:id="@+id/title_txv"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/titleTxv"
                 style="@style/NoteTitleStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Lorem ipsum dolor sit amet"
-                tools:visibility="visible"
-                />
+                tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/date_txv"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dateTxv"
                 style="@style/NoteDateStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/title_txv"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
-                app:layout_constrainedWidth="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleTxv"
                 tools:text="3 days ago, 16:11"
-                tools:visibility="visible"
-                />
+                tools:visibility="visible" />
 
-            <TextView
-                android:id="@+id/content_txv"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/contentTxv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/date_txv"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintHorizontal_bias="0"
+                android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:textAppearance="?textAppearanceBody2"
                 android:textColor="@color/material_on_background_emphasis_medium"
                 android:textDirection="anyRtl"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dateTxv"
                 tools:maxLines="5"
                 tools:text="Mauris rutrum massa placerat felis pharetra tristique. Nulla sed urna a dui vehicula euismod. Aenean sit amet velit feugiat, aliquet leo sed, sodales risus. Donec non justo et nisi lobortis sodales sed eget erat. Donec ac libero ut enim porta porta id at sem. Aliquam erat volutpat. In eu turpis quis eros posuere porta."
-                tools:visibility="visible"
-                />
+                tools:visibility="visible" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/reminder_chip"
+                android:id="@+id/reminderChip"
                 style="@style/NoteReminderChipStyle"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/content_txv"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constrainedWidth="true"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:visibility="gone"
-                tools:text="Today, 14:30"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/contentTxv"
                 tools:chipIcon="@drawable/ic_alarm"
-                tools:visibility="visible"
-                />
+                tools:text="Today, 14:30"
+                tools:visibility="visible" />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/label_group"
+                android:id="@+id/labelGroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/reminder_chip"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                app:chipSpacing="8dp"
                 android:visibility="gone"
-                tools:visibility="visible"
-                >
+                app:chipSpacing="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reminderChip"
+                tools:visibility="visible">
 
                 <!--            <include layout="@layout/view_label_chip_note"/>-->
                 <!--            <include layout="@layout/view_label_chip_note"/>-->
@@ -132,20 +121,19 @@
             </com.google.android.material.chip.ChipGroup>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/action_btn"
+                android:id="@+id/actionBtn"
                 style="@style/NoteActionButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/label_group"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginTop="8dp"
                 android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/labelGroup"
                 tools:icon="@drawable/ic_check"
                 tools:text="@string/action_mark_as_done"
-                tools:visibility="visible"
-                />
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
