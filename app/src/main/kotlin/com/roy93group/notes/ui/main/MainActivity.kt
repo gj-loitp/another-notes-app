@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         binding.navView.setNavigationItemSelectedListener { item ->
             viewModel.navigationItemSelected(
                 item,
-                binding.navView.menu.findItem(R.id.drawer_labels).subMenu!!
+                binding.navView.menu.findItem(R.id.drawerLabels).subMenu!!
             )
             true
         }
@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
     private fun setupViewModelObservers() {
         val menu = binding.navView.menu
-        val labelSubmenu = menu.findItem(R.id.drawer_labels).subMenu!!
+        val labelSubmenu = menu.findItem(R.id.drawerLabels).subMenu!!
         var currentHomeDestination: HomeDestination = HomeDestination.Status(NoteStatus.ACTIVE)
 
         viewModel.currentHomeDestination.observe(this) { newHomeDestination ->
@@ -196,7 +196,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         }
 
         viewModel.manageLabelsVisibility.observe(this) { isVisible ->
-            menu.findItem(R.id.drawer_item_edit_labels).isVisible = isVisible
+            menu.findItem(R.id.drawerItemEditLabels).isVisible = isVisible
         }
 
         viewModel.editItemEvent.observeEvent(this) { noteId ->
@@ -283,7 +283,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                 }
                 INTENT_ACTION_SHOW_REMINDERS -> {
                     // Show reminders screen in HomeFragment. Used by launcher shortcut.
-                    binding.navView.menu.findItem(R.id.drawer_item_reminders).isChecked = true
+                    binding.navView.menu.findItem(R.id.drawerItemReminders).isChecked = true
                     sharedViewModel.changeHomeDestination(HomeDestination.Reminders)
                 }
             }

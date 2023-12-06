@@ -3,30 +3,30 @@
 
     <group>
         <item
-            android:id="@+id/drawer_item_notes"
+            android:id="@+id/drawerItemNotes"
             android:checkable="true"
             android:checked="true"
             android:icon="@drawable/ic_list"
             android:title="@string/note_location_active" />
         <item
-            android:id="@+id/drawer_item_reminders"
+            android:id="@+id/drawerItemReminders"
             android:checkable="true"
             android:icon="@drawable/ic_alarm"
             android:title="@string/note_reminders" />
     </group>
 
-    <group android:id="@+id/drawer_group_labels">
+    <group android:id="@+id/drawerGroupLabels">
         <item
-            android:id="@+id/drawer_labels"
+            android:id="@+id/drawerLabels"
             android:title="@string/note_location_labels">
             <menu />
         </item>
     </group>
 
-    <group android:id="@+id/drawer_group_label_actions">
+    <group android:id="@+id/drawerGroupLabelActions">
 
         <item
-            android:id="@+id/drawer_item_edit_labels"
+            android:id="@+id/drawerItemEditLabels"
             android:checkable="false"
             android:enabled="true"
             android:icon="@drawable/ic_label_multiple_outline"
@@ -34,31 +34,31 @@
             android:title="@string/label_manage"
             android:visible="false" />
         <item
-            android:id="@+id/drawer_item_create_label"
+            android:id="@+id/drawerItemCreateLabel"
             android:checkable="false"
             android:icon="@drawable/ic_plus"
             android:orderInCategory="2"
             android:title="@string/label_create" />
     </group>
 
-    <group android:id="@+id/drawer_group_archived_deleted">
+    <group android:id="@+id/drawerGroupArchivedDeleted">
         <item
-            android:id="@+id/drawer_item_archived"
+            android:id="@+id/drawerItemArchived"
             android:checkable="true"
             android:icon="@drawable/ic_archive"
             android:orderInCategory="2"
             android:title="@string/note_location_archived" />
         <item
-            android:id="@+id/drawer_item_deleted"
+            android:id="@+id/drawerItemDeleted"
             android:checkable="true"
             android:icon="@drawable/ic_delete"
             android:orderInCategory="2"
             android:title="@string/note_location_deleted" />
     </group>
 
-    <group android:id="@+id/drawer_group_settings">
+    <group android:id="@+id/drawerGroupSettings">
         <item
-            android:id="@+id/drawer_item_settings"
+            android:id="@+id/drawerItemSettings"
             android:checkable="false"
             android:icon="@drawable/ic_settings"
             android:orderInCategory="3"

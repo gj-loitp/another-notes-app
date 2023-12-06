@@ -26,7 +26,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/navigation_drawer"
+        app:menu="@menu/menu_navigation_drawer"
         app:subheaderColor="?colorPrimary"
         />
 

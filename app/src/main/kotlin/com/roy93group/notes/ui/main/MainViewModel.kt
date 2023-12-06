@@ -179,25 +179,25 @@ class MainViewModel @AssistedInject constructor(
         _drawerCloseEvent.send()
 
         when (item.itemId) {
-            R.id.drawer_item_notes -> {
+            R.id.drawerItemNotes -> {
                 _currentHomeDestination.value = HomeDestination.Status(NoteStatus.ACTIVE)
             }
-            R.id.drawer_item_reminders -> {
+            R.id.drawerItemReminders -> {
                 _currentHomeDestination.value = HomeDestination.Reminders
             }
-            R.id.drawer_item_create_label -> {
+            R.id.drawerItemCreateLabel -> {
                 _navDirectionsEvent.send(HomeFragmentDirections.actionHomeToLabelEdit())
             }
-            R.id.drawer_item_edit_labels -> {
+            R.id.drawerItemEditLabels -> {
                 _navDirectionsEvent.send(NavGraphMainDirections.actionLabel(longArrayOf()))
             }
-            R.id.drawer_item_archived -> {
+            R.id.drawerItemArchived -> {
                 _currentHomeDestination.value = HomeDestination.Status(NoteStatus.ARCHIVED)
             }
-            R.id.drawer_item_deleted -> {
+            R.id.drawerItemDeleted -> {
                 _currentHomeDestination.value = HomeDestination.Status(NoteStatus.DELETED)
             }
-            R.id.drawer_item_settings -> {
+            R.id.drawerItemSettings -> {
                 _navDirectionsEvent.send(HomeFragmentDirections.actionHomeToSettings())
             }
         }

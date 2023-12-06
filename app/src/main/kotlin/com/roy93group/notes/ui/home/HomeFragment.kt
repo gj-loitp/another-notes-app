@@ -95,7 +95,7 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
 
         // Toolbar
         binding.toolbar.apply {
-            inflateMenu(R.menu.toolbar_home)
+            inflateMenu(R.menu.menu_toolbar_home)
             setOnMenuItemClickListener(this@HomeFragment)
             setNavigationIcon(R.drawable.ic_menu)
             setNavigationContentDescription(R.string.content_descrp_open_drawer)

@@ -59,7 +59,7 @@ class SearchFragment : NoteFragment() {
         // Toolbar
         val toolbar = binding.toolbar
         toolbar.apply {
-            inflateMenu(R.menu.toolbar_search)
+            inflateMenu(R.menu.menu_toolbar_search)
             setNavigationIcon(R.drawable.ic_arrow_start)
             setNavigationContentDescription(R.string.content_descrp_back)
             setNavigationOnClickListener {
