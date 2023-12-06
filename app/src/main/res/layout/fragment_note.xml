@@ -86,7 +86,7 @@
             android:paddingEnd="5dp"
             android:clipToPadding="false"
             tools:itemCount="3"
-            tools:listitem="@layout/item_note_text"
+            tools:listitem="@layout/v_item_note_text"
             tools:visibility="gone"
             />
 

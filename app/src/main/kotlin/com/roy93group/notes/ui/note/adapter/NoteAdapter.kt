@@ -30,7 +30,7 @@ import com.roy93group.notes.databinding.ItemMessageBinding
 import com.roy93group.notes.databinding.ItemNoteLabelBinding
 import com.roy93group.notes.databinding.ItemNoteListBinding
 import com.roy93group.notes.databinding.ItemNoteListItemBinding
-import com.roy93group.notes.databinding.ItemNoteTextBinding
+import com.roy93group.notes.databinding.VItemNoteTextBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.ui.note.SwipeAction
 
@@ -77,7 +77,7 @@ class NoteAdapter(
                 .inflate(inflater, parent, false))
             ViewType.HEADER.ordinal -> HeaderViewHolder(ItemHeaderBinding
                 .inflate(inflater, parent, false))
-            ViewType.TEXT_NOTE.ordinal -> TextNoteViewHolder(ItemNoteTextBinding
+            ViewType.TEXT_NOTE.ordinal -> TextNoteViewHolder(VItemNoteTextBinding
                 .inflate(inflater, parent, false))
             ViewType.LIST_NOTE.ordinal -> ListNoteViewHolder(ItemNoteListBinding
                 .inflate(inflater, parent, false))

@@ -39,7 +39,7 @@ import com.roy93group.notes.databinding.ItemMessageBinding
 import com.roy93group.notes.databinding.ItemNoteLabelBinding
 import com.roy93group.notes.databinding.ItemNoteListBinding
 import com.roy93group.notes.databinding.ItemNoteListItemBinding
-import com.roy93group.notes.databinding.ItemNoteTextBinding
+import com.roy93group.notes.databinding.VItemNoteTextBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.model.entity.NoteType
@@ -182,7 +182,7 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
     }
 }
 
-class TextNoteViewHolder(private val binding: ItemNoteTextBinding) :
+class TextNoteViewHolder(private val binding: VItemNoteTextBinding) :
     NoteViewHolder<NoteItemText>(binding.root) {
 
     override val cardView = binding.cardView
