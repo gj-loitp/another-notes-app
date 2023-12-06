@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
-
     <!-- Backup is disabled in debug mode to prevent bringing all data back during testing
          when uninstalling and reinstalling the application. -->
     <bool name="allow_backup">false</bool>
-
 </resources>
