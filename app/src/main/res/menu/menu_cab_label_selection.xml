@@ -4,7 +4,7 @@
     tools:ignore="AppCompatResource">
 
     <item
-        android:id="@+id/item_rename"
+        android:id="@+id/itemRename"
         android:icon="@drawable/ic_pencil"
         android:showAsAction="ifRoom"
         android:title="@string/action_rename" />
@@ -16,7 +16,7 @@
         android:title="@string/action_delete" />
 
     <item
-        android:id="@+id/item_select_all"
+        android:id="@+id/itemSelectAll"
         android:icon="@drawable/ic_select_all"
         android:showAsAction="ifRoom"
         android:title="@string/action_select_all" />

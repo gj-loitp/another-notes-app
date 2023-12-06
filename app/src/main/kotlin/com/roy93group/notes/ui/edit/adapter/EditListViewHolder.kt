@@ -270,7 +270,7 @@ class EditItemLabelsViewHolder(binding: ItemEditLabelsBinding, callback: EditAda
         for (chip in item.chips) {
             when (chip) {
                 is Label -> {
-                    val view = layoutInflater.inflate(R.layout.view_edit_chip_label,
+                    val view = layoutInflater.inflate(R.layout.v_edit_chip_label,
                         chipGroup,
                         false) as Chip
                     chipGroup.addView(view)
@@ -279,7 +279,7 @@ class EditItemLabelsViewHolder(binding: ItemEditLabelsBinding, callback: EditAda
                 }
 
                 is Reminder -> {
-                    val view = layoutInflater.inflate(R.layout.view_edit_chip_reminder,
+                    val view = layoutInflater.inflate(R.layout.v_edit_chip_reminder,
                         chipGroup,
                         false) as Chip
                     chipGroup.addView(view)

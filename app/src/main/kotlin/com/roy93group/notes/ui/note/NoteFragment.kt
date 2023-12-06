@@ -452,7 +452,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
             R.id.itemReminder -> viewModel.createReminder()
             R.id.itemLabels -> viewModel.changeLabels()
             R.id.itemMove -> viewModel.moveSelectedNotes()
-            R.id.item_select_all -> viewModel.selectAll()
+            R.id.itemSelectAll -> viewModel.selectAll()
             R.id.itemShare -> viewModel.shareSelectedNote()
             R.id.itemCopy -> viewModel.copySelectedNote(
                 getString(R.string.edit_copy_untitled_name), getString(R.string.edit_copy_suffix))
@@ -484,7 +484,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
     }
 
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
-        mode.menuInflater.inflate(R.menu.cab_note_selection, menu)
+        mode.menuInflater.inflate(R.menu.menu_cab_note_selection, menu)
         if (Build.VERSION.SDK_INT >= 23) {
             switchStatusBarColor(
                 (binding.toolbarLayout.background as MaterialShapeDrawable).resolvedTintColor,

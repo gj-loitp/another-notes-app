@@ -187,7 +187,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
             it.title = NUMBER_FORMAT.format(count)
 
             val menu = it.menu
-            menu.findItem(R.id.item_rename).isVisible = count == 1
+            menu.findItem(R.id.itemRename).isVisible = count == 1
         }
     }
 
@@ -219,9 +219,9 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
 
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_rename -> viewModel.renameSelection()
+            R.id.itemRename -> viewModel.renameSelection()
             R.id.itemDelete -> viewModel.deleteSelectionPre()
-            R.id.item_select_all -> viewModel.selectAll()
+            R.id.itemSelectAll -> viewModel.selectAll()
             else -> return false
         }
         return true
@@ -249,7 +249,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
     }
 
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
-        mode.menuInflater.inflate(R.menu.cab_label_selection, menu)
+        mode.menuInflater.inflate(R.menu.menu_cab_label_selection, menu)
         if (Build.VERSION.SDK_INT >= 23) {
             switchStatusBarColor(
                 (binding.toolbarLayout.background as MaterialShapeDrawable).resolvedTintColor,

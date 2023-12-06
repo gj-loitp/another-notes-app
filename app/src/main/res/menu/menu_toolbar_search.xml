@@ -6,7 +6,7 @@
         android:id="@+id/itemSearchEdt"
         android:icon="@null"
         android:title="@null"
-        app:actionLayout="@layout/view_search"
+        app:actionLayout="@layout/v_search"
         app:showAsAction="always" />
 
 </menu>
