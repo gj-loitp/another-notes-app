@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/item_type"
+        android:id="@+id/itemType"
         android:icon="@null"
         android:title="@null"
         app:showAsAction="always"
@@ -12,7 +12,7 @@
         tools:title="@string/action_convert_to_list" />
 
     <item
-        android:id="@+id/item_move"
+        android:id="@+id/itemMove"
         android:icon="@null"
         android:title="@null"
         app:showAsAction="ifRoom"
@@ -20,7 +20,7 @@
         tools:title="@string/action_archive" />
 
     <item
-        android:id="@+id/item_pin"
+        android:id="@+id/itemPin"
         android:icon="@null"
         android:title="@null"
         app:showAsAction="ifRoom"
@@ -28,41 +28,41 @@
         tools:title="@string/action_pin" />
 
     <item
-        android:id="@+id/item_reminder"
+        android:id="@+id/itemReminder"
         android:icon="@drawable/ic_alarm"
         android:title="@null"
         app:showAsAction="ifRoom"
         tools:title="@string/action_reminder_add" />
 
     <item
-        android:id="@+id/item_labels"
+        android:id="@+id/itemLabels"
         android:icon="@drawable/ic_label_outline"
         android:title="@string/action_labels"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/item_share"
+        android:id="@+id/itemShare"
         android:icon="@drawable/ic_share"
         android:title="@string/action_share"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/item_uncheck_all"
+        android:id="@+id/itemUncheckAll"
         android:title="@string/action_uncheck_all"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/item_delete_checked"
+        android:id="@+id/itemDeleteChecked"
         android:title="@string/action_delete_checked"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/item_copy"
+        android:id="@+id/itemCopy"
         android:title="@string/action_copy"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/item_delete"
+        android:id="@+id/itemDelete"
         android:title="@null"
         app:showAsAction="never"
         tools:title="@string/action_delete" />

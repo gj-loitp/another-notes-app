@@ -34,7 +34,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.Hold
 import com.roy93group.notes.App
-import com.roy93group.notes.BuildConfig
 import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
 import com.roy93group.notes.model.entity.NoteStatus
@@ -105,7 +104,7 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
             }
 
             // Hide or show build type and flavor specific items
-            menu.findItem(R.id.item_extra_action).isVisible = com.roy93group.notes.BuildConfig.ENABLE_DEBUG_FEATURES
+            menu.findItem(R.id.itemExtraAction).isVisible = com.roy93group.notes.BuildConfig.ENABLE_DEBUG_FEATURES
         }
 
         // Floating action button
@@ -170,7 +169,7 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
 
     private fun updateToolbarForDestination(destination: HomeDestination) {
         // Show "Empty recycle bin" toolbar option
-        binding.toolbar.menu.findItem(R.id.item_empty_trash).isVisible =
+        binding.toolbar.menu.findItem(R.id.itemEmptyTrash).isVisible =
             destination == HomeDestination.Status(NoteStatus.DELETED)
 
         // Update toolbar title
@@ -186,7 +185,7 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
     }
 
     private fun updateListLayoutItemForMode(mode: NoteListLayoutMode) {
-        val layoutItem = binding.toolbar.menu.findItem(R.id.item_layout)
+        val layoutItem = binding.toolbar.menu.findItem(R.id.itemLayout)
         when (mode) {
             NoteListLayoutMode.LIST -> {
                 layoutItem.setIcon(R.drawable.ic_view_grid)
@@ -209,11 +208,11 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_search -> findNavController().navigateSafe(HomeFragmentDirections.actionHomeToSearch())
-            R.id.item_layout -> viewModel.toggleListLayoutMode()
-            R.id.item_sort -> findNavController().navigateSafe(HomeFragmentDirections.actionHomeToSort())
-            R.id.item_empty_trash -> viewModel.emptyTrashPre()
-            R.id.item_extra_action -> viewModel.doExtraAction()
+            R.id.itemSearch -> findNavController().navigateSafe(HomeFragmentDirections.actionHomeToSearch())
+            R.id.itemLayout -> viewModel.toggleListLayoutMode()
+            R.id.itemSort -> findNavController().navigateSafe(HomeFragmentDirections.actionHomeToSort())
+            R.id.itemEmptyTrash -> viewModel.emptyTrashPre()
+            R.id.itemExtraAction -> viewModel.doExtraAction()
             else -> return false
         }
         return true

@@ -337,11 +337,11 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
             // Share and copy are only visible if there is a single note selected.
             val menu = it.menu
             val copyShareVisible = selection.count == 1 && selection.status != NoteStatus.DELETED
-            menu.findItem(R.id.item_share).isVisible = copyShareVisible
-            menu.findItem(R.id.item_copy).isVisible = copyShareVisible
+            menu.findItem(R.id.itemShare).isVisible = copyShareVisible
+            menu.findItem(R.id.itemCopy).isVisible = copyShareVisible
 
             // Pin item
-            val pinItem = menu.findItem(R.id.item_pin)
+            val pinItem = menu.findItem(R.id.itemPin)
             when (selection.pinned) {
                 PinnedStatus.PINNED -> {
                     pinItem.isVisible = true
@@ -359,7 +359,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
             }
 
             // Reminder item
-            val reminderItem = menu.findItem(R.id.item_reminder)
+            val reminderItem = menu.findItem(R.id.itemReminder)
             reminderItem.isVisible = (selection.status != NoteStatus.DELETED)
             reminderItem.setTitle(if (selection.hasReminder) {
                 R.string.action_reminder_edit
@@ -368,12 +368,12 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
             })
 
             // Labels item
-            val labelsItem = menu.findItem(R.id.item_labels)
+            val labelsItem = menu.findItem(R.id.itemLabels)
             labelsItem.isVisible = (selection.status != NoteStatus.DELETED)
 
             // Update move items depending on status
-            val moveItem = menu.findItem(R.id.item_move)
-            val deleteItem = menu.findItem(R.id.item_delete)
+            val moveItem = menu.findItem(R.id.itemMove)
+            val deleteItem = menu.findItem(R.id.itemDelete)
             when (selection.status!!) {
                 NoteStatus.ACTIVE -> {
                     moveItem.setIcon(R.drawable.ic_archive)
@@ -448,15 +448,15 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
 
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_pin -> viewModel.togglePin()
-            R.id.item_reminder -> viewModel.createReminder()
-            R.id.item_labels -> viewModel.changeLabels()
-            R.id.item_move -> viewModel.moveSelectedNotes()
+            R.id.itemPin -> viewModel.togglePin()
+            R.id.itemReminder -> viewModel.createReminder()
+            R.id.itemLabels -> viewModel.changeLabels()
+            R.id.itemMove -> viewModel.moveSelectedNotes()
             R.id.item_select_all -> viewModel.selectAll()
-            R.id.item_share -> viewModel.shareSelectedNote()
-            R.id.item_copy -> viewModel.copySelectedNote(
+            R.id.itemShare -> viewModel.shareSelectedNote()
+            R.id.itemCopy -> viewModel.copySelectedNote(
                 getString(R.string.edit_copy_untitled_name), getString(R.string.edit_copy_suffix))
-            R.id.item_delete -> viewModel.deleteSelectedNotesPre()
+            R.id.itemDelete -> viewModel.deleteSelectedNotesPre()
             else -> return false
         }
         return true

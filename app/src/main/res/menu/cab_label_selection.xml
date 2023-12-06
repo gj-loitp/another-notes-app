@@ -10,7 +10,7 @@
         android:title="@string/action_rename" />
 
     <item
-        android:id="@+id/item_delete"
+        android:id="@+id/itemDelete"
         android:icon="@drawable/ic_delete"
         android:showAsAction="ifRoom"
         android:title="@string/action_delete" />

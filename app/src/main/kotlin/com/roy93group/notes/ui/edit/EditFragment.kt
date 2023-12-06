@@ -315,7 +315,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
     private fun updateItemsForNoteStatus(status: NoteStatus) {
         val menu = binding.toolbar.menu
 
-        val moveItem = menu.findItem(R.id.item_move)
+        val moveItem = menu.findItem(R.id.itemMove)
         when (status) {
             NoteStatus.ACTIVE -> {
                 moveItem.setIcon(R.drawable.ic_archive)
@@ -334,10 +334,10 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
         }
 
         val isTrash = status == NoteStatus.DELETED
-        menu.findItem(R.id.item_share).isVisible = !isTrash
-        menu.findItem(R.id.item_copy).isVisible = !isTrash
-        menu.findItem(R.id.item_reminder).isVisible = !isTrash
-        menu.findItem(R.id.item_delete).setTitle(if (isTrash) {
+        menu.findItem(R.id.itemShare).isVisible = !isTrash
+        menu.findItem(R.id.itemCopy).isVisible = !isTrash
+        menu.findItem(R.id.itemReminder).isVisible = !isTrash
+        menu.findItem(R.id.itemDelete).setTitle(if (isTrash) {
             R.string.action_delete_forever
         } else {
             R.string.action_delete
@@ -345,7 +345,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
     }
 
     private fun updateItemsForPinnedStatus(pinned: PinnedStatus) {
-        val item = binding.toolbar.menu.findItem(R.id.item_pin)
+        val item = binding.toolbar.menu.findItem(R.id.itemPin)
         when (pinned) {
             PinnedStatus.PINNED -> {
                 item.isVisible = true
@@ -366,7 +366,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
     }
 
     private fun updateItemsForStatusAndReminder(reminder: Reminder?) {
-        binding.toolbar.menu.findItem(R.id.item_reminder).setTitle(if (reminder != null) {
+        binding.toolbar.menu.findItem(R.id.itemReminder).setTitle(if (reminder != null) {
             R.string.action_reminder_edit
         } else {
             R.string.action_reminder_add
@@ -376,7 +376,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
     private fun updateItemsForNoteType(type: NoteType) {
         val menu = binding.toolbar.menu
 
-        val typeItem = menu.findItem(R.id.item_type)
+        val typeItem = menu.findItem(R.id.itemType)
         when (type) {
             NoteType.TEXT -> {
                 typeItem.setIcon(R.drawable.ic_checkbox)
@@ -393,8 +393,8 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
     private fun updateItemsForStatusAndType(state: Pair<NoteStatus, NoteType>) {
         val menu = binding.toolbar.menu
         val isEditableList = state.first != NoteStatus.DELETED && state.second == NoteType.LIST
-        menu.findItem(R.id.item_uncheck_all).isVisible = isEditableList
-        menu.findItem(R.id.item_delete_checked).isVisible = isEditableList
+        menu.findItem(R.id.itemUncheckAll).isVisible = isEditableList
+        menu.findItem(R.id.itemDeleteChecked).isVisible = isEditableList
     }
 
     override fun onDestroyView() {
@@ -409,21 +409,21 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_type -> viewModel.toggleNoteType()
-            R.id.item_move -> viewModel.moveNoteAndExit()
-            R.id.item_pin -> viewModel.togglePin()
-            R.id.item_reminder -> viewModel.changeReminder()
-            R.id.item_labels -> viewModel.changeLabels()
-            R.id.item_share -> viewModel.shareNote()
-            R.id.item_uncheck_all -> {
+            R.id.itemType -> viewModel.toggleNoteType()
+            R.id.itemMove -> viewModel.moveNoteAndExit()
+            R.id.itemPin -> viewModel.togglePin()
+            R.id.itemReminder -> viewModel.changeReminder()
+            R.id.itemLabels -> viewModel.changeLabels()
+            R.id.itemShare -> viewModel.shareNote()
+            R.id.itemUncheckAll -> {
                 viewModel.uncheckAllItems()
             }
 
-            R.id.item_delete_checked -> viewModel.deleteCheckedItems()
-            R.id.item_copy -> viewModel.copyNote(getString(R.string.edit_copy_untitled_name),
+            R.id.itemDeleteChecked -> viewModel.deleteCheckedItems()
+            R.id.itemCopy -> viewModel.copyNote(getString(R.string.edit_copy_untitled_name),
                 getString(R.string.edit_copy_suffix))
 
-            R.id.item_delete -> viewModel.deleteNote()
+            R.id.itemDelete -> viewModel.deleteNote()
             else -> return false
         }
         return true

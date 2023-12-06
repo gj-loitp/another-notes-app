@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/item_search"
+        android:id="@+id/itemSearch"
         android:icon="@drawable/ic_search"
         android:title="@string/action_search"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/item_layout"
+        android:id="@+id/itemLayout"
         android:icon="@null"
         android:title="@null"
         app:showAsAction="ifRoom"
@@ -18,18 +18,18 @@
         tools:title="@string/action_layout_grid" />
 
     <item
-        android:id="@+id/item_sort"
+        android:id="@+id/itemSort"
         android:icon="@drawable/ic_sort"
         android:title="@string/sort_title"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/item_empty_trash"
+        android:id="@+id/itemEmptyTrash"
         android:title="@string/action_empty_trash"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/item_extra_action"
+        android:id="@+id/itemExtraAction"
         android:title="@string/action_extra"
         app:showAsAction="never" />
 

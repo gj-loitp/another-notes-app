@@ -119,7 +119,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
             } else {
                 R.string.label_select
             })
-            menu.findItem(R.id.item_confirm).isVisible = (args.noteIds.isNotEmpty())
+            menu.findItem(R.id.itemConfirm).isVisible = (args.noteIds.isNotEmpty())
         }
 
         binding.fab.setOnClickListener {
@@ -211,7 +211,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_confirm -> viewModel.setNotesLabels()
+            R.id.itemConfirm -> viewModel.setNotesLabels()
             else -> return false
         }
         return true
@@ -220,7 +220,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_rename -> viewModel.renameSelection()
-            R.id.item_delete -> viewModel.deleteSelectionPre()
+            R.id.itemDelete -> viewModel.deleteSelectionPre()
             R.id.item_select_all -> viewModel.selectAll()
             else -> return false
         }

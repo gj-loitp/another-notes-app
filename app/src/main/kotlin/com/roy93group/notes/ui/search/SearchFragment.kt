@@ -75,7 +75,7 @@ class SearchFragment : NoteFragment() {
         (rcv.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
 
         // Search view
-        val searchView = toolbar.menu.findItem(R.id.item_search_edt).actionView as SearchView
+        val searchView = toolbar.menu.findItem(R.id.itemSearchEdt).actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 view.hideKeyboard()

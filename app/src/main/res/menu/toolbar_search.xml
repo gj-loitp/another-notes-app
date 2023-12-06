@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/item_search_edt"
+        android:id="@+id/itemSearchEdt"
         android:icon="@null"
         android:title="@null"
         app:actionLayout="@layout/view_search"
