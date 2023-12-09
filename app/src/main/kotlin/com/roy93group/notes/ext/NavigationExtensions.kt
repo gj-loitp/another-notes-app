@@ -1,4 +1,4 @@
-package com.roy93group.notes
+package com.roy93group.notes.ext
 
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections

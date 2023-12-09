@@ -20,12 +20,12 @@ import com.roy93group.notes.databinding.VItemEditItemAddBinding
 import com.roy93group.notes.databinding.VItemEditItemBinding
 import com.roy93group.notes.databinding.VItemEditLabelsBinding
 import com.roy93group.notes.databinding.VItemEditTitleBinding
-import com.roy93group.notes.hideKeyboard
+import com.roy93group.notes.ext.hideKeyboard
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.model.entity.Reminder
-import com.roy93group.notes.showKeyboard
-import com.roy93group.notes.strikethroughText
+import com.roy93group.notes.ext.showKeyboard
+import com.roy93group.notes.ext.strikethroughText
 import com.roy93group.notes.ui.edit.BulletTextWatcher
 import com.roy93group.notes.utils.RelativeDateFormatter
 import java.text.DateFormat

@@ -16,7 +16,7 @@ import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.model.entity.NoteWithLabels
 import com.roy93group.notes.model.entity.PinnedStatus
-import com.roy93group.notes.setToStartOfDay
+import com.roy93group.notes.ext.setToStartOfDay
 import com.roy93group.notes.ui.AssistedSavedStateViewModelFactory
 import com.roy93group.notes.ui.Event
 import com.roy93group.notes.ui.navigation.HomeDestination

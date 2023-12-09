@@ -12,8 +12,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.roy93group.notes.App
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.DlgImportPasswordBinding
-import com.roy93group.notes.hideCursorInAllViews
-import com.roy93group.notes.setTitleIfEnoughSpace
+import com.roy93group.notes.ext.hideCursorInAllViews
+import com.roy93group.notes.ext.setTitleIfEnoughSpace
 import com.roy93group.notes.ui.observeEvent
 import com.roy93group.notes.ui.viewModel
 import javax.inject.Inject

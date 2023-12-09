@@ -1,4 +1,4 @@
-package com.roy93group.notes
+package com.roy93group.notes.ext
 
 /**
  * For debugging, provides a log tag in every class.

@@ -26,7 +26,7 @@ import com.google.android.material.transition.MaterialElevationScale
 import com.roy93group.notes.App
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.FLabelBinding
-import com.roy93group.notes.navigateSafe
+import com.roy93group.notes.ext.navigateSafe
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.common.ConfirmDialog
 import com.roy93group.notes.ui.labels.adapter.LabelAdapter

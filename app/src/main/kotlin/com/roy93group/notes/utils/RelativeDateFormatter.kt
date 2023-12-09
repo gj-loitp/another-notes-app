@@ -4,7 +4,7 @@ import android.content.res.Resources
 import android.icu.text.RelativeDateTimeFormatter
 import android.text.format.DateUtils
 import com.roy93group.notes.R
-import com.roy93group.notes.setToStartOfDay
+import com.roy93group.notes.ext.setToStartOfDay
 import java.text.DateFormat
 import java.util.Calendar
 

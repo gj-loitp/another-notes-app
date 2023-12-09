@@ -15,8 +15,8 @@ import com.google.android.material.textfield.TextInputLayout
 import com.roy93group.notes.App
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.DlgExportPasswordBinding
-import com.roy93group.notes.hideCursorInAllViews
-import com.roy93group.notes.setTitleIfEnoughSpace
+import com.roy93group.notes.ext.hideCursorInAllViews
+import com.roy93group.notes.ext.setTitleIfEnoughSpace
 import com.roy93group.notes.ui.observeEvent
 import com.roy93group.notes.ui.viewModel
 import javax.inject.Inject

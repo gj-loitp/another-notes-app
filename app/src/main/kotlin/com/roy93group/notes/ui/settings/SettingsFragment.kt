@@ -28,10 +28,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialElevationScale
 import com.roy93group.notes.App
 import com.roy93group.notes.R
-import com.roy93group.notes.TAG
+import com.roy93group.notes.ext.TAG
 import com.roy93group.notes.databinding.FSettingsBinding
 import com.roy93group.notes.model.PrefsManager
-import com.roy93group.notes.navigateSafe
+import com.roy93group.notes.ext.navigateSafe
 import com.roy93group.notes.ui.AppTheme
 import com.roy93group.notes.ui.common.ConfirmDialog
 import com.roy93group.notes.ui.main.MainActivity

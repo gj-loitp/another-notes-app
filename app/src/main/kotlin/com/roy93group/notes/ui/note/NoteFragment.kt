@@ -40,7 +40,7 @@ import com.roy93group.notes.databinding.FNoteBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.model.entity.PinnedStatus
-import com.roy93group.notes.navigateSafe
+import com.roy93group.notes.ext.navigateSafe
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.StatusChange
 import com.roy93group.notes.ui.common.ConfirmDialog

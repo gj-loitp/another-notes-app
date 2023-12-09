@@ -1,4 +1,4 @@
-package com.roy93group.notes
+package com.roy93group.notes.ext
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.roy93group.notes.R
 
 /**
  * Set [this] dialog maximum width to [maxWidth].

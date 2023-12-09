@@ -23,7 +23,7 @@ import com.roy93group.notes.App
 import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
 import com.roy93group.notes.model.entity.NoteStatus
-import com.roy93group.notes.navigateSafe
+import com.roy93group.notes.ext.navigateSafe
 import com.roy93group.notes.ui.common.ConfirmDialog
 import com.roy93group.notes.ui.navigation.HomeDestination
 import com.roy93group.notes.ui.note.NoteFragment

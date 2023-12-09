@@ -29,7 +29,7 @@ import com.roy93group.notes.databinding.VItemNoteTextBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.model.entity.NoteType
-import com.roy93group.notes.strikethroughText
+import com.roy93group.notes.ext.strikethroughText
 import com.roy93group.notes.ui.note.Highlighted
 import com.roy93group.notes.ui.note.ShownDateField
 import com.roy93group.notes.utils.RelativeDateFormatter

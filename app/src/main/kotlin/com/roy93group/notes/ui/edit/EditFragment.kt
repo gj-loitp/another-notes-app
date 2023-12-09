@@ -35,14 +35,14 @@ import com.roy93group.notes.App
 import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.FEditBinding
-import com.roy93group.notes.hideKeyboard
+import com.roy93group.notes.ext.hideKeyboard
 import com.roy93group.notes.model.entity.Note
 import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.model.entity.NoteType
 import com.roy93group.notes.model.entity.PinnedStatus
 import com.roy93group.notes.model.entity.Reminder
-import com.roy93group.notes.navigateSafe
-import com.roy93group.notes.showKeyboard
+import com.roy93group.notes.ext.navigateSafe
+import com.roy93group.notes.ext.showKeyboard
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.common.ConfirmDialog
 import com.roy93group.notes.ui.edit.adapter.EditAdapter

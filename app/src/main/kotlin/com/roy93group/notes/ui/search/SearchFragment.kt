@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.android.material.transition.MaterialElevationScale
 import com.roy93group.notes.App
 import com.roy93group.notes.R
-import com.roy93group.notes.hideKeyboard
-import com.roy93group.notes.showKeyboard
+import com.roy93group.notes.ext.hideKeyboard
+import com.roy93group.notes.ext.showKeyboard
 import com.roy93group.notes.ui.note.NoteFragment
 import com.roy93group.notes.ui.viewModel
 import javax.inject.Inject

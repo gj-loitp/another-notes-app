@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.roy93group.notes.model.NotesRepository
 import com.roy93group.notes.model.ReminderAlarmManager
 import com.roy93group.notes.model.entity.Reminder
-import com.roy93group.notes.setToStartOfDay
+import com.roy93group.notes.ext.setToStartOfDay
 import com.roy93group.notes.ui.AssistedSavedStateViewModelFactory
 import com.roy93group.notes.ui.Event
 import com.roy93group.notes.ui.send

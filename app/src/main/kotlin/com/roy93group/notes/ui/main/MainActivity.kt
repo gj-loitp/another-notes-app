@@ -27,14 +27,14 @@ import com.google.android.material.color.DynamicColors
 import com.roy93group.notes.App
 import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
-import com.roy93group.notes.TAG
+import com.roy93group.notes.ext.TAG
 import com.roy93group.notes.databinding.AMainBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.converter.NoteTypeConverter
 import com.roy93group.notes.model.entity.Note
 import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.model.entity.NoteType
-import com.roy93group.notes.navigateSafe
+import com.roy93group.notes.ext.navigateSafe
 import com.roy93group.notes.receiver.AlarmReceiver
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.main.MainViewModel.NewNoteData

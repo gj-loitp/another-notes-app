@@ -4,7 +4,6 @@ package com.roy93group.notes.ui.edit.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ import com.roy93group.notes.databinding.VItemEditItemAddBinding
 import com.roy93group.notes.databinding.VItemEditItemBinding
 import com.roy93group.notes.databinding.VItemEditLabelsBinding
 import com.roy93group.notes.databinding.VItemEditTitleBinding
-import com.roy93group.notes.hideKeyboard
+import com.roy93group.notes.ext.hideKeyboard
 import com.roy93group.notes.ui.edit.EditViewModel
 
 class EditAdapter(val context: Context, val callback: Callback) :

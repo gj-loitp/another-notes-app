@@ -1,4 +1,4 @@
-package com.roy93group.notes
+package com.roy93group.notes.ext
 
 import android.content.Context
 import android.graphics.Paint

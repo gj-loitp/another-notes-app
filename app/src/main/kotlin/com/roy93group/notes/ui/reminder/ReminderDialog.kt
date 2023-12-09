@@ -26,9 +26,9 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.roy93group.notes.App
 import com.roy93group.notes.R
-import com.roy93group.notes.contains
+import com.roy93group.notes.ext.contains
 import com.roy93group.notes.databinding.DlgReminderBinding
-import com.roy93group.notes.setMaxWidth
+import com.roy93group.notes.ext.setMaxWidth
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.common.ConfirmDialog
 import com.roy93group.notes.ui.navGraphViewModel
