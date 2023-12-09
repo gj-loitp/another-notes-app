@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<layer-list
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
         <color android:color="?android:colorBackground" />
@@ -10,8 +8,7 @@
     <item android:bottom="120dp">
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/splash_screen_logo"
-            />
+            android:src="@mipmap/splash_screen_logo" />
     </item>
 
 </layer-list>

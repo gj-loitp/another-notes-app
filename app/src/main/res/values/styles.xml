@@ -35,7 +35,7 @@
         <item name="android:textAppearance">?textAppearanceCaption</item>
         <item name="android:textColor">@color/item_note_reminder_fg_color</item>
         <item name="chipBackgroundColor">@null</item>
-        <item name="chipStrokeColor">@color/item_note_reminder_stroke_color</item>
+        <item name="chipStrokeColor">@color/selector_item_note_reminder_stroke_color</item>
         <item name="chipStrokeWidth">0.7dp</item>
         <item name="chipIconSize">16dp</item>
         <item name="chipStartPadding">8dp</item>
