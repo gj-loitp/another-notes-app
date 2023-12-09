@@ -1,13 +1,11 @@
-
-
 package com.roy93group.notes.ui.note
 
+import androidx.annotation.Keep
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.roy93group.notes.BuildConfig
 import com.roy93group.notes.model.LabelsRepository
 import com.roy93group.notes.model.NotesRepository
 import com.roy93group.notes.model.PrefsManager
@@ -215,11 +213,13 @@ abstract class NoteViewModel(
     }
 
     fun moveSelectedNotes() {
-        changeSelectedNotesStatus(if (selectedNoteStatus == NoteStatus.ACTIVE) {
-            NoteStatus.ARCHIVED
-        } else {
-            NoteStatus.ACTIVE
-        })
+        changeSelectedNotesStatus(
+            if (selectedNoteStatus == NoteStatus.ACTIVE) {
+                NoteStatus.ARCHIVED
+            } else {
+                NoteStatus.ACTIVE
+            }
+        )
     }
 
     fun deleteSelectedNotesPre() {
@@ -253,13 +253,16 @@ abstract class NoteViewModel(
                 title = Note.getCopiedNoteTitle(note.title, untitledName, copySuffix),
                 addedDate = date,
                 lastModifiedDate = date,
-                reminder = null)
+                reminder = null
+            )
             val id = notesRepository.insertNote(copy)
 
             // Set labels for copy
             val labelIds = labelsRepository.getLabelIdsForNote(note.id)
             if (labelIds.isNotEmpty()) {
-                labelsRepository.insertLabelRefs(labelIds.map { LabelRef(id, it) })
+                labelsRepository.insertLabelRefs(labelIds.map {
+                    LabelRef(noteId = id, labelId = it)
+                })
             }
 
             clearSelection()
@@ -308,7 +311,12 @@ abstract class NoteViewModel(
         val hasReminder = selectedNotes.any { it.reminder != null }
 
         _currentSelection.value =
-            NoteSelection(selectedNotes.size, selectedNoteStatus, pinned, hasReminder)
+            NoteSelection(
+                count = selectedNotes.size,
+                status = selectedNoteStatus,
+                pinned = pinned,
+                hasReminder = hasReminder
+            )
     }
 
     /** Save [selectedNotes] to [savedStateHandle]. */
@@ -326,10 +334,12 @@ abstract class NoteViewModel(
             val date = Date()
             val newNotes = mutableListOf<Note>()
             for (note in oldNotes) {
-                newNotes += note.copy(status = newStatus,
+                newNotes += note.copy(
+                    status = newStatus,
                     pinned = if (newStatus == NoteStatus.ACTIVE) PinnedStatus.UNPINNED else PinnedStatus.CANT_PIN,
                     reminder = note.reminder.takeIf { newStatus != NoteStatus.DELETED },
-                    lastModifiedDate = date)
+                    lastModifiedDate = date
+                )
                 if (newStatus == NoteStatus.DELETED) {
                     if (note.reminder != null) {
                         // Remove reminder alarm for deleted note.
@@ -397,11 +407,12 @@ abstract class NoteViewModel(
         listItems = newList
     }
 
+    @Keep
     data class NoteSelection(
         val count: Int,
         val status: NoteStatus?,
         val pinned: PinnedStatus,
-        val hasReminder: Boolean
+        val hasReminder: Boolean,
     )
 
     companion object {

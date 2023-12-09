@@ -1,6 +1,4 @@
-
-
-package com.roy93group.notes.ui.notification
+package com.roy93group.notes.ui.noti
 
 import androidx.fragment.app.Fragment
 

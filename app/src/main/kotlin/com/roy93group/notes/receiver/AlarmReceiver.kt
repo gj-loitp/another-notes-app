@@ -15,7 +15,7 @@ import com.roy93group.notes.model.NotesRepository
 import com.roy93group.notes.model.ReminderAlarmManager
 import com.roy93group.notes.model.entity.Note
 import com.roy93group.notes.ui.main.MainActivity
-import com.roy93group.notes.ui.notification.NotificationActivity
+import com.roy93group.notes.ui.noti.NotificationActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

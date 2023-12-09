@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.note
 
 import android.animation.ArgbEvaluator
@@ -97,7 +95,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
         setExitSharedElementCallback(object : SharedElementCallback() {
             override fun onMapSharedElements(
                 names: MutableList<String>?,
-                sharedElements: MutableMap<String, View>?
+                sharedElements: MutableMap<String, View>?,
             ) {
                 isSharedElementTransitionPlaying = sharedElements != null && sharedElements.isNotEmpty()
                 super.onMapSharedElements(names, sharedElements)
@@ -108,7 +106,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FNoteBinding.inflate(inflater, container, false)
         return binding.root
@@ -192,10 +190,12 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
         setupNoteItemsObserver(adapter)
 
         viewModel.listLayoutMode.observe(viewLifecycleOwner) { mode ->
-            layoutManager.spanCount = resources.getInteger(when (mode!!) {
-                NoteListLayoutMode.LIST -> R.integer.note_list_layout_span_count
-                NoteListLayoutMode.GRID -> R.integer.note_grid_layout_span_count
-            })
+            layoutManager.spanCount = resources.getInteger(
+                when (mode!!) {
+                    NoteListLayoutMode.LIST -> R.integer.note_list_layout_span_count
+                    NoteListLayoutMode.GRID -> R.integer.note_grid_layout_span_count
+                }
+            )
             spanCount = layoutManager.spanCount
             adapter.updateForListLayoutChange()
         }
@@ -334,11 +334,13 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
                     pinItem.setIcon(R.drawable.ic_pin_outline)
                     pinItem.setTitle(R.string.action_unpin)
                 }
+
                 PinnedStatus.UNPINNED -> {
                     pinItem.isVisible = true
                     pinItem.setIcon(R.drawable.ic_pin)
                     pinItem.setTitle(R.string.action_pin)
                 }
+
                 PinnedStatus.CANT_PIN -> {
                     pinItem.isVisible = false
                 }
@@ -347,11 +349,13 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
             // Reminder item
             val reminderItem = menu.findItem(R.id.itemReminder)
             reminderItem.isVisible = (selection.status != NoteStatus.DELETED)
-            reminderItem.setTitle(if (selection.hasReminder) {
-                R.string.action_reminder_edit
-            } else {
-                R.string.action_reminder_add
-            })
+            reminderItem.setTitle(
+                if (selection.hasReminder) {
+                    R.string.action_reminder_edit
+                } else {
+                    R.string.action_reminder_add
+                }
+            )
 
             // Labels item
             val labelsItem = menu.findItem(R.id.itemLabels)
@@ -366,11 +370,13 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
                     moveItem.setTitle(R.string.action_archive)
                     deleteItem.setTitle(R.string.action_delete)
                 }
+
                 NoteStatus.ARCHIVED -> {
                     moveItem.setIcon(R.drawable.ic_unarchive)
                     moveItem.setTitle(R.string.action_unarchive)
                     deleteItem.setTitle(R.string.action_delete)
                 }
+
                 NoteStatus.DELETED -> {
                     moveItem.setIcon(R.drawable.ic_restore)
                     moveItem.setTitle(R.string.action_restore)
@@ -396,6 +402,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
             } else {
                 R.plurals.edit_message_move_unarchive
             }
+
             NoteStatus.ARCHIVED -> R.plurals.edit_move_archive_message
             NoteStatus.DELETED -> R.plurals.edit_message_move_delete
         }
@@ -441,7 +448,9 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
             R.id.itemSelectAll -> viewModel.selectAll()
             R.id.itemShare -> viewModel.shareSelectedNote()
             R.id.itemCopy -> viewModel.copySelectedNote(
-                getString(R.string.edit_copy_untitled_name), getString(R.string.edit_copy_suffix))
+                getString(R.string.edit_copy_untitled_name), getString(R.string.edit_copy_suffix)
+            )
+
             R.id.itemDelete -> viewModel.deleteSelectedNotesPre()
             else -> return false
         }
@@ -503,7 +512,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
     override fun onDestinationChanged(
         controller: NavController,
         destination: NavDestination,
-        arguments: Bundle?
+        arguments: Bundle?,
     ) {
         if (destination.id == R.id.fragment_edit) {
             // If notes are selected and action mode is shown, navigating to edit fragment

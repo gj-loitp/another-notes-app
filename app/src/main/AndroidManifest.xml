@@ -44,7 +44,7 @@
         </activity>
 
         <activity
-            android:name=".ui.notification.NotificationActivity"
+            android:name=".ui.noti.NotificationActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:label="@string/app_name_short"

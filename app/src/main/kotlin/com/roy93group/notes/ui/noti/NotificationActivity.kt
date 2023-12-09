@@ -1,6 +1,4 @@
-
-
-package com.roy93group.notes.ui.notification
+package com.roy93group.notes.ui.noti
 
 import android.content.Intent
 import android.os.Bundle
@@ -26,11 +24,14 @@ class NotificationActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: NotificationViewModel.Factory
-    private val viewModel by navGraphViewModel(R.id.nav_graph_notification) { viewModelFactory.create(it) }
+    private val viewModel by navGraphViewModel(R.id.nav_graph_notification) {
+        viewModelFactory.create(it)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (applicationContext as App).appComponent.inject(this)
+
+        (applicationContext as App?)?.appComponent?.inject(this)
 
         setContentView(R.layout.a_notification)
 
@@ -93,7 +94,7 @@ class NotificationActivity : AppCompatActivity() {
             timePicker.addOnNegativeButtonClickListener {
                 viewModel.cancelPostpone()
             }
-            timePicker.show(supportFragmentManager, TIME_DIALOG_TAG)
+            timePicker.show(/* manager = */ supportFragmentManager, /* tag = */ TIME_DIALOG_TAG)
         }
 
         viewModel.clearNotificationEvent.observeEvent(this) { noteId ->
@@ -124,9 +125,11 @@ class NotificationActivity : AppCompatActivity() {
             val calendar = Calendar.getInstance()
             // MaterialDatePicker operates on UTC timezone... convert to local timezone (in UTC millis).
             calendar.timeInMillis = selection - TimeZone.getDefault().getOffset(selection)
-            viewModel.setPostponeDate(calendar[Calendar.YEAR],
+            viewModel.setPostponeDate(
+                calendar[Calendar.YEAR],
                 calendar[Calendar.MONTH],
-                calendar[Calendar.DAY_OF_MONTH])
+                calendar[Calendar.DAY_OF_MONTH]
+            )
         }
     }
 

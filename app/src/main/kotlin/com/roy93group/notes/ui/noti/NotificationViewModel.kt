@@ -1,6 +1,4 @@
-
-
-package com.roy93group.notes.ui.notification
+package com.roy93group.notes.ui.noti
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,7 +21,7 @@ import java.util.Calendar
 class NotificationViewModel @AssistedInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
     private val notesRepository: NotesRepository,
-    private val reminderAlarmManager: ReminderAlarmManager
+    private val reminderAlarmManager: ReminderAlarmManager,
 ) : ViewModel() {
 
     private val calendar = Calendar.getInstance()

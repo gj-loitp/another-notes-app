@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.note
 
 import com.roy93group.notes.model.PrefsManager
@@ -17,7 +15,7 @@ import javax.inject.Inject
  * Handles which items are visible, search highlights, ellipsis, etc.
  */
 class NoteItemFactory @Inject constructor(
-    private val prefs: PrefsManager
+    private val prefs: PrefsManager,
 ) {
 
     /**
@@ -37,8 +35,19 @@ class NoteItemFactory @Inject constructor(
         checked: Boolean,
         showMarkAsDone: Boolean = false,
     ) = when (note.type) {
-        NoteType.TEXT -> createTextItem(note, labels, checked, showMarkAsDone)
-        NoteType.LIST -> createListItem(note, labels, checked, showMarkAsDone)
+        NoteType.TEXT -> createTextItem(
+            note = note,
+            labels = labels,
+            checked = checked,
+            showMarkAsDone = showMarkAsDone
+        )
+
+        NoteType.LIST -> createListItem(
+            note = note,
+            labels = labels,
+            checked = checked,
+            showMarkAsDone = showMarkAsDone
+        )
     }
 
     private fun createTextItem(
@@ -55,12 +64,26 @@ class NoteItemFactory @Inject constructor(
         } else {
             val ellipsisThreshold = getStartEllipsisThreshold(START_ELLIPSIS_THRESHOLD_CONTENT) *
                     maxOf(0, prefs.getMaximumPreviewLines(NoteType.TEXT) - 1) + START_ELLIPSIS_THRESHOLD_CONTENT_FIRST
-            val highlights = HighlightHelper.findHighlightsInString(contentTrim, query!!, MAX_HIGHLIGHTS_IN_TEXT)
-            HighlightHelper.getStartEllipsizedText(contentTrim, highlights,
-                ellipsisThreshold, START_ELLIPSIS_DISTANCE_CONTENT)
+            val highlights = HighlightHelper.findHighlightsInString(
+                text = contentTrim,
+                query = query!!,
+                max = MAX_HIGHLIGHTS_IN_TEXT
+            )
+            HighlightHelper.getStartEllipsizedText(
+                contentTrim, highlights,
+                ellipsisThreshold, START_ELLIPSIS_DISTANCE_CONTENT
+            )
         }
 
-        return NoteItemText(note.id, note, labels, checked, title, content, showMarkAsDone)
+        return NoteItemText(
+            id = note.id,
+            note = note,
+            labels = labels,
+            checked = checked,
+            title = title,
+            content = content,
+            showMarkAsDone = showMarkAsDone
+        )
     }
 
     private fun createListItem(
@@ -90,7 +113,8 @@ class NoteItemFactory @Inject constructor(
             // Remove items so that as many highlights are visible as possible.
             // Keep first items in case there are less highlights than items shown.
             val highlightIndices = highlights.mapIndexedNotNullTo(
-                mutableListOf()) { i, h -> i.takeIf { h.isNotEmpty() } }
+                mutableListOf()
+            ) { i, h -> i.takeIf { h.isNotEmpty() } }
             highlightIndices += Int.MAX_VALUE
             var currHighlight = 0
             var delta = 0
@@ -119,14 +143,26 @@ class NoteItemFactory @Inject constructor(
         val title = createTitle(note)
         val ellipsisThreshold = getStartEllipsisThreshold(START_ELLIPSIS_THRESHOLD_ITEM)
         val highlightedItems = items.mapIndexed { i, item ->
-            HighlightHelper.getStartEllipsizedText(item.content,
-                if (query == null) mutableListOf() else highlights[i],
-                ellipsisThreshold, START_ELLIPSIS_DISTANCE_ITEM)
+            HighlightHelper.getStartEllipsizedText(
+                text = item.content,
+                highlights = if (query == null) mutableListOf() else highlights[i],
+                startEllipsisThreshold = ellipsisThreshold, startEllipsisDistance = START_ELLIPSIS_DISTANCE_ITEM
+            )
         }
         val itemsChecked = items.map { it.checked }
 
-        return NoteItemList(note.id, note, labels, checked, title, highlightedItems,
-            itemsChecked, overflowCount, onlyCheckedInOverflow, showMarkAsDone)
+        return NoteItemList(
+            id = note.id,
+            note = note,
+            labels = labels,
+            checked = checked,
+            title = title,
+            items = highlightedItems,
+            itemsChecked = itemsChecked,
+            overflowCount = overflowCount,
+            onlyCheckedInOverflow = onlyCheckedInOverflow,
+            showMarkAsDone = showMarkAsDone
+        )
     }
 
     private fun getListItemCount(items: List<ListNoteItem>, highlights: List<List<IntRange>>): Int {
@@ -138,14 +174,14 @@ class NoteItemFactory @Inject constructor(
             }
             if (query != null) {
                 // Show checked items with highlights as well
-                val checkedHighlighed = items.foldIndexed(0) { i, c, item ->
+                val checkedHighlighted = items.foldIndexed(0) { i, c, item ->
                     if (highlights[i].isNotEmpty() && item.checked) {
                         c + 1
                     } else {
                         c
                     }
                 }
-                count += checkedHighlighed
+                count += checkedHighlighted
             }
             if (MINIMUM_LIST_NOTE_ITEMS in count until maxItemsCount) {
                 // Less than minimum unchecked items, add checked items.
@@ -163,8 +199,10 @@ class NoteItemFactory @Inject constructor(
         } else {
             var maxHighlights = MAX_HIGHLIGHTS_IN_LIST
             items.mapTo(mutableListOf()) {
-                val ranges = HighlightHelper.findHighlightsInString(it.content, query!!,
-                    minOf(maxHighlights, MAX_HIGHLIGHTS_IN_LIST_ITEM))
+                val ranges = HighlightHelper.findHighlightsInString(
+                    text = it.content, query = query!!,
+                    max = minOf(maxHighlights, MAX_HIGHLIGHTS_IN_LIST_ITEM)
+                )
                 maxHighlights -= ranges.size
                 ranges
             }
@@ -179,9 +217,17 @@ class NoteItemFactory @Inject constructor(
         return if (query == null) {
             Highlighted(title)
         } else {
-            val highlights = HighlightHelper.findHighlightsInString(title, query!!, MAX_HIGHLIGHTS_IN_TITLE)
-            HighlightHelper.getStartEllipsizedText(title, highlights,
-                getStartEllipsisThreshold(START_ELLIPSIS_THRESHOLD_TITLE), START_ELLIPSIS_DISTANCE_TITLE)
+            val highlights = HighlightHelper.findHighlightsInString(
+                text = title,
+                query = query!!,
+                max = MAX_HIGHLIGHTS_IN_TITLE
+            )
+            HighlightHelper.getStartEllipsizedText(
+                text = title,
+                highlights = highlights,
+                startEllipsisThreshold = getStartEllipsisThreshold(START_ELLIPSIS_THRESHOLD_TITLE),
+                startEllipsisDistance = START_ELLIPSIS_DISTANCE_TITLE
+            )
         }
     }
 

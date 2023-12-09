@@ -10,7 +10,7 @@ import com.roy93group.notes.ui.home.HomeFragment
 import com.roy93group.notes.ui.labels.LabelEditDialog
 import com.roy93group.notes.ui.labels.LabelFragment
 import com.roy93group.notes.ui.main.MainActivity
-import com.roy93group.notes.ui.notification.NotificationActivity
+import com.roy93group.notes.ui.noti.NotificationActivity
 import com.roy93group.notes.ui.reminder.ReminderDialog
 import com.roy93group.notes.ui.search.SearchFragment
 import com.roy93group.notes.ui.settings.ExportPasswordDialog
