@@ -99,7 +99,7 @@
         <dialog
             android:id="@+id/dialog_reminder"
             android:name="com.roy93group.notes.ui.reminder.ReminderDialog"
-            tools:layout="@layout/dialog_reminder">
+            tools:layout="@layout/dlg_reminder">
             <argument
                 android:name="noteIds"
                 app:argType="long[]" />

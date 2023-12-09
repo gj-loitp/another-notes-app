@@ -41,7 +41,7 @@ import com.google.android.material.timepicker.TimeFormat
 import com.roy93group.notes.App
 import com.roy93group.notes.R
 import com.roy93group.notes.contains
-import com.roy93group.notes.databinding.DialogReminderBinding
+import com.roy93group.notes.databinding.DlgReminderBinding
 import com.roy93group.notes.setMaxWidth
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.common.ConfirmDialog
@@ -87,7 +87,7 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val context = requireContext()
-        val binding = DialogReminderBinding.inflate(layoutInflater, null, false)
+        val binding = DlgReminderBinding.inflate(layoutInflater, null, false)
 
         binding.dateForegroundView.setOnClickListener {
             viewModel.onDateClicked()
@@ -145,7 +145,7 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
         requestPermissionLauncher = null
     }
 
-    private fun setupViewModelObservers(binding: DialogReminderBinding) {
+    private fun setupViewModelObservers(binding: DlgReminderBinding) {
         // Using `this` as lifecycle owner, cannot show dialog twice with same instance to avoid double observation.
         debugCheck(!viewModel.details.hasObservers()) { "Dialog was shown twice with same instance." }
 

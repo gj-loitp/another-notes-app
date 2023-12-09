@@ -22,7 +22,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.roy93group.notes.App
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.DialogSortBinding
+import com.roy93group.notes.databinding.DlgSortBinding
 import com.roy93group.notes.model.SortDirection
 import com.roy93group.notes.model.SortField
 import com.roy93group.notes.model.SortSettings
@@ -51,7 +51,7 @@ class SortDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val context = requireContext()
-        val binding = DialogSortBinding.inflate(layoutInflater, null, false)
+        val binding = DlgSortBinding.inflate(layoutInflater, null, false)
 
         // Create dialog
         val dialog = MaterialAlertDialogBuilder(context)
@@ -59,14 +59,14 @@ class SortDialog : DialogFragment() {
             .setTitle(R.string.sort_title)
             .setPositiveButton(R.string.action_ok) { _, _ ->
                 val field = when (binding.sortFieldRadioGroup.checkedRadioButtonId) {
-                    R.id.sort_field_added_radio -> SortField.ADDED_DATE
-                    R.id.sort_field_modified_radio -> SortField.MODIFIED_DATE
-                    R.id.sort_field_title_radio -> SortField.TITLE
+                    R.id.sortFieldAddedRadio -> SortField.ADDED_DATE
+                    R.id.sortFieldModifiedRadio -> SortField.MODIFIED_DATE
+                    R.id.sortFieldTitleRadio -> SortField.TITLE
                     else -> SortField.MODIFIED_DATE  // should not happen
                 }
                 val direction = when (binding.sortDirectionRadioGroup.checkedRadioButtonId) {
-                    R.id.sort_direction_asc_radio -> SortDirection.ASCENDING
-                    R.id.sort_direction_desc_radio -> SortDirection.DESCENDING
+                    R.id.sortDirectionAscRadio -> SortDirection.ASCENDING
+                    R.id.sortDirectionDescRadio -> SortDirection.DESCENDING
                     else -> SortDirection.DESCENDING  // should not happen
                 }
                 sharedViewModel.changeSortSettings(SortSettings(field, direction))
@@ -83,7 +83,7 @@ class SortDialog : DialogFragment() {
         return dialog
     }
 
-    private fun setupViewModelObservers(binding: DialogSortBinding) {
+    private fun setupViewModelObservers(binding: DlgSortBinding) {
         // Using `this` as lifecycle owner, cannot show dialog twice with same instance to avoid double observation.
         debugCheck(!viewModel.sortField.hasObservers()) { "Dialog was shown twice with same instance." }
 
