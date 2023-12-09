@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.note
 
 /**
@@ -7,7 +5,7 @@ package com.roy93group.notes.ui.note
  */
 object HighlightHelper {
 
-    const val START_ELLIPSIS = "\u2026\uFEFF"
+    private const val START_ELLIPSIS = "\u2026\uFEFF"
 
     /**
      * Find a [max] of highlight positions for matches of a [query] in a [text].
@@ -47,7 +45,7 @@ object HighlightHelper {
         text: String,
         highlights: MutableList<IntRange>,
         startEllipsisThreshold: Int,
-        startEllipsisDistance: Int
+        startEllipsisDistance: Int,
     ): Highlighted {
         var ellipsizedText = text
         if (highlights.isNotEmpty()) {

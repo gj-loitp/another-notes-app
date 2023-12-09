@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.note.adapter
 
 import androidx.recyclerview.widget.DiffUtil
@@ -19,10 +17,12 @@ class NoteListDiffCallback : DiffUtil.ItemCallback<NoteListItem>() {
                 old as MessageItem
                 new.message == old.message
             }
+
             is HeaderItem -> {
                 old as HeaderItem
                 new.title == old.title
             }
+
             is NoteItem -> {
                 // Only check the attributes that have an influence on the
                 // visual representation of the note item.
@@ -45,6 +45,7 @@ class NoteListDiffCallback : DiffUtil.ItemCallback<NoteListItem>() {
                                 old as NoteItemText
                                 new.content == old.content
                             }
+
                             is NoteItemList -> {
                                 old as NoteItemList
                                 new.items == old.items

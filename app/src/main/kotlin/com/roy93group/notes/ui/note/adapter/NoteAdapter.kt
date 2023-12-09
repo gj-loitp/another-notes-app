@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.note.adapter
 
 import android.annotation.SuppressLint
@@ -23,7 +21,7 @@ import com.roy93group.notes.ui.note.SwipeAction
 class NoteAdapter(
     val context: Context,
     val callback: Callback,
-    val prefsManager: PrefsManager
+    val prefsManager: PrefsManager,
 ) : ListAdapter<NoteListItem, RecyclerView.ViewHolder>(NoteListDiffCallback()) {
 
     /**
@@ -59,14 +57,26 @@ class NoteAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            ViewType.MESSAGE.ordinal -> MessageViewHolder(VItemMessageBinding
-                .inflate(inflater, parent, false))
-            ViewType.HEADER.ordinal -> HeaderViewHolder(VItemHeaderBinding
-                .inflate(inflater, parent, false))
-            ViewType.TEXT_NOTE.ordinal -> TextNoteViewHolder(VItemNoteTextBinding
-                .inflate(inflater, parent, false))
-            ViewType.LIST_NOTE.ordinal -> ListNoteViewHolder(VItemNoteListBinding
-                .inflate(inflater, parent, false))
+            ViewType.MESSAGE.ordinal -> MessageViewHolder(
+                VItemMessageBinding
+                    .inflate(inflater, parent, false)
+            )
+
+            ViewType.HEADER.ordinal -> HeaderViewHolder(
+                VItemHeaderBinding
+                    .inflate(inflater, parent, false)
+            )
+
+            ViewType.TEXT_NOTE.ordinal -> TextNoteViewHolder(
+                VItemNoteTextBinding
+                    .inflate(inflater, parent, false)
+            )
+
+            ViewType.LIST_NOTE.ordinal -> ListNoteViewHolder(
+                VItemNoteListBinding
+                    .inflate(inflater, parent, false)
+            )
+
             else -> error("Unknown view type")
         }
     }
@@ -81,6 +91,7 @@ class NoteAdapter(
                 holder.unbind(this)
                 holder.bind(this, item as NoteItemText)
             }
+
             is ListNoteViewHolder -> {
                 // [onViewRecycled] is not always called so unbinding is also done here.
                 holder.unbind(this)
@@ -105,8 +116,11 @@ class NoteAdapter(
         if (listNoteItemViewHolderPool.isNotEmpty()) {
             listNoteItemViewHolderPool.removeLast()
         } else {
-            ListNoteItemViewHolder(VItemNoteListItemBinding.inflate(
-                LayoutInflater.from(context), null, false))
+            ListNoteItemViewHolder(
+                VItemNoteListItemBinding.inflate(
+                    LayoutInflater.from(context), null, false
+                )
+            )
         }
 
     @SuppressLint("InflateParams")
@@ -114,8 +128,11 @@ class NoteAdapter(
         if (labelViewHolderPool.isNotEmpty()) {
             labelViewHolderPool.removeLast()
         } else {
-            LabelChipViewHolder(VItemNoteLabelBinding.inflate(
-                LayoutInflater.from(context), null, false))
+            LabelChipViewHolder(
+                VItemNoteLabelBinding.inflate(
+                    LayoutInflater.from(context), null, false
+                )
+            )
         }
 
     fun freeListNoteItemViewHolder(viewHolder: ListNoteItemViewHolder) {

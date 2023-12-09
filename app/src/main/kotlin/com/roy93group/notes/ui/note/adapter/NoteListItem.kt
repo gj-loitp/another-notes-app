@@ -1,7 +1,6 @@
-
-
 package com.roy93group.notes.ui.note.adapter
 
+import androidx.annotation.Keep
 import androidx.annotation.PluralsRes
 import androidx.annotation.StringRes
 import com.roy93group.notes.model.entity.Label
@@ -24,6 +23,7 @@ sealed interface NoteItem : NoteListItem {
     fun withChecked(checked: Boolean): NoteItem
 }
 
+@Keep
 data class NoteItemText(
     override val id: Long,
     override val note: Note,
@@ -40,6 +40,7 @@ data class NoteItemText(
     override fun withChecked(checked: Boolean) = copy(checked = checked)
 }
 
+@Keep
 data class NoteItemList(
     override val id: Long,
     override val note: Note,
@@ -59,14 +60,16 @@ data class NoteItemList(
     override fun withChecked(checked: Boolean) = copy(checked = checked)
 }
 
+@Keep
 data class HeaderItem(
     override val id: Long,
-    @StringRes val title: Int
+    @StringRes val title: Int,
 ) : NoteListItem {
 
     override val type get() = ViewType.HEADER
 }
 
+@Keep
 data class MessageItem(
     override val id: Long,
     @StringRes @PluralsRes val message: Int,

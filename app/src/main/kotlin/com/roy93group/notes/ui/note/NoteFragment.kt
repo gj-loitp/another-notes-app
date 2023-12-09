@@ -64,7 +64,9 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
-    val sharedViewModel: SharedViewModel by navGraphViewModel(R.id.nav_graph_main) { sharedViewModelProvider.get() }
+    val sharedViewModel: SharedViewModel by navGraphViewModel(R.id.nav_graph_main) {
+        sharedViewModelProvider.get()
+    }
 
     @Inject
     lateinit var prefsManager: PrefsManager
@@ -97,7 +99,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
                 names: MutableList<String>?,
                 sharedElements: MutableMap<String, View>?,
             ) {
-                isSharedElementTransitionPlaying = sharedElements != null && sharedElements.isNotEmpty()
+                isSharedElementTransitionPlaying = !sharedElements.isNullOrEmpty()
                 super.onMapSharedElements(names, sharedElements)
             }
         })
@@ -164,7 +166,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
     private fun noteListCommitCallback() {
         // Scroll to top of notes list, when the HomeDestination has changed
         if (currentHomeDestinationChanged) {
-            if (binding.recyclerView.adapter!!.itemCount > 0) {
+            if ((binding.recyclerView.adapter?.itemCount ?: 0) > 0) {
                 binding.recyclerView.scrollToPosition(0)
                 binding.recyclerView.scrollBy(0, -1)
             }
@@ -184,7 +186,10 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
         }
     }
 
-    private fun setupViewModelObservers(adapter: NoteAdapter, layoutManager: StaggeredGridLayoutManager) {
+    private fun setupViewModelObservers(
+        adapter: NoteAdapter,
+        layoutManager: StaggeredGridLayoutManager,
+    ) {
         val navController = findNavController()
 
         setupNoteItemsObserver(adapter)
@@ -457,8 +462,13 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
         return true
     }
 
-    private fun switchStatusBarColor(colorFrom: Int, colorTo: Int, duration: Long, endAsTransparent: Boolean = false) {
-        val anim = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
+    private fun switchStatusBarColor(
+        colorFrom: Int,
+        colorTo: Int,
+        duration: Long,
+        endAsTransparent: Boolean = false,
+    ) {
+        val anim = ValueAnimator.ofObject(/* evaluator = */ ArgbEvaluator(), /* ...values = */ colorFrom, colorTo)
 
         anim.duration = duration
         anim.addUpdateListener { animator ->
@@ -526,10 +536,10 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
             // Change status bar color to match label fragment
             if (Build.VERSION.SDK_INT >= 23) {
                 switchStatusBarColor(
-                    MaterialColors.getColor(requireView(), RMaterial.attr.colorSurfaceVariant),
-                    MaterialColors.getColor(requireView(), RMaterial.attr.colorSurface),
-                    resources.getInteger(RMaterial.integer.material_motion_duration_long_1).toLong() * 2,
-                    true
+                    colorFrom = MaterialColors.getColor(requireView(), RMaterial.attr.colorSurfaceVariant),
+                    colorTo = MaterialColors.getColor(requireView(), RMaterial.attr.colorSurface),
+                    duration = resources.getInteger(RMaterial.integer.material_motion_duration_long_1).toLong() * 2,
+                    endAsTransparent = true
                 )
             }
         }

@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.note.adapter
 
 import com.roy93group.notes.model.ValueEnum

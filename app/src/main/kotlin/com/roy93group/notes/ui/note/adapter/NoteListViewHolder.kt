@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.note.adapter
 
 import android.text.SpannableString
@@ -39,8 +37,10 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
 
     private val dateFormatter = RelativeDateFormatter(itemView.resources) { date ->
-        DateUtils.formatDateTime(itemView.context, date, DateUtils.FORMAT_SHOW_DATE or
-                DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_ABBREV_ALL)
+        DateUtils.formatDateTime(
+            itemView.context, date, DateUtils.FORMAT_SHOW_DATE or
+                    DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_ABBREV_ALL
+        )
     }
     private val reminderDateFormatter = RelativeDateFormatter(itemView.resources) { date ->
         DateFormat.getDateInstance(DateFormat.SHORT).format(date)
@@ -83,8 +83,10 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
     }
 
     private fun bindTitle(adapter: NoteAdapter, item: NoteItem) {
-        titleTxv.text = getHighlightedText(item.title,
-            adapter.highlightBackgroundColor, adapter.highlightForegroundColor)
+        titleTxv.text = getHighlightedText(
+            text = item.title,
+            bgColor = adapter.highlightBackgroundColor, fgColor = adapter.highlightForegroundColor
+        )
         titleTxv.isVisible = item.title.content.isNotBlank()
     }
 
@@ -96,7 +98,11 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
             ShownDateField.MODIFIED -> note.lastModifiedDate.time
             ShownDateField.NONE -> 0L
         }
-        dateTxv.text = dateFormatter.format(date, System.currentTimeMillis(), PrefsManager.MAXIMUM_RELATIVE_DATE_DAYS)
+        dateTxv.text = dateFormatter.format(
+            date = date,
+            now = System.currentTimeMillis(),
+            maxRelativeDays = PrefsManager.MAXIMUM_RELATIVE_DATE_DAYS
+        )
         dateTxv.isGone = (dateField == ShownDateField.NONE)
     }
 
@@ -104,12 +110,16 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
         val note = item.note
         reminderChip.isVisible = note.reminder != null
         if (note.reminder != null) {
-            reminderChip.text = reminderDateFormatter.format(note.reminder.next.time,
-                System.currentTimeMillis(), PrefsManager.MAXIMUM_RELATIVE_DATE_DAYS)
+            reminderChip.text = reminderDateFormatter.format(
+                date = note.reminder.next.time,
+                now = System.currentTimeMillis(), maxRelativeDays = PrefsManager.MAXIMUM_RELATIVE_DATE_DAYS
+            )
             reminderChip.strikethroughText = note.reminder.done
             reminderChip.isActivated = !note.reminder.done
-            reminderChip.setChipIconResource(if (note.reminder.recurrence != null)
-                R.drawable.ic_repeat else R.drawable.ic_alarm)
+            reminderChip.setChipIconResource(
+                if (note.reminder.recurrence != null)
+                    R.drawable.ic_repeat else R.drawable.ic_alarm
+            )
         }
     }
 
@@ -150,8 +160,12 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
             actionBtn.isVisible = false
             bottomPadding = R.dimen.note_bottom_padding_no_action
         }
-        cardView.setContentPadding(0, 0, 0,
-            cardView.context.resources.getDimensionPixelSize(bottomPadding))
+        cardView.setContentPadding(
+            /* left = */ 0,
+            /* top = */ 0,
+            /* right = */ 0,
+            /* bottom = */ cardView.context.resources.getDimensionPixelSize(bottomPadding)
+        )
     }
 
     /**
@@ -186,8 +200,10 @@ class TextNoteViewHolder(private val binding: VItemNoteTextBinding) :
         val contentTxv = binding.contentTxv
         val maxPreviewLines = adapter.prefsManager.getMaximumPreviewLines(NoteType.TEXT)
         contentTxv.isVisible = maxPreviewLines > 0 && item.note.content.isNotBlank()
-        contentTxv.text = getHighlightedText(item.content,
-            adapter.highlightBackgroundColor, adapter.highlightForegroundColor)
+        contentTxv.text = getHighlightedText(
+            item.content,
+            adapter.highlightBackgroundColor, adapter.highlightForegroundColor
+        )
         contentTxv.maxLines = maxPreviewLines
     }
 }
@@ -214,8 +230,8 @@ class ListNoteViewHolder(private val binding: VItemNoteListBinding) :
         itemsLayout.isVisible = item.items.isNotEmpty()
         for ((i, noteItem) in item.items.withIndex()) {
             val viewHolder = adapter.obtainListNoteItemViewHolder()
-            viewHolder.bind(adapter, noteItem, item.itemsChecked[i])
-            itemsLayout.addView(viewHolder.binding.root, itemViewHolders.size)
+            viewHolder.bind(adapter = adapter, item = noteItem, checked = item.itemsChecked[i])
+            itemsLayout.addView(/* child = */ viewHolder.binding.root, /* index = */ itemViewHolders.size)
             itemViewHolders += viewHolder
         }
 
@@ -228,7 +244,8 @@ class ListNoteViewHolder(private val binding: VItemNoteListBinding) :
                     R.plurals.note_list_item_info_checked
                 } else {
                     R.plurals.note_list_item_info
-                }, item.overflowCount, item.overflowCount)
+                }, item.overflowCount, item.overflowCount
+            )
         }
     }
 
@@ -274,15 +291,21 @@ class ListNoteItemViewHolder(val binding: VItemNoteListItemBinding) {
 
     fun bind(adapter: NoteAdapter, item: Highlighted, checked: Boolean) {
         binding.contentTxv.apply {
-            text = getHighlightedText(item, adapter.highlightBackgroundColor, adapter.highlightForegroundColor)
+            text = getHighlightedText(
+                text = item,
+                bgColor = adapter.highlightBackgroundColor,
+                fgColor = adapter.highlightForegroundColor
+            )
             strikethroughText = checked && adapter.callback.strikethroughCheckedItems
         }
 
-        binding.checkboxImv.setImageResource(if (checked) {
-            R.drawable.ic_checkbox_on
-        } else {
-            R.drawable.ic_checkbox_off
-        })
+        binding.checkboxImv.setImageResource(
+            if (checked) {
+                R.drawable.ic_checkbox_on
+            } else {
+                R.drawable.ic_checkbox_off
+            }
+        )
     }
 }
 

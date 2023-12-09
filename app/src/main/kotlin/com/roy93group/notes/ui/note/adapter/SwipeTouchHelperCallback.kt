@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.note.adapter
 
 import android.annotation.SuppressLint
@@ -27,8 +25,8 @@ class SwipeTouchHelperCallback(private val callback: NoteAdapter.Callback) : Ite
 
     override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder) = ITEM_SWIPE_THRESHOLD
 
-    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) =
-        makeMovementFlags(0, if (viewHolder is NoteViewHolder<*>) {
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) = makeMovementFlags(
+        0, if (viewHolder is NoteViewHolder<*>) {
             // Only allow swiping left and right
             var flags = 0
             if (callback.getNoteSwipeAction(SwipeDirection.LEFT) != SwipeAction.NONE) {
@@ -40,7 +38,8 @@ class SwipeTouchHelperCallback(private val callback: NoteAdapter.Callback) : Ite
             flags
         } else {
             0
-        })
+        }
+    )
 
     override fun onChildDraw(
         c: Canvas,
@@ -49,7 +48,7 @@ class SwipeTouchHelperCallback(private val callback: NoteAdapter.Callback) : Ite
         dX: Float,
         dY: Float,
         actionState: Int,
-        isCurrentlyActive: Boolean
+        isCurrentlyActive: Boolean,
     ) {
         viewHolder as NoteViewHolder<*>
         val cardView = viewHolder.cardView
@@ -62,8 +61,7 @@ class SwipeTouchHelperCallback(private val callback: NoteAdapter.Callback) : Ite
         }
 
         // Make the card progressively more transparent the farther it is dragged.
-        cardView.alpha = (1 - dist / cardView.width * ITEM_SWIPE_OPACITY_FACTOR)
-            .coerceAtLeast(ITEM_SWIPE_OPACITY_MIN)
+        cardView.alpha = (1 - dist / cardView.width * ITEM_SWIPE_OPACITY_FACTOR).coerceAtLeast(ITEM_SWIPE_OPACITY_MIN)
         cardView.translationX = dist * dX.sign
 
         viewHolder.swipeImv.isInvisible = if (dist == 0f || swipeAction == SwipeAction.NONE) {
@@ -77,20 +75,21 @@ class SwipeTouchHelperCallback(private val callback: NoteAdapter.Callback) : Ite
     private fun updateSwipeImage(viewHolder: NoteViewHolder<*>, direction: SwipeDirection) {
         val swipeImv = viewHolder.swipeImv
 
-        @SuppressLint("RtlHardcoded")
-        val layoutGravity = Gravity.CENTER_VERTICAL or
-                if (direction == SwipeDirection.LEFT) Gravity.RIGHT else Gravity.LEFT
+        @SuppressLint("RtlHardcoded") val layoutGravity =
+            Gravity.CENTER_VERTICAL or if (direction == SwipeDirection.LEFT) Gravity.RIGHT else Gravity.LEFT
         val layoutParams = swipeImv.layoutParams as FrameLayout.LayoutParams
         if (layoutParams.gravity != layoutGravity || swipeImv.isInvisible) {
             // Swipe layout changed direction or just started being visible
             layoutParams.gravity = layoutGravity
             swipeImv.requestLayout()
 
-            viewHolder.swipeImv.setImageResource(when (callback.getNoteSwipeAction(direction)) {
-                SwipeAction.ARCHIVE -> R.drawable.avd_archive
-                SwipeAction.DELETE -> R.drawable.avd_delete
-                else -> return // never happens
-            })
+            viewHolder.swipeImv.setImageResource(
+                when (callback.getNoteSwipeAction(direction)) {
+                    SwipeAction.ARCHIVE -> R.drawable.avd_archive
+                    SwipeAction.DELETE -> R.drawable.avd_delete
+                    else -> return // never happens
+                }
+            )
 
             // Start action drawable animation (type depends on API)
             when (val drawable = viewHolder.swipeImv.drawable) {
@@ -115,12 +114,14 @@ class SwipeTouchHelperCallback(private val callback: NoteAdapter.Callback) : Ite
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder
+        target: RecyclerView.ViewHolder,
     ) = false
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        callback.onNoteSwiped(viewHolder.bindingAdapterPosition,
-            if (direction == ItemTouchHelper.LEFT) SwipeDirection.LEFT else SwipeDirection.RIGHT)
+        callback.onNoteSwiped(
+            viewHolder.bindingAdapterPosition,
+            if (direction == ItemTouchHelper.LEFT) SwipeDirection.LEFT else SwipeDirection.RIGHT
+        )
     }
 
     companion object {
