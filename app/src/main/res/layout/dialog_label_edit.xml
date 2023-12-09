@@ -11,7 +11,7 @@
     app:backgroundInsetBottom="30dp"
     >
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
@@ -55,5 +55,5 @@
             android:textAlignment="viewStart"
             />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>

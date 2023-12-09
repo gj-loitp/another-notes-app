@@ -20,7 +20,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.roy93group.notes.databinding.ItemLabelBinding
+import com.roy93group.notes.databinding.VItemLabelBinding
 
 class LabelAdapter(
     val context: Context,
@@ -33,7 +33,7 @@ class LabelAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabelListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return LabelListViewHolder(ItemLabelBinding.inflate(inflater, parent, false))
+        return LabelListViewHolder(VItemLabelBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: LabelListViewHolder, position: Int) {

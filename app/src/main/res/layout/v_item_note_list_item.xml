@@ -1,43 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
+    android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/checkbox_imv"
+        android:id="@+id/checkboxImv"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_weight="0"
         android:layout_gravity="center_vertical"
+        android:layout_weight="0"
         android:ellipsize="end"
         android:maxLines="1"
         android:src="@drawable/ic_checkbox_on"
         android:textAppearance="?textAppearanceSubtitle1"
         android:tintMode="src_in"
-        tools:ignore="ContentDescription"
-        tools:text="Lorem ipsum dolor sit amet"
         app:tint="@color/material_on_background_emphasis_medium"
-        />
+        tools:ignore="ContentDescription"
+        tools:text="Lorem ipsum dolor sit amet" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/contentTxv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginStart="8dp"
         android:layout_gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="?textAppearanceBody2"
-        android:textDirection="anyRtl"
         android:textColor="@color/material_on_background_emphasis_medium"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        />
+        android:textDirection="anyRtl"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -26,10 +26,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.ItemHeaderBinding
-import com.roy93group.notes.databinding.ItemMessageBinding
-import com.roy93group.notes.databinding.ItemNoteLabelBinding
-import com.roy93group.notes.databinding.ItemNoteListBinding
-import com.roy93group.notes.databinding.ItemNoteListItemBinding
+import com.roy93group.notes.databinding.VItemMessageBinding
+import com.roy93group.notes.databinding.VItemNoteLabelBinding
+import com.roy93group.notes.databinding.VItemNoteListBinding
+import com.roy93group.notes.databinding.VItemNoteListItemBinding
 import com.roy93group.notes.databinding.VItemNoteTextBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.ui.note.SwipeAction
@@ -73,13 +73,13 @@ class NoteAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            ViewType.MESSAGE.ordinal -> MessageViewHolder(ItemMessageBinding
+            ViewType.MESSAGE.ordinal -> MessageViewHolder(VItemMessageBinding
                 .inflate(inflater, parent, false))
             ViewType.HEADER.ordinal -> HeaderViewHolder(ItemHeaderBinding
                 .inflate(inflater, parent, false))
             ViewType.TEXT_NOTE.ordinal -> TextNoteViewHolder(VItemNoteTextBinding
                 .inflate(inflater, parent, false))
-            ViewType.LIST_NOTE.ordinal -> ListNoteViewHolder(ItemNoteListBinding
+            ViewType.LIST_NOTE.ordinal -> ListNoteViewHolder(VItemNoteListBinding
                 .inflate(inflater, parent, false))
             else -> error("Unknown view type")
         }
@@ -119,7 +119,7 @@ class NoteAdapter(
         if (listNoteItemViewHolderPool.isNotEmpty()) {
             listNoteItemViewHolderPool.removeLast()
         } else {
-            ListNoteItemViewHolder(ItemNoteListItemBinding.inflate(
+            ListNoteItemViewHolder(VItemNoteListItemBinding.inflate(
                 LayoutInflater.from(context), null, false))
         }
 
@@ -128,7 +128,7 @@ class NoteAdapter(
         if (labelViewHolderPool.isNotEmpty()) {
             labelViewHolderPool.removeLast()
         } else {
-            LabelChipViewHolder(ItemNoteLabelBinding.inflate(
+            LabelChipViewHolder(VItemNoteLabelBinding.inflate(
                 LayoutInflater.from(context), null, false))
         }
 

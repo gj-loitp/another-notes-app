@@ -20,9 +20,9 @@ import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.RecyclerView
 import com.roy93group.notes.BuildConfig
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.ItemLabelBinding
+import com.roy93group.notes.databinding.VItemLabelBinding
 
-class LabelListViewHolder(val binding: ItemLabelBinding) : RecyclerView.ViewHolder(binding.root) {
+class LabelListViewHolder(val binding: VItemLabelBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: LabelListItem, adapter: LabelAdapter) {
         var name = item.label.name

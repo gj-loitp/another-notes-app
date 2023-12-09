@@ -35,10 +35,10 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.ItemHeaderBinding
-import com.roy93group.notes.databinding.ItemMessageBinding
-import com.roy93group.notes.databinding.ItemNoteLabelBinding
-import com.roy93group.notes.databinding.ItemNoteListBinding
-import com.roy93group.notes.databinding.ItemNoteListItemBinding
+import com.roy93group.notes.databinding.VItemMessageBinding
+import com.roy93group.notes.databinding.VItemNoteLabelBinding
+import com.roy93group.notes.databinding.VItemNoteListBinding
+import com.roy93group.notes.databinding.VItemNoteListItemBinding
 import com.roy93group.notes.databinding.VItemNoteTextBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.entity.Label
@@ -206,7 +206,7 @@ class TextNoteViewHolder(private val binding: VItemNoteTextBinding) :
     }
 }
 
-class ListNoteViewHolder(private val binding: ItemNoteListBinding) :
+class ListNoteViewHolder(private val binding: VItemNoteListBinding) :
     NoteViewHolder<NoteItemList>(binding.root) {
 
     override val cardView = binding.cardView
@@ -257,7 +257,7 @@ class ListNoteViewHolder(private val binding: ItemNoteListBinding) :
     }
 }
 
-class MessageViewHolder(private val binding: ItemMessageBinding) :
+class MessageViewHolder(private val binding: VItemMessageBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: MessageItem, adapter: NoteAdapter) {
@@ -284,7 +284,7 @@ class HeaderViewHolder(private val binding: ItemHeaderBinding) :
  * A view holder for displayed an item in a list note view holder.
  * This is a "secondary" view holder, it is held by another view holder.
  */
-class ListNoteItemViewHolder(val binding: ItemNoteListItemBinding) {
+class ListNoteItemViewHolder(val binding: VItemNoteListItemBinding) {
 
     fun bind(adapter: NoteAdapter, item: Highlighted, checked: Boolean) {
         binding.contentTxv.apply {
@@ -304,7 +304,7 @@ class ListNoteItemViewHolder(val binding: ItemNoteListItemBinding) {
  * A view holder for a label chip displayed in note view holders.
  * This is a "secondary" view holder, it is held by another view holder.
  */
-class LabelChipViewHolder(val binding: ItemNoteLabelBinding) {
+class LabelChipViewHolder(val binding: VItemNoteLabelBinding) {
 
     fun bind(label: Label) {
         binding.labelChip.text = label.name
