@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_edit_layout"
+    android:id="@+id/fragmentEditLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
     android:background="?colorSurface"
-    android:transitionGroup="true"
-    >
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:transitionGroup="true">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/toolbar_layout"
+        android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        app:layout_behavior="com.roy93group.notes.ui.common.AppBarLayoutWithPaddingBehavior"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:liftOnScroll="true"
-        app:liftOnScrollTargetViewId="@id/recycler_view"
         android:transitionName="toolbar"
-        >
+        app:layout_behavior="com.roy93group.notes.ui.common.AppBarLayoutWithPaddingBehavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:liftOnScroll="true"
+        app:liftOnScrollTargetViewId="@id/recyclerView">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -33,51 +29,46 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:menu="@menu/menu_toolbar_edit"
-            app:titleTextColor="?colorControlNormal"
             app:navigationIcon="@drawable/ic_arrow_start"
-            tools:title="@string/edit_add_title"
-            />
+            app:titleTextColor="?colorControlNormal"
+            tools:title="@string/edit_add_title" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/content_container"
+        android:id="@+id/contentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="0dp"
-        android:fitsSystemWindows="false"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:transitionGroup="true"
         android:background="?colorSurface"
-        >
+        android:fitsSystemWindows="false"
+        android:padding="0dp"
+        android:transitionGroup="true"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <View
-            android:id="@+id/view_background"
+            android:id="@+id/viewBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingTop="8dp"
             android:clipToPadding="false"
-            app:layout_constraintTop_toTopOf="parent"
+            android:fitsSystemWindows="true"
+            android:paddingTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="4"
-            tools:listitem="@layout/v_item_edit_item"
-            android:fitsSystemWindows="true"
-            />
+            tools:listitem="@layout/v_item_edit_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -69,7 +69,7 @@
     </style>
 
     <style name="PreferenceTheme" parent="PreferenceThemeOverlay">
-        <item name="android:layout">@layout/fragment_settings</item>
+        <item name="android:layout">@layout/f_settings</item>
     </style>
 
     <!-- Used with NotificationActivity, because the activity itself isn't used. -->

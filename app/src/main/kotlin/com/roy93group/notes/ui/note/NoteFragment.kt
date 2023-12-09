@@ -50,7 +50,7 @@ import com.google.android.material.transition.Hold
 import com.google.android.material.transition.MaterialElevationScale
 import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.FragmentNoteBinding
+import com.roy93group.notes.databinding.FNoteBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.model.entity.PinnedStatus
@@ -87,7 +87,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
 
     protected abstract val viewModel: NoteViewModel
 
-    private var _binding: FragmentNoteBinding? = null
+    private var _binding: FNoteBinding? = null
     protected val binding get() = _binding!!
 
     private var actionMode: ActionMode? = null
@@ -124,7 +124,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNoteBinding.inflate(inflater, container, false)
+        _binding = FNoteBinding.inflate(inflater, container, false)
         return binding.root
     }
 

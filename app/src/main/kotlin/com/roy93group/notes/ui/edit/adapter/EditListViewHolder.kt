@@ -27,9 +27,9 @@ import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.ItemEditContentBinding
-import com.roy93group.notes.databinding.ItemEditDateBinding
-import com.roy93group.notes.databinding.ItemEditHeaderBinding
+import com.roy93group.notes.databinding.VItemEditContentBinding
+import com.roy93group.notes.databinding.VItemEditDateBinding
+import com.roy93group.notes.databinding.VItemEditHeaderBinding
 import com.roy93group.notes.databinding.VItemEditItemAddBinding
 import com.roy93group.notes.databinding.VItemEditItemBinding
 import com.roy93group.notes.databinding.VItemEditLabelsBinding
@@ -51,7 +51,7 @@ sealed interface EditFocusableViewHolder {
     fun setFocus(pos: Int)
 }
 
-class EditDateViewHolder(binding: ItemEditDateBinding) :
+class EditDateViewHolder(binding: VItemEditDateBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     private val dateEdt = binding.dateEdt
@@ -100,7 +100,7 @@ class EditTitleViewHolder(binding: VItemEditTitleBinding, callback: EditAdapter.
     }
 }
 
-class EditContentViewHolder(binding: ItemEditContentBinding, callback: EditAdapter.Callback) :
+class EditContentViewHolder(binding: VItemEditContentBinding, callback: EditAdapter.Callback) :
     RecyclerView.ViewHolder(binding.root), EditFocusableViewHolder {
 
     private val contentEdt = binding.contentEdt
@@ -238,7 +238,7 @@ class EditItemAddViewHolder(binding: VItemEditItemAddBinding, callback: EditAdap
     }
 }
 
-class EditHeaderViewHolder(binding: ItemEditHeaderBinding) :
+class EditHeaderViewHolder(binding: VItemEditHeaderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     private val titleTxv = binding.titleTxv

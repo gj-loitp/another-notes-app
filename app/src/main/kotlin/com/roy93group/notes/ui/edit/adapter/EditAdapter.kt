@@ -25,9 +25,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.roy93group.notes.databinding.ItemEditContentBinding
-import com.roy93group.notes.databinding.ItemEditDateBinding
-import com.roy93group.notes.databinding.ItemEditHeaderBinding
+import com.roy93group.notes.databinding.VItemEditContentBinding
+import com.roy93group.notes.databinding.VItemEditDateBinding
+import com.roy93group.notes.databinding.VItemEditHeaderBinding
 import com.roy93group.notes.databinding.VItemEditItemAddBinding
 import com.roy93group.notes.databinding.VItemEditItemBinding
 import com.roy93group.notes.databinding.VItemEditLabelsBinding
@@ -67,15 +67,15 @@ class EditAdapter(val context: Context, val callback: Callback) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            ViewType.DATE.ordinal -> EditDateViewHolder(ItemEditDateBinding
+            ViewType.DATE.ordinal -> EditDateViewHolder(VItemEditDateBinding
                 .inflate(inflater, parent, false))
             ViewType.TITLE.ordinal -> EditTitleViewHolder(VItemEditTitleBinding
                 .inflate(inflater, parent, false), callback)
-            ViewType.CONTENT.ordinal -> EditContentViewHolder(ItemEditContentBinding
+            ViewType.CONTENT.ordinal -> EditContentViewHolder(VItemEditContentBinding
                 .inflate(inflater, parent, false), callback)
             ViewType.ITEM_ADD.ordinal -> EditItemAddViewHolder(VItemEditItemAddBinding
                 .inflate(inflater, parent, false), callback)
-            ViewType.ITEM_CHECKED_HEADER.ordinal -> EditHeaderViewHolder(ItemEditHeaderBinding
+            ViewType.ITEM_CHECKED_HEADER.ordinal -> EditHeaderViewHolder(VItemEditHeaderBinding
                 .inflate(inflater, parent, false))
             ViewType.ITEM_CHIPS.ordinal -> EditItemLabelsViewHolder(VItemEditLabelsBinding
                 .inflate(inflater, parent, false), callback)

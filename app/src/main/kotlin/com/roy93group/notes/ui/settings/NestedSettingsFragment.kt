@@ -22,7 +22,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.transition.MaterialElevationScale
-import com.roy93group.notes.databinding.FragmentSettingsBinding
+import com.roy93group.notes.databinding.FSettingsBinding
 import com.google.android.material.R as RMaterial
 
 /**
@@ -49,7 +49,7 @@ class NestedSettingsFragment : PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentSettingsBinding.bind(view)
+        val binding = FSettingsBinding.bind(view)
 
         binding.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()

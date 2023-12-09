@@ -48,7 +48,7 @@ import com.google.android.material.transition.MaterialContainerTransform
 import com.roy93group.notes.App
 import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.FragmentEditBinding
+import com.roy93group.notes.databinding.FEditBinding
 import com.roy93group.notes.hideKeyboard
 import com.roy93group.notes.model.entity.Note
 import com.roy93group.notes.model.entity.NoteStatus
@@ -81,7 +81,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
 
     private val args: EditFragmentArgs by navArgs()
 
-    private var _binding: FragmentEditBinding? = null
+    private var _binding: FEditBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,7 +112,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
         container: ViewGroup?,
         state: Bundle?
     ): View {
-        _binding = FragmentEditBinding.inflate(inflater, container, false)
+        _binding = FEditBinding.inflate(inflater, container, false)
         val noteId = args.noteId
         ViewCompat.setTransitionName(
             binding.fragmentEditLayout,

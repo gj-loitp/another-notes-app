@@ -23,7 +23,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -42,10 +41,9 @@ import com.google.android.material.color.DynamicColors
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialElevationScale
 import com.roy93group.notes.App
-import com.roy93group.notes.BuildConfig
 import com.roy93group.notes.R
 import com.roy93group.notes.TAG
-import com.roy93group.notes.databinding.FragmentSettingsBinding
+import com.roy93group.notes.databinding.FSettingsBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.navigateSafe
 import com.roy93group.notes.ui.AppTheme
@@ -139,14 +137,14 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val binding = FragmentSettingsBinding.bind(view)
+        val binding = FSettingsBinding.bind(view)
 
         binding.toolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
         // Apply padding so that the settings don't overlap with the navigation bar
-        val rcv = view.findViewById<RecyclerView>(R.id.recycler_view)
+        val rcv = view.findViewById<RecyclerView>(R.id.recyclerView)
 
         ViewCompat.setOnApplyWindowInsetsListener(rcv) { _, insets ->
             val sysWindow = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())

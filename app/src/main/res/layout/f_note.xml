@@ -1,91 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_label_layout"
+    android:id="@+id/fragmentNoteLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
     android:background="?colorSurface"
-    >
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:transitionGroup="true">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/toolbar_layout"
+        android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:fitsSystemWindows="true"
-        app:layout_behavior=".ui.common.AppBarLayoutWithPaddingBehavior"
+        android:transitionName="toolbar"
+        app:layout_behavior="com.roy93group.notes.ui.common.AppBarLayoutWithPaddingBehavior"
         app:liftOnScroll="true"
-        app:liftOnScrollTargetViewId="@id/recycler_view"
-        >
+        app:liftOnScrollTargetViewId="@id/recyclerView">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             style="?toolbarStyle"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            app:menu="@menu/menu_toolbar_label"
             app:titleTextColor="?colorControlNormal"
-            app:navigationIcon="@drawable/ic_arrow_start"
-            tools:title="@string/label_select"
-            />
+            tools:menu="@menu/menu_toolbar_home"
+            tools:navigationIcon="@drawable/ic_menu"
+            tools:title="@string/note_location_active" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:fitsSystemWindows="false"
-        >
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/placeholder_imv"
+            android:id="@+id/placeholderImv"
             style="@style/PlaceholderImageViewStyle"
+            android:layout_marginTop="64dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="64dp"
-            android:src="@drawable/ic_label_multiple_outline"
-            />
+            tools:src="@drawable/ic_list" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/placeholder_txv"
+            android:id="@+id/placeholderTxv"
             style="@style/PlaceholderTextViewStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/placeholder_imv"
-            android:text="@string/label_empty_placeholder"
-            />
+            app:layout_constraintTop_toBottomOf="@id/placeholderImv"
+            tools:text="@string/note_placeholder_active" />
 
         <androidx.constraintlayout.widget.Group
-            android:id="@+id/placeholder_group"
+            android:id="@+id/placeholderGroup"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:constraint_referenced_ids="placeholder_imv,placeholder_txv"
             android:visibility="gone"
-            tools:visibility="visible"
-            />
+            app:constraint_referenced_ids="placeholderImv,placeholderTxv"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:paddingTop="8dp"
-            android:paddingBottom="16dp"
-            android:clipToPadding="false"
             tools:itemCount="3"
             tools:listitem="@layout/v_item_note_text"
-            tools:visibility="gone"
-            />
+            tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -93,11 +86,10 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/edit_add_title"
         android:src="@drawable/ic_plus"
-        android:contentDescription="@string/label_create"
-        app:layout_behavior="com.roy93group.notes.ui.common.SnackBarFloatingActionButtonBehaviour"
-        />
+        app:layout_behavior="com.roy93group.notes.ui.common.SnackBarFloatingActionButtonBehaviour" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

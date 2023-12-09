@@ -10,7 +10,7 @@
     <fragment
         android:id="@+id/fragment_home"
         android:name="com.roy93group.notes.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_note">
+        tools:layout="@layout/f_note">
         <action
             android:id="@+id/action_home_to_search"
             app:destination="@id/fragment_search" />
@@ -28,12 +28,12 @@
     <fragment
         android:id="@+id/fragment_search"
         android:name="com.roy93group.notes.ui.search.SearchFragment"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/f_note" />
 
     <fragment
         android:id="@+id/fragment_edit"
         android:name="com.roy93group.notes.ui.edit.EditFragment"
-        tools:layout="@layout/fragment_edit">
+        tools:layout="@layout/f_edit">
         <argument
             android:name="noteId"
             android:defaultValue="0L"
@@ -67,7 +67,7 @@
     <fragment
         android:id="@+id/fragment_settings"
         android:name="com.roy93group.notes.ui.settings.SettingsFragment"
-        tools:layout="@layout/fragment_settings">
+        tools:layout="@layout/f_settings">
         <action
             android:id="@+id/action_about_libraries"
             app:destination="@id/about_libraries" />
@@ -79,7 +79,7 @@
     <fragment
         android:id="@+id/fragment_settings_nested"
         android:name="com.roy93group.notes.ui.settings.NestedSettingsFragment"
-        tools:layout="@layout/fragment_settings">
+        tools:layout="@layout/f_settings">
         <argument
             android:name="prefsXml"
             app:argType="integer" />

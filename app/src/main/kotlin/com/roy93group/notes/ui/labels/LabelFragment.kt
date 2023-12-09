@@ -39,7 +39,7 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.transition.MaterialElevationScale
 import com.roy93group.notes.App
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.FragmentLabelBinding
+import com.roy93group.notes.databinding.FLabelBinding
 import com.roy93group.notes.navigateSafe
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.common.ConfirmDialog
@@ -76,7 +76,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
 
     private val args: LabelFragmentArgs by navArgs()
 
-    private var _binding: FragmentLabelBinding? = null
+    private var _binding: FLabelBinding? = null
     private val binding get() = _binding!!
 
     private var actionMode: ActionMode? = null
@@ -98,7 +98,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
         container: ViewGroup?,
         state: Bundle?
     ): View {
-        _binding = FragmentLabelBinding.inflate(inflater, container, false)
+        _binding = FLabelBinding.inflate(inflater, container, false)
         return binding.root
     }
 
