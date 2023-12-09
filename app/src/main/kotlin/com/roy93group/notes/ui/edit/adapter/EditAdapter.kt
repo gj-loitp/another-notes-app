@@ -28,10 +28,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.roy93group.notes.databinding.ItemEditContentBinding
 import com.roy93group.notes.databinding.ItemEditDateBinding
 import com.roy93group.notes.databinding.ItemEditHeaderBinding
-import com.roy93group.notes.databinding.ItemEditItemAddBinding
-import com.roy93group.notes.databinding.ItemEditItemBinding
-import com.roy93group.notes.databinding.ItemEditLabelsBinding
-import com.roy93group.notes.databinding.ItemEditTitleBinding
+import com.roy93group.notes.databinding.VItemEditItemAddBinding
+import com.roy93group.notes.databinding.VItemEditItemBinding
+import com.roy93group.notes.databinding.VItemEditLabelsBinding
+import com.roy93group.notes.databinding.VItemEditTitleBinding
 import com.roy93group.notes.hideKeyboard
 import com.roy93group.notes.ui.edit.EditViewModel
 
@@ -69,18 +69,18 @@ class EditAdapter(val context: Context, val callback: Callback) :
         return when (viewType) {
             ViewType.DATE.ordinal -> EditDateViewHolder(ItemEditDateBinding
                 .inflate(inflater, parent, false))
-            ViewType.TITLE.ordinal -> EditTitleViewHolder(ItemEditTitleBinding
+            ViewType.TITLE.ordinal -> EditTitleViewHolder(VItemEditTitleBinding
                 .inflate(inflater, parent, false), callback)
             ViewType.CONTENT.ordinal -> EditContentViewHolder(ItemEditContentBinding
                 .inflate(inflater, parent, false), callback)
-            ViewType.ITEM_ADD.ordinal -> EditItemAddViewHolder(ItemEditItemAddBinding
+            ViewType.ITEM_ADD.ordinal -> EditItemAddViewHolder(VItemEditItemAddBinding
                 .inflate(inflater, parent, false), callback)
             ViewType.ITEM_CHECKED_HEADER.ordinal -> EditHeaderViewHolder(ItemEditHeaderBinding
                 .inflate(inflater, parent, false))
-            ViewType.ITEM_CHIPS.ordinal -> EditItemLabelsViewHolder(ItemEditLabelsBinding
+            ViewType.ITEM_CHIPS.ordinal -> EditItemLabelsViewHolder(VItemEditLabelsBinding
                 .inflate(inflater, parent, false), callback)
             ViewType.ITEM.ordinal -> {
-                val viewHolder = EditItemViewHolder(ItemEditItemBinding
+                val viewHolder = EditItemViewHolder(VItemEditItemBinding
                     .inflate(inflater, parent, false), callback)
                 viewHolder.dragImv.setOnTouchListener { view, event ->
                     if (event.action == MotionEvent.ACTION_DOWN && callback.isNoteDragEnabled) {

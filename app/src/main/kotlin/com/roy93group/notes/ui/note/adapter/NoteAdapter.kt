@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.ItemHeaderBinding
+import com.roy93group.notes.databinding.VItemHeaderBinding
 import com.roy93group.notes.databinding.VItemMessageBinding
 import com.roy93group.notes.databinding.VItemNoteLabelBinding
 import com.roy93group.notes.databinding.VItemNoteListBinding
@@ -75,7 +75,7 @@ class NoteAdapter(
         return when (viewType) {
             ViewType.MESSAGE.ordinal -> MessageViewHolder(VItemMessageBinding
                 .inflate(inflater, parent, false))
-            ViewType.HEADER.ordinal -> HeaderViewHolder(ItemHeaderBinding
+            ViewType.HEADER.ordinal -> HeaderViewHolder(VItemHeaderBinding
                 .inflate(inflater, parent, false))
             ViewType.TEXT_NOTE.ordinal -> TextNoteViewHolder(VItemNoteTextBinding
                 .inflate(inflater, parent, false))

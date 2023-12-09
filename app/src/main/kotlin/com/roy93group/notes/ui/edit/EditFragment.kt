@@ -184,7 +184,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
         rcv.setOnTouchListener { _, event ->
             // Special case to dispatch touch events to underlaying background view to focus content view.
             // This is only done if content view is not taller than RecyclerView to avoid scrolling issues (#63).
-            val contentEdt = rcv.findViewById<View>(R.id.content_edt)
+            val contentEdt = rcv.findViewById<View>(R.id.contentEdt)
             if (contentEdt != null && contentEdt.height < rcv.height) {
                 binding.viewBackground.dispatchTouchEvent(event)
             }

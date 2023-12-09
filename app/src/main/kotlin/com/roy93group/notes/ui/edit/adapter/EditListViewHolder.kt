@@ -30,10 +30,10 @@ import com.roy93group.notes.R
 import com.roy93group.notes.databinding.ItemEditContentBinding
 import com.roy93group.notes.databinding.ItemEditDateBinding
 import com.roy93group.notes.databinding.ItemEditHeaderBinding
-import com.roy93group.notes.databinding.ItemEditItemAddBinding
-import com.roy93group.notes.databinding.ItemEditItemBinding
-import com.roy93group.notes.databinding.ItemEditLabelsBinding
-import com.roy93group.notes.databinding.ItemEditTitleBinding
+import com.roy93group.notes.databinding.VItemEditItemAddBinding
+import com.roy93group.notes.databinding.VItemEditItemBinding
+import com.roy93group.notes.databinding.VItemEditLabelsBinding
+import com.roy93group.notes.databinding.VItemEditTitleBinding
 import com.roy93group.notes.hideKeyboard
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.entity.Label
@@ -67,7 +67,7 @@ class EditDateViewHolder(binding: ItemEditDateBinding) :
     }
 }
 
-class EditTitleViewHolder(binding: ItemEditTitleBinding, callback: EditAdapter.Callback) :
+class EditTitleViewHolder(binding: VItemEditTitleBinding, callback: EditAdapter.Callback) :
     RecyclerView.ViewHolder(binding.root), EditFocusableViewHolder {
 
     private val titleEdt = binding.titleEdt
@@ -134,7 +134,7 @@ class EditContentViewHolder(binding: ItemEditContentBinding, callback: EditAdapt
     }
 }
 
-class EditItemViewHolder(binding: ItemEditItemBinding, callback: EditAdapter.Callback) :
+class EditItemViewHolder(binding: VItemEditItemBinding, callback: EditAdapter.Callback) :
     RecyclerView.ViewHolder(binding.root), EditFocusableViewHolder {
 
     val dragImv = binding.dragImv
@@ -228,7 +228,7 @@ class EditItemViewHolder(binding: ItemEditItemBinding, callback: EditAdapter.Cal
     }
 }
 
-class EditItemAddViewHolder(binding: ItemEditItemAddBinding, callback: EditAdapter.Callback) :
+class EditItemAddViewHolder(binding: VItemEditItemAddBinding, callback: EditAdapter.Callback) :
     RecyclerView.ViewHolder(binding.root) {
 
     init {
@@ -249,7 +249,7 @@ class EditHeaderViewHolder(binding: ItemEditHeaderBinding) :
     }
 }
 
-class EditItemLabelsViewHolder(binding: ItemEditLabelsBinding, callback: EditAdapter.Callback) :
+class EditItemLabelsViewHolder(binding: VItemEditLabelsBinding, callback: EditAdapter.Callback) :
     RecyclerView.ViewHolder(binding.root) {
 
     private val chipGroup = binding.chipGroup

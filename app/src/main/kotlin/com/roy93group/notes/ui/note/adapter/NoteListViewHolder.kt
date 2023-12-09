@@ -34,7 +34,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.ItemHeaderBinding
+import com.roy93group.notes.databinding.VItemHeaderBinding
 import com.roy93group.notes.databinding.VItemMessageBinding
 import com.roy93group.notes.databinding.VItemNoteLabelBinding
 import com.roy93group.notes.databinding.VItemNoteListBinding
@@ -271,7 +271,7 @@ class MessageViewHolder(private val binding: VItemMessageBinding) :
     }
 }
 
-class HeaderViewHolder(private val binding: ItemHeaderBinding) :
+class HeaderViewHolder(private val binding: VItemHeaderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: HeaderItem) {

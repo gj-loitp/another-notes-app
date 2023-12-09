@@ -73,7 +73,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:itemCount="4"
-            tools:listitem="@layout/item_edit_item"
+            tools:listitem="@layout/v_item_edit_item"
             android:fitsSystemWindows="true"
             />
 

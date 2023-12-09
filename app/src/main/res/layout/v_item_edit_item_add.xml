@@ -1,42 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:paddingStart="36dp"
-    android:paddingEnd="16dp"
     android:background="?selectableItemBackground"
-    >
+    android:orientation="horizontal"
+    android:paddingStart="36dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="8dp">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/add_imv"
+        android:id="@+id/addImv"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_weight="0"
+        android:layout_gravity="top"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_gravity="top"
+        android:layout_weight="0"
         android:src="@drawable/ic_plus"
-        tools:ignore="ContentDescription"
-        />
+        tools:ignore="ContentDescription" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/list_item_txv"
+        android:id="@+id/listItemTxv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:padding="5dp"
         android:text="@string/edit_hint_note_item"
+        android:textAlignment="viewStart"
         android:textAppearance="?textAppearanceBody1"
         android:textColor="?android:textColorHint"
-        android:textAlignment="viewStart"
-        tools:ignore="RtlCompat"
-        />
+        tools:ignore="RtlCompat" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
