@@ -44,7 +44,7 @@
         android:linksClickable="true"
         android:padding="5dp"
         android:textAppearance="?textAppearanceBody1"
-        android:textColor="@color/item_edit_item_text_color"
+        android:textColor="@color/selector_item_edit_item_text_color"
         android:textDirection="anyRtl"
         android:textSize="15sp"
         app:autoLink="true"

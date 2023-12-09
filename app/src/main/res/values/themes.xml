@@ -64,7 +64,7 @@
 
     <style name="SearchViewThemeOverlay">
         <item name="android:editTextColor">?colorControlNormal</item>
-        <item name="android:textColorHint">@color/color_toolbar_hint</item>
+        <item name="android:textColorHint">@color/selector_color_toolbar_hint</item>
         <item name="android:colorControlActivated">?colorPrimary</item>
     </style>
 
