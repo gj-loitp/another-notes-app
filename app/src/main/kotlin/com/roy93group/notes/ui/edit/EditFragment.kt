@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.edit
 
 import android.annotation.SuppressLint
@@ -36,13 +34,13 @@ import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.FEditBinding
 import com.roy93group.notes.ext.hideKeyboard
+import com.roy93group.notes.ext.navigateSafe
+import com.roy93group.notes.ext.showKeyboard
 import com.roy93group.notes.model.entity.Note
 import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.model.entity.NoteType
 import com.roy93group.notes.model.entity.PinnedStatus
 import com.roy93group.notes.model.entity.Reminder
-import com.roy93group.notes.ext.navigateSafe
-import com.roy93group.notes.ext.showKeyboard
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.common.ConfirmDialog
 import com.roy93group.notes.ui.edit.adapter.EditAdapter
@@ -96,13 +94,13 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        state: Bundle?
+        state: Bundle?,
     ): View {
         _binding = FEditBinding.inflate(inflater, container, false)
         val noteId = args.noteId
         ViewCompat.setTransitionName(
-            binding.fragmentEditLayout,
-            "noteContainer$noteId"
+            /* view = */ binding.fragmentEditLayout,
+            /* transitionName = */ "noteContainer$noteId"
         )
         return binding.root
     }
@@ -117,12 +115,12 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
         }
 
         viewModel.start(
-            args.noteId,
-            args.labelId,
-            args.changeReminder,
-            NoteType.fromValue(args.type),
-            args.title,
-            args.content
+            noteId = args.noteId,
+            labelId = args.labelId,
+            changeReminder = args.changeReminder,
+            type = NoteType.fromValue(args.type),
+            title = args.title,
+            content = args.content
         )
 
         // Toolbar
@@ -133,12 +131,14 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
                 viewModel.saveNote()
                 viewModel.exit()
             }
-            setTitle(if (args.noteId == Note.NO_ID) {
-                view.showKeyboard()
-                R.string.edit_add_title
-            } else {
-                R.string.edit_change_title
-            })
+            setTitle(
+                if (args.noteId == Note.NO_ID) {
+                    view.showKeyboard()
+                    R.string.edit_add_title
+                } else {
+                    R.string.edit_change_title
+                }
+            )
         }
 
         // Recycler view
@@ -152,7 +152,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
             override fun animateAppearance(
                 viewHolder: RecyclerView.ViewHolder,
                 preLayoutInfo: ItemHolderInfo?,
-                postLayoutInfo: ItemHolderInfo
+                postLayoutInfo: ItemHolderInfo,
             ): Boolean {
                 return if (preLayoutInfo != null && (preLayoutInfo.left != postLayoutInfo.left
                             || preLayoutInfo.top != postLayoutInfo.top)
@@ -223,16 +223,21 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
         }
 
         val restoreNoteSnackbar by lazy {
-            Snackbar.make(requireView(), R.string.edit_in_trash_message,
-                CANT_EDIT_SNACKBAR_DURATION)
+            Snackbar.make(
+                requireView(), R.string.edit_in_trash_message,
+                CANT_EDIT_SNACKBAR_DURATION
+            )
                 .setGestureInsetBottomIgnored(true)
                 .setAction(R.string.action_restore) { viewModel.restoreNoteAndEdit() }
         }
         viewModel.messageEvent.observeEvent(viewLifecycleOwner) { message ->
             when (message) {
                 EditMessage.BLANK_NOTE_DISCARDED -> sharedViewModel.onBlankNoteDiscarded()
-                EditMessage.RESTORED_NOTE -> Snackbar.make(requireView(), resources.getQuantityText(
-                    R.plurals.edit_message_move_restore, 1), Snackbar.LENGTH_SHORT)
+                EditMessage.RESTORED_NOTE -> Snackbar.make(
+                    requireView(), resources.getQuantityText(
+                        R.plurals.edit_message_move_restore, 1
+                    ), Snackbar.LENGTH_SHORT
+                )
                     .setGestureInsetBottomIgnored(true)
                     .show()
 
@@ -240,8 +245,10 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
             }
         }
 
-        viewModel.statusChangeEvent.observeEvent(viewLifecycleOwner,
-            sharedViewModel::onStatusChange)
+        viewModel.statusChangeEvent.observeEvent(
+            viewLifecycleOwner,
+            sharedViewModel::onStatusChange
+        )
 
         viewModel.shareEvent.observeEvent(viewLifecycleOwner, ::startSharingData)
 
@@ -323,11 +330,13 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
         menu.findItem(R.id.itemShare).isVisible = !isTrash
         menu.findItem(R.id.itemCopy).isVisible = !isTrash
         menu.findItem(R.id.itemReminder).isVisible = !isTrash
-        menu.findItem(R.id.itemDelete).setTitle(if (isTrash) {
-            R.string.action_delete_forever
-        } else {
-            R.string.action_delete
-        })
+        menu.findItem(R.id.itemDelete).setTitle(
+            if (isTrash) {
+                R.string.action_delete_forever
+            } else {
+                R.string.action_delete
+            }
+        )
     }
 
     private fun updateItemsForPinnedStatus(pinned: PinnedStatus) {
@@ -352,11 +361,13 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
     }
 
     private fun updateItemsForStatusAndReminder(reminder: Reminder?) {
-        binding.toolbar.menu.findItem(R.id.itemReminder).setTitle(if (reminder != null) {
-            R.string.action_reminder_edit
-        } else {
-            R.string.action_reminder_add
-        })
+        binding.toolbar.menu.findItem(R.id.itemReminder).setTitle(
+            if (reminder != null) {
+                R.string.action_reminder_edit
+            } else {
+                R.string.action_reminder_add
+            }
+        )
     }
 
     private fun updateItemsForNoteType(type: NoteType) {
@@ -406,8 +417,10 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
             }
 
             R.id.itemDeleteChecked -> viewModel.deleteCheckedItems()
-            R.id.itemCopy -> viewModel.copyNote(getString(R.string.edit_copy_untitled_name),
-                getString(R.string.edit_copy_suffix))
+            R.id.itemCopy -> viewModel.copyNote(
+                getString(R.string.edit_copy_untitled_name),
+                getString(R.string.edit_copy_suffix)
+            )
 
             R.id.itemDelete -> viewModel.deleteNote()
             else -> return false

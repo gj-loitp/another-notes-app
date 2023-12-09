@@ -1,36 +1,39 @@
-
-
 package com.roy93group.notes.ui.edit.adapter
 
+import androidx.annotation.Keep
 import com.roy93group.notes.ui.edit.adapter.EditAdapter.ViewType
 
 sealed class EditListItem {
     abstract val type: ViewType
 }
 
+@Keep
 data class EditDateItem(
-    val date: Long
+    val date: Long,
 ) : EditListItem() {
 
     override val type get() = ViewType.DATE
 }
 
+@Keep
 data class EditTitleItem(
     var title: EditableText,
-    val editable: Boolean
+    val editable: Boolean,
 ) : EditListItem() {
 
     override val type get() = ViewType.TITLE
 }
 
+@Keep
 data class EditContentItem(
     var content: EditableText,
-    val editable: Boolean
+    val editable: Boolean,
 ) : EditListItem() {
 
     override val type get() = ViewType.CONTENT
 }
 
+@Keep
 data class EditItemItem(
     var content: EditableText,
     var checked: Boolean,
@@ -41,21 +44,24 @@ data class EditItemItem(
     override val type get() = ViewType.ITEM
 }
 
-object EditItemAddItem : EditListItem() {
+@Keep
+data object EditItemAddItem : EditListItem() {
 
     override val type get() = ViewType.ITEM_ADD
 }
 
+@Keep
 data class EditCheckedHeaderItem(
-    var count: Int
+    var count: Int,
 ) : EditListItem() {
 
     override val type get() = ViewType.ITEM_CHECKED_HEADER
 }
 
+@Keep
 data class EditChipsItem(
     // Chips can be Label or Reminder
-    val chips: List<Any>
+    val chips: List<Any>,
 ) : EditListItem() {
 
     override val type get() = ViewType.ITEM_CHIPS

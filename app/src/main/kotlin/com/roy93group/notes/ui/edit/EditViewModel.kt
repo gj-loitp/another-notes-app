@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.edit
 
 import androidx.lifecycle.LiveData
@@ -239,14 +237,16 @@ class EditViewModel @AssistedInject constructor(
             val isFirstStart = (note == BLANK_NOTE)
 
             // Try to get note by ID with its labels.
-            val noteWithLabels = notesRepository.getNoteByIdWithLabels(if (isFirstStart) {
-                // first start, use provided note ID
-                noteId
-            } else {
-                // start() was already called, fragment view was probably recreated
-                // use the note ID of the note being edited previously
-                note.id
-            })
+            val noteWithLabels = notesRepository.getNoteByIdWithLabels(
+                if (isFirstStart) {
+                    // first start, use provided note ID
+                    noteId
+                } else {
+                    // start() was already called, fragment view was probably recreated
+                    // use the note ID of the note being edited previously
+                    note.id
+                }
+            )
 
             var note = noteWithLabels?.note
             var labels = noteWithLabels?.labels
@@ -324,7 +324,8 @@ class EditViewModel @AssistedInject constructor(
                 // To know whether last modified date should be changed, compare note
                 // with a copy that has the original values for fields we don't care about.
                 val noteForComparison = note.copy(
-                    pinned = if (note.status == oldNote.status) oldNote.pinned else note.pinned)
+                    pinned = if (note.status == oldNote.status) oldNote.pinned else note.pinned
+                )
                 if (oldNote != noteForComparison) {
                     note = note.copy(lastModifiedDate = Date())
                 }
@@ -374,11 +375,20 @@ class EditViewModel @AssistedInject constructor(
         when (note.type) {
             NoteType.TEXT -> {
                 val contentPos = listItems.indexOfLast { it is EditContentItem }
-                focusItemAt(contentPos, (listItems[contentPos] as EditContentItem).content.text.length, false)
+                focusItemAt(
+                    pos = contentPos,
+                    textPos = (listItems[contentPos] as EditContentItem).content.text.length,
+                    itemExists = false
+                )
             }
+
             NoteType.LIST -> {
                 val lastItemPos = listItems.indexOfLast { it is EditItemItem }
-                focusItemAt(lastItemPos, (listItems[lastItemPos] as EditItemItem).content.text.length, false)
+                focusItemAt(
+                    pos = lastItemPos,
+                    textPos = (listItems[lastItemPos] as EditItemItem).content.text.length,
+                    itemExists = false
+                )
             }
         }
     }
@@ -418,11 +428,13 @@ class EditViewModel @AssistedInject constructor(
     }
 
     fun moveNoteAndExit() {
-        changeNoteStatusAndExit(if (status == NoteStatus.ACTIVE) {
-            NoteStatus.ARCHIVED
-        } else {
-            NoteStatus.ACTIVE
-        })
+        changeNoteStatusAndExit(
+            if (status == NoteStatus.ACTIVE) {
+                NoteStatus.ARCHIVED
+            } else {
+                NoteStatus.ACTIVE
+            }
+        )
     }
 
     fun restoreNoteAndEdit() {
@@ -454,7 +466,8 @@ class EditViewModel @AssistedInject constructor(
                     title = newTitle,
                     addedDate = date,
                     lastModifiedDate = date,
-                    reminder = null)
+                    reminder = null
+                )
                 val id = notesRepository.insertNote(copy)
                 note = copy.copy(id = id)
 
@@ -466,7 +479,7 @@ class EditViewModel @AssistedInject constructor(
 
             // Update title item
             findItem<EditTitleItem>().title.replaceAll(newTitle)
-            focusItemAt(findItemPos<EditTitleItem>(), newTitle.length, true)
+            focusItemAt(pos = findItemPos<EditTitleItem>(), textPos = newTitle.length, itemExists = true)
         }
     }
 
@@ -524,7 +537,7 @@ class EditViewModel @AssistedInject constructor(
         if (note.type == NoteType.TEXT) {
             val contentItemPos = findItemPos<EditContentItem>()
             val contentItem = listItems[contentItemPos] as EditContentItem
-            focusItemAt(contentItemPos, contentItem.content.text.length, true)
+            focusItemAt(pos = contentItemPos, textPos = contentItem.content.text.length, itemExists = true)
         }
     }
 
@@ -558,7 +571,7 @@ class EditViewModel @AssistedInject constructor(
             saveNote()
 
             // Show status change message.
-            val statusChange = StatusChange(listOf(oldNote), oldNote.status, newStatus)
+            val statusChange = StatusChange(listOf(element = oldNote), oldNote.status, newStatus)
             _statusChangeEvent.send(statusChange)
         }
 
@@ -585,6 +598,7 @@ class EditViewModel @AssistedInject constructor(
                 content = findItem<EditContentItem>().content.text.toString()
                 metadata = BlankNoteMetadata
             }
+
             NoteType.LIST -> {
                 // Add items in the correct actual order
                 val items = MutableList(listItems.count { it is EditItemItem }) { TEMP_ITEM }
@@ -597,8 +611,10 @@ class EditViewModel @AssistedInject constructor(
                 metadata = ListNoteMetadata(items.map { it.checked })
             }
         }
-        note = note.copy(title = title, content = content,
-            metadata = metadata, status = status, pinned = pinned, reminder = reminder)
+        note = note.copy(
+            title = title, content = content,
+            metadata = metadata, status = status, pinned = pinned, reminder = reminder
+        )
     }
 
     private suspend fun deleteNoteInternal() {
@@ -621,11 +637,13 @@ class EditViewModel @AssistedInject constructor(
 
         // Date item
         if (shouldShowDate) {
-            listItems += EditDateItem(when (prefs.shownDateField) {
-                ShownDateField.ADDED -> note.addedDate.time
-                ShownDateField.MODIFIED -> note.lastModifiedDate.time
-                else -> 0L  // never happens
-            })
+            listItems += EditDateItem(
+                when (prefs.shownDateField) {
+                    ShownDateField.ADDED -> note.addedDate.time
+                    ShownDateField.MODIFIED -> note.lastModifiedDate.time
+                    else -> 0L  // never happens
+                }
+            )
         }
 
         // Title item
@@ -636,13 +654,19 @@ class EditViewModel @AssistedInject constructor(
                 // Content item
                 listItems += EditContentItem(DefaultEditableText(note.content), canEdit)
             }
+
             NoteType.LIST -> {
                 val noteItems = note.listItems
                 if (prefs.moveCheckedToBottom) {
                     // Unchecked list items
                     for ((i, item) in noteItems.withIndex()) {
                         if (!item.checked) {
-                            listItems += EditItemItem(DefaultEditableText(item.content), false, canEdit, i)
+                            listItems += EditItemItem(
+                                content = DefaultEditableText(item.content),
+                                checked = false,
+                                editable = canEdit,
+                                actualPos = i
+                            )
                         }
                     }
 
@@ -704,8 +728,12 @@ class EditViewModel @AssistedInject constructor(
                 }
             }
             for (i in 1 until lines.size) {
-                listItems.add(pos + i, EditItemItem(DefaultEditableText(lines[i]),
-                    checked = item.checked && moveCheckedToBottom, editable = true, item.actualPos + i))
+                listItems.add(
+                    pos + i, EditItemItem(
+                        DefaultEditableText(text = lines[i]),
+                        checked = item.checked && moveCheckedToBottom, editable = true, item.actualPos + i
+                    )
+                )
             }
 
             moveCheckedItemsToBottom() // just to update checked count
@@ -749,7 +777,7 @@ class EditViewModel @AssistedInject constructor(
             val nextItem = listItems.getOrNull(pos + 1)
             if (nextItem is EditItemItem) {
                 // Set focus at the end of next item.
-                focusItemAt(pos + 1, nextItem.content.text.length, true)
+                focusItemAt(pos = pos + 1, textPos = nextItem.content.text.length, itemExists = true)
             }
         }
 
@@ -760,7 +788,10 @@ class EditViewModel @AssistedInject constructor(
         // pos is the position of EditItemAdd item, which is also the position to insert the new item.
         // The new item is added last, so the actual pos is the maximum plus one.
         val actualPos = listItems.maxOf { (it as? EditItemItem)?.actualPos ?: -1 } + 1
-        listItems.add(pos, EditItemItem(DefaultEditableText(), checked = false, editable = true, actualPos))
+        listItems.add(
+            index = pos,
+            element = EditItemItem(DefaultEditableText(), checked = false, editable = true, actualPos)
+        )
         updateListItems()
         focusItemAt(pos, 0, false)
     }
@@ -811,7 +842,7 @@ class EditViewModel @AssistedInject constructor(
         get() = prefs.moveCheckedToBottom
 
     private fun focusItemAt(pos: Int, textPos: Int, itemExists: Boolean) {
-        _focusEvent.send(FocusChange(pos, textPos, itemExists))
+        _focusEvent.send(FocusChange(itemPos = pos, pos = textPos, itemExists = itemExists))
     }
 
     private fun deleteListItemAt(pos: Int) {
@@ -846,7 +877,8 @@ class EditViewModel @AssistedInject constructor(
             if (lastUncheckedPos != -1) {
                 lastUncheckedPos++
                 val firstUncheckedPos = listItems.indexOfFirst { it is EditItemItem }
-                listItems.subList(firstUncheckedPos, lastUncheckedPos).sortBy { (it as EditItemItem).actualPos }
+                listItems.subList(fromIndex = firstUncheckedPos, toIndex = lastUncheckedPos)
+                    .sortBy { (it as EditItemItem).actualPos }
             } else {
                 lastUncheckedPos = findItemPos<EditTitleItem>() + 1
             }
@@ -856,11 +888,11 @@ class EditViewModel @AssistedInject constructor(
             listItems.add(pos, EditItemAddItem)
             pos++
             if (checkedItems.isNotEmpty()) {
-                listItems.add(pos, EditCheckedHeaderItem(checkedItems.size))
+                listItems.add(index = pos, element = EditCheckedHeaderItem(checkedItems.size))
                 pos++
                 checkedItems.sortBy { it.actualPos }
                 for (item in checkedItems) {
-                    listItems.add(pos, item)
+                    listItems.add(index = pos, element = item)
                     pos++
                 }
             }
@@ -908,12 +940,23 @@ class EditViewModel @AssistedInject constructor(
     }
 
     companion object {
-        private val BLANK_NOTE = Note(Note.NO_ID, NoteType.TEXT, "", "",
-            BlankNoteMetadata, Date(0), Date(0), NoteStatus.ACTIVE, PinnedStatus.UNPINNED, null)
+        private val BLANK_NOTE = Note(
+            id = Note.NO_ID,
+            type = NoteType.TEXT,
+            title = "",
+            content = "",
+            metadata = BlankNoteMetadata,
+            addedDate = Date(0),
+            lastModifiedDate = Date(0),
+            status = NoteStatus.ACTIVE,
+            pinned = PinnedStatus.UNPINNED,
+            reminder = null
+        )
 
         private const val KEY_NOTE_ID = "noteId"
         private const val KEY_IS_NEW_NOTE = "isNewNote"
 
-        private val TEMP_ITEM = EditItemItem(DefaultEditableText(), checked = false, editable = false, actualPos = 0)
+        private val TEMP_ITEM =
+            EditItemItem(content = DefaultEditableText(), checked = false, editable = false, actualPos = 0)
     }
 }

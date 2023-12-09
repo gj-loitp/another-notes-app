@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.common
 
 import android.content.Context
@@ -17,7 +15,7 @@ class SnackBarFloatingActionButtonBehaviour(context: Context?, attrs: AttributeS
     override fun layoutDependsOn(
         parent: CoordinatorLayout,
         child: View,
-        dependency: View
+        dependency: View,
     ): Boolean {
         return dependency is Snackbar.SnackbarLayout
     }
@@ -25,7 +23,7 @@ class SnackBarFloatingActionButtonBehaviour(context: Context?, attrs: AttributeS
     override fun onDependentViewChanged(
         parent: CoordinatorLayout,
         child: View,
-        dependency: View
+        dependency: View,
     ): Boolean {
         val translationY = min(
             0f,

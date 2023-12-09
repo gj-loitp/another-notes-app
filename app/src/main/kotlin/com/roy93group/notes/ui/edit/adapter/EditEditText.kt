@@ -1,15 +1,10 @@
-
-
 package com.roy93group.notes.ui.edit.adapter
 
 import android.content.Context
 import android.text.style.CharacterStyle
-import android.text.style.ClickableSpan
-import android.text.style.URLSpan
 import android.text.util.Linkify
 import android.util.AttributeSet
 import android.view.View
-import android.view.textclassifier.TextLinks.TextLinkSpan
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.res.use
@@ -18,7 +13,6 @@ import androidx.core.text.util.LinkifyCompat
 import androidx.core.widget.doAfterTextChanged
 import com.roy93group.notes.R
 import com.roy93group.notes.ui.edit.EditFragment
-import com.roy93group.notes.ui.edit.LinkArrowKeyMovementMethod
 
 /**
  * Custom [EditText] class used for all fields of the [EditFragment].
@@ -53,9 +47,11 @@ class EditEditText @JvmOverloads constructor(
             doAfterTextChanged { editable ->
                 // Add new links
                 if (editable == null) return@doAfterTextChanged
-                LinkifyCompat.addLinks(editable,
-                    Linkify.EMAIL_ADDRESSES or Linkify.WEB_URLS or Linkify.PHONE_NUMBERS)
-                LinkifyCompat.addLinks(editable, URL_REGEX, null)
+                LinkifyCompat.addLinks(
+                    editable,
+                    Linkify.EMAIL_ADDRESSES or Linkify.WEB_URLS or Linkify.PHONE_NUMBERS
+                )
+                LinkifyCompat.addLinks(/* text = */ editable, /* pattern = */ URL_REGEX, /* scheme = */ null)
             }
 
             movementMethod = com.roy93group.notes.ui.edit.LinkArrowKeyMovementMethod.getInstance()

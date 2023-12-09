@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.receiver
 
 import android.app.PendingIntent
@@ -77,8 +75,12 @@ class AlarmReceiver : BroadcastReceiver() {
             action = MainActivity.INTENT_ACTION_EDIT
             putExtra(EXTRA_NOTE_ID, noteId)
         }
-        builder.setContentIntent(PendingIntent.getActivity(context,
-            noteId.toInt(), notifIntent, pendingIntentBaseFlags))
+        builder.setContentIntent(
+            PendingIntent.getActivity(
+                context,
+                noteId.toInt(), notifIntent, pendingIntentBaseFlags
+            )
+        )
 
         // Add actions for non-recurring reminders
         if (note.reminder?.recurrence == null) {
@@ -89,8 +91,10 @@ class AlarmReceiver : BroadcastReceiver() {
                 action = ACTION_MARK_DONE
                 putExtra(EXTRA_NOTE_ID, noteId)
             }
-            builder.addAction(R.drawable.ic_check, context.getString(R.string.action_mark_as_done),
-                PendingIntent.getBroadcast(context, noteId.toInt(), markDoneIntent, pendingIntentFlags))
+            builder.addAction(
+                R.drawable.ic_check, context.getString(R.string.action_mark_as_done),
+                PendingIntent.getBroadcast(context, noteId.toInt(), markDoneIntent, pendingIntentFlags)
+            )
 
             // Postpone action only if not recurring.
             val postponeIntent = Intent(context, NotificationActivity::class.java).apply {
@@ -98,9 +102,11 @@ class AlarmReceiver : BroadcastReceiver() {
                 putExtra(EXTRA_NOTE_ID, noteId)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
-            builder.addAction(R.drawable.ic_calendar,
+            builder.addAction(
+                R.drawable.ic_calendar,
                 context.getString(R.string.action_postpone),
-                PendingIntent.getActivity(context, noteId.toInt(), postponeIntent, pendingIntentFlags))
+                PendingIntent.getActivity(context, noteId.toInt(), postponeIntent, pendingIntentFlags)
+            )
         }
 
         NotificationManagerCompat.from(context).notify(noteId.toInt(), builder.build())

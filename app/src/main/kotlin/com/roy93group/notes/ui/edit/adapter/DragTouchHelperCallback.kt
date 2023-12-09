@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.edit.adapter
 
 import android.content.Context
@@ -20,19 +18,22 @@ class DragTouchHelperCallback(
 ) : ItemTouchHelper.Callback() {
 
     private val dragElevation = context.resources.getDimensionPixelSize(
-        R.dimen.edit_dragged_item_elevation).toFloat()
+        R.dimen.edit_dragged_item_elevation
+    ).toFloat()
 
     override fun isLongPressDragEnabled() = false
     override fun isItemViewSwipeEnabled() = false
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) =
-        makeFlag(ItemTouchHelper.ACTION_STATE_DRAG,
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN)
+        makeFlag(
+            /* actionState = */ ItemTouchHelper.ACTION_STATE_DRAG,
+            /* directions = */ ItemTouchHelper.UP or ItemTouchHelper.DOWN
+        )
 
     override fun canDropOver(
         recyclerView: RecyclerView,
         current: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder
+        target: RecyclerView.ViewHolder,
     ): Boolean {
         return if (moveCheckedToBottom) {
             // Only unchecked items are moveable, and can't move into checked group.
@@ -50,13 +51,13 @@ class DragTouchHelperCallback(
         dX: Float,
         dY: Float,
         actionState: Int,
-        isCurrentlyActive: Boolean
+        isCurrentlyActive: Boolean,
     ) {
         val view = viewHolder.itemView
         view.translationX = dX
         view.translationY = dY
         if (isCurrentlyActive) {
-            ViewCompat.setElevation(view, dragElevation)
+            ViewCompat.setElevation(/* view = */ view, /* elevation = */ dragElevation)
         }
     }
 
@@ -70,7 +71,7 @@ class DragTouchHelperCallback(
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder
+        target: RecyclerView.ViewHolder,
     ): Boolean {
         onMove(viewHolder.bindingAdapterPosition, target.bindingAdapterPosition)
         return true

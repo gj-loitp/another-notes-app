@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.edit.adapter
 
 import android.text.Editable
@@ -21,11 +19,11 @@ import com.roy93group.notes.databinding.VItemEditItemBinding
 import com.roy93group.notes.databinding.VItemEditLabelsBinding
 import com.roy93group.notes.databinding.VItemEditTitleBinding
 import com.roy93group.notes.ext.hideKeyboard
+import com.roy93group.notes.ext.showKeyboard
+import com.roy93group.notes.ext.strikethroughText
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.model.entity.Reminder
-import com.roy93group.notes.ext.showKeyboard
-import com.roy93group.notes.ext.strikethroughText
 import com.roy93group.notes.ui.edit.BulletTextWatcher
 import com.roy93group.notes.utils.RelativeDateFormatter
 import java.text.DateFormat
@@ -43,13 +41,17 @@ class EditDateViewHolder(binding: VItemEditDateBinding) :
     private val dateEdt = binding.dateEdt
 
     private val dateFormatter = RelativeDateFormatter(dateEdt.resources) { date ->
-        DateUtils.formatDateTime(dateEdt.context, date, DateUtils.FORMAT_SHOW_DATE or
-                DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_ABBREV_ALL)
+        DateUtils.formatDateTime(
+            dateEdt.context, date, DateUtils.FORMAT_SHOW_DATE or
+                    DateUtils.FORMAT_SHOW_WEEKDAY or DateUtils.FORMAT_ABBREV_ALL
+        )
     }
 
     fun bind(item: EditDateItem) {
-        dateEdt.text = dateFormatter.format(item.date, System.currentTimeMillis(),
-            PrefsManager.MAXIMUM_RELATIVE_DATE_DAYS)
+        dateEdt.text = dateFormatter.format(
+            item.date, System.currentTimeMillis(),
+            PrefsManager.MAXIMUM_RELATIVE_DATE_DAYS
+        )
     }
 }
 
@@ -231,7 +233,8 @@ class EditHeaderViewHolder(binding: VItemEditHeaderBinding) :
 
     fun bind(item: EditCheckedHeaderItem) {
         titleTxv.text = titleTxv.context.resources.getQuantityString(
-            R.plurals.edit_checked_items, item.count, item.count)
+            R.plurals.edit_checked_items, item.count, item.count
+        )
     }
 }
 
@@ -256,21 +259,27 @@ class EditItemLabelsViewHolder(binding: VItemEditLabelsBinding, callback: EditAd
         for (chip in item.chips) {
             when (chip) {
                 is Label -> {
-                    val view = layoutInflater.inflate(R.layout.v_edit_chip_label,
+                    val view = layoutInflater.inflate(
+                        R.layout.v_edit_chip_label,
                         chipGroup,
-                        false) as Chip
+                        false
+                    ) as Chip
                     chipGroup.addView(view)
                     view.text = chip.name
                     view.setOnClickListener(labelClickListener)
                 }
 
                 is Reminder -> {
-                    val view = layoutInflater.inflate(R.layout.v_edit_chip_reminder,
+                    val view = layoutInflater.inflate(
+                        R.layout.v_edit_chip_reminder,
                         chipGroup,
-                        false) as Chip
+                        false
+                    ) as Chip
                     chipGroup.addView(view)
-                    view.text = reminderDateFormatter.format(chip.next.time,
-                        System.currentTimeMillis(), PrefsManager.MAXIMUM_RELATIVE_DATE_DAYS)
+                    view.text = reminderDateFormatter.format(
+                        chip.next.time,
+                        System.currentTimeMillis(), PrefsManager.MAXIMUM_RELATIVE_DATE_DAYS
+                    )
                     view.strikethroughText = chip.done
                     view.isActivated = !chip.done
                     view.setChipIconResource(if (chip.recurrence != null) R.drawable.ic_repeat else R.drawable.ic_alarm)

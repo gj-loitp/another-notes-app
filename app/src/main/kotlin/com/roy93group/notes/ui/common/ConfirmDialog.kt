@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.common
 
 import android.app.Dialog
@@ -86,7 +84,8 @@ class ConfirmDialog : DialogFragment() {
                 ARG_MESSAGE to message,
                 ARG_MESSAGE_STR to messageStr,
                 ARG_BTN_POSITIVE to btnPositive,
-                ARG_BTN_NEGATIVE to btnNegative)
+                ARG_BTN_NEGATIVE to btnNegative
+            )
             return dialog
         }
     }

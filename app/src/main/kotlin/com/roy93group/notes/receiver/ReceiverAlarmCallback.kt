@@ -1,7 +1,6 @@
-
-
 package com.roy93group.notes.receiver
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
@@ -16,16 +15,18 @@ import javax.inject.Inject
  * Uses the app context to set alarms broadcasted to [AlarmReceiver].
  */
 class ReceiverAlarmCallback @Inject constructor(
-    private val context: Context
+    private val context: Context,
 ) : ReminderAlarmCallback {
 
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
+    @SuppressLint("ScheduleExactAlarm")
     override fun addAlarm(noteId: Long, time: Long) {
         val alarmIntent = getAlarmPendingIndent(noteId)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP, time, alarmIntent)
+                AlarmManager.RTC_WAKEUP, time, alarmIntent
+            )
         } else {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, alarmIntent)
         }

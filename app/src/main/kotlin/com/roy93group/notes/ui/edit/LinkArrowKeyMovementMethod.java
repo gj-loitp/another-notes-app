@@ -15,10 +15,8 @@ import android.text.style.URLSpan;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.textclassifier.TextLinks;
 import android.widget.TextView;
 
-import com.roy93group.notes.ui.edit.adapter.EditEditText;
 import com.roy93group.notes.ui.edit.adapter.EditEditText;
 
 import java.lang.reflect.Method;
@@ -33,11 +31,6 @@ public class LinkArrowKeyMovementMethod extends ArrowKeyMovementMethod {
     private static final int DOWN = 3;
 
     private static final int HIDE_FLOATING_TOOLBAR_DELAY_MS = 200;
-
-    @Override
-    public boolean canSelectArbitrarily() {
-        return true;
-    }
 
     @Override
     protected boolean handleMovementKey(TextView widget, Spannable buffer, int keyCode,
@@ -105,8 +98,7 @@ public class LinkArrowKeyMovementMethod extends ArrowKeyMovementMethod {
     private boolean action(int what, TextView widget, Spannable buffer) {
         Layout layout = widget.getLayout();
 
-        int padding = widget.getTotalPaddingTop() +
-                widget.getTotalPaddingBottom();
+        int padding = widget.getTotalPaddingTop() + widget.getTotalPaddingBottom();
         int areaTop = widget.getScrollY();
         int areaBot = areaTop + widget.getHeight() - padding;
 
