@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.labels
 
 import android.app.Dialog
@@ -14,8 +12,8 @@ import com.roy93group.notes.App
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.DlgLabelEditBinding
 import com.roy93group.notes.ext.hideCursorInAllViews
-import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.ext.setTitleIfEnoughSpace
+import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.navGraphViewModel
 import com.roy93group.notes.ui.observeEvent
@@ -38,7 +36,7 @@ class LabelEditDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
+        (requireContext().applicationContext as App?)?.appComponent?.inject(this)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -58,11 +56,13 @@ class LabelEditDialog : DialogFragment() {
                 viewModel.addLabel()
             }
             .setNegativeButton(R.string.action_cancel, null)
-            .setTitleIfEnoughSpace(if (args.labelId == Label.NO_ID) {
-                R.string.label_create
-            } else {
-                R.string.label_edit
-            })
+            .setTitleIfEnoughSpace(
+                if (args.labelId == Label.NO_ID) {
+                    R.string.label_create
+                } else {
+                    R.string.label_edit
+                }
+            )
 
         val dialog = builder.create()
 

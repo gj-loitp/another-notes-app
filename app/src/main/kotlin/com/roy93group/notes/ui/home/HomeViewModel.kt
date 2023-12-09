@@ -1,12 +1,12 @@
-
-
 package com.roy93group.notes.ui.home
 
+import androidx.annotation.Keep
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.roy93group.notes.R
+import com.roy93group.notes.ext.setToStartOfDay
 import com.roy93group.notes.model.LabelsRepository
 import com.roy93group.notes.model.NotesRepository
 import com.roy93group.notes.model.PrefsManager
@@ -16,7 +16,6 @@ import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.model.entity.NoteWithLabels
 import com.roy93group.notes.model.entity.PinnedStatus
-import com.roy93group.notes.ext.setToStartOfDay
 import com.roy93group.notes.ui.AssistedSavedStateViewModelFactory
 import com.roy93group.notes.ui.Event
 import com.roy93group.notes.ui.navigation.HomeDestination
@@ -97,11 +96,13 @@ class HomeViewModel @AssistedInject constructor(
                         }
                     }
                 }
+
                 is HomeDestination.Labels -> {
                     notesRepository.getNotesByLabel(destination.label.id).collect { notes ->
                         listItems = createLabelsListItems(notes, destination.label)
                     }
                 }
+
                 is HomeDestination.Reminders -> {
                     notesRepository.getNotesWithReminder().collect { notes ->
                         listItems = createRemindersListItems(notes)
@@ -114,10 +115,12 @@ class HomeViewModel @AssistedInject constructor(
     /** When user clicks on FAB. */
     fun createNote() {
         val destination = currentDestination
-        _createNoteEvent.send(NewNoteSettings(
-            if (destination is HomeDestination.Labels) destination.label.id else Label.NO_ID,
-            destination is HomeDestination.Reminders
-        ))
+        _createNoteEvent.send(
+            NewNoteSettings(
+                if (destination is HomeDestination.Labels) destination.label.id else Label.NO_ID,
+                destination is HomeDestination.Reminders
+            )
+        )
     }
 
     fun changeSort(settings: SortSettings) {
@@ -217,11 +220,13 @@ class HomeViewModel @AssistedInject constructor(
 
     override fun onNoteSwiped(pos: Int, direction: NoteAdapter.SwipeDirection) {
         val note = (noteItems.value!![pos] as NoteItem).note
-        changeNotesStatus(setOf(note), when (getNoteSwipeAction(direction)) {
-            SwipeAction.ARCHIVE -> NoteStatus.ARCHIVED
-            SwipeAction.DELETE -> NoteStatus.DELETED
-            SwipeAction.NONE -> return  // should not happen
-        })
+        changeNotesStatus(
+            setOf(note), when (getNoteSwipeAction(direction)) {
+                SwipeAction.ARCHIVE -> NoteStatus.ARCHIVED
+                SwipeAction.DELETE -> NoteStatus.DELETED
+                SwipeAction.NONE -> return  // should not happen
+            }
+        )
     }
 
     override fun onNoteActionButtonClicked(item: NoteItem, pos: Int) {
@@ -270,9 +275,11 @@ class HomeViewModel @AssistedInject constructor(
             System.currentTimeMillis() - prefs.lastTrashReminderTime >
             PrefsManager.TRASH_REMINDER_DELAY.inWholeMilliseconds
         ) {
-            this += MessageItem(TRASH_REMINDER_ITEM_ID,
+            this += MessageItem(
+                TRASH_REMINDER_ITEM_ID,
                 R.string.trash_reminder_message,
-                listOf(PrefsManager.TRASH_AUTO_DELETE_DELAY.inWholeDays))
+                listOf(PrefsManager.TRASH_AUTO_DELETE_DELAY.inWholeDays)
+            )
         }
 
         for (note in notes) {
@@ -359,7 +366,7 @@ class HomeViewModel @AssistedInject constructor(
     private fun MutableList<NoteListItem>.addNoteItem(
         noteWithLabels: NoteWithLabels,
         showMarkAsDone: Boolean = false,
-        excludeLabel: Label? = null
+        excludeLabel: Label? = null,
     ) {
         val note = noteWithLabels.note
         val checked = isNoteSelected(note)
@@ -373,21 +380,32 @@ class HomeViewModel @AssistedInject constructor(
 
     override fun updatePlaceholder() = when (val destination = currentDestination) {
         is HomeDestination.Status -> when (destination.status) {
-            NoteStatus.ACTIVE -> PlaceholderData(R.drawable.ic_list,
-                R.string.note_placeholder_active)
-            NoteStatus.ARCHIVED -> PlaceholderData(R.drawable.ic_archive,
-                R.string.note_placeholder_archived)
-            NoteStatus.DELETED -> PlaceholderData(R.drawable.ic_delete,
-                R.string.note_placeholder_deleted)
+            NoteStatus.ACTIVE -> PlaceholderData(
+                iconId = R.drawable.ic_list,
+                messageId = R.string.note_placeholder_active
+            )
+
+            NoteStatus.ARCHIVED -> PlaceholderData(
+                iconId = R.drawable.ic_archive,
+                messageId = R.string.note_placeholder_archived
+            )
+
+            NoteStatus.DELETED -> PlaceholderData(
+                iconId = R.drawable.ic_delete,
+                messageId = R.string.note_placeholder_deleted
+            )
         }
+
         is HomeDestination.Reminders -> {
-            PlaceholderData(R.drawable.ic_alarm, R.string.reminder_empty_placeholder)
+            PlaceholderData(iconId = R.drawable.ic_alarm, messageId = R.string.reminder_empty_placeholder)
         }
+
         is HomeDestination.Labels -> {
-            PlaceholderData(R.drawable.ic_label_outline, R.string.label_notes_empty_placeholder)
+            PlaceholderData(iconId = R.drawable.ic_label_outline, messageId = R.string.label_notes_empty_placeholder)
         }
     }
 
+    @Keep
     data class NewNoteSettings(val labelId: Long, val initialReminder: Boolean)
 
     @AssistedFactory

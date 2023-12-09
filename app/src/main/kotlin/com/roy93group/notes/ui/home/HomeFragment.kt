@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.home
 
 import android.Manifest
@@ -22,8 +20,8 @@ import com.google.android.material.transition.Hold
 import com.roy93group.notes.App
 import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
-import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.ext.navigateSafe
+import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.ui.common.ConfirmDialog
 import com.roy93group.notes.ui.navigation.HomeDestination
 import com.roy93group.notes.ui.note.NoteFragment
@@ -47,7 +45,7 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
         super.onCreate(savedInstanceState)
 
         val context = requireContext()
-        (context.applicationContext as App).appComponent.inject(this)
+        (context.applicationContext as App?)?.appComponent?.inject(this)
     }
 
     override fun onResume() {
@@ -66,14 +64,16 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
 
         var notificationRestricted = false
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(context,
-                    Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED
+            if (ContextCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_DENIED
             ) {
                 notificationRestricted = true
             }
         }
 
-        viewModel.updateRestrictions(batteryRestricted, notificationRestricted)
+        viewModel.updateRestrictions(battery = batteryRestricted, notifications = notificationRestricted)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -137,8 +137,11 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
                 binding.fab to "noteContainer0"
             )
 
-            findNavController().navigateSafe(NavGraphMainDirections.actionEditNote(
-                labelId = settings.labelId, changeReminder = settings.initialReminder), extras = extras)
+            findNavController().navigateSafe(
+                NavGraphMainDirections.actionEditNote(
+                    labelId = settings.labelId, changeReminder = settings.initialReminder
+                ), extras = extras
+            )
         }
 
         viewModel.showEmptyTrashDialogEvent.observeEvent(viewLifecycleOwner) {
@@ -165,6 +168,7 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
                 NoteStatus.ARCHIVED -> getString(R.string.note_location_archived)
                 NoteStatus.DELETED -> getString(R.string.note_location_deleted)
             }
+
             is HomeDestination.Labels -> destination.label.name
             is HomeDestination.Reminders -> getString(R.string.note_reminders)
         }
@@ -177,6 +181,7 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
                 layoutItem.setIcon(R.drawable.ic_view_grid)
                 layoutItem.setTitle(R.string.action_layout_grid)
             }
+
             NoteListLayoutMode.GRID -> {
                 layoutItem.setIcon(R.drawable.ic_view_list)
                 layoutItem.setTitle(R.string.action_layout_list)

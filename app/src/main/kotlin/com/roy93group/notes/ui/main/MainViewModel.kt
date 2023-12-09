@@ -1,9 +1,8 @@
-
-
 package com.roy93group.notes.ui.main
 
 import android.view.Menu
 import android.view.MenuItem
+import androidx.annotation.Keep
 import androidx.core.view.contains
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -44,7 +43,7 @@ class MainViewModel @AssistedInject constructor(
     private val prefsManager: PrefsManager,
     private val jsonManager: JsonManager,
     private val reminderAlarmManager: ReminderAlarmManager,
-    @Assisted savedStateHandle: SavedStateHandle
+    @Assisted savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val _editNoteEvent = MutableLiveData<Event<Long>>()
@@ -69,7 +68,8 @@ class MainViewModel @AssistedInject constructor(
         get() = _navDirectionsEvent
 
     private val _currentHomeDestination = savedStateHandle.getLiveData<HomeDestination>(
-        KEY_HOME_DESTINATION, HomeDestination.Status(NoteStatus.ACTIVE))
+        KEY_HOME_DESTINATION, HomeDestination.Status(NoteStatus.ACTIVE)
+    )
     val currentHomeDestination: LiveData<HomeDestination>
         get() = _currentHomeDestination
 
@@ -168,21 +168,27 @@ class MainViewModel @AssistedInject constructor(
             R.id.drawerItemNotes -> {
                 _currentHomeDestination.value = HomeDestination.Status(NoteStatus.ACTIVE)
             }
+
             R.id.drawerItemReminders -> {
                 _currentHomeDestination.value = HomeDestination.Reminders
             }
+
             R.id.drawerItemCreateLabel -> {
                 _navDirectionsEvent.send(HomeFragmentDirections.actionHomeToLabelEdit())
             }
+
             R.id.drawerItemEditLabels -> {
                 _navDirectionsEvent.send(NavGraphMainDirections.actionLabel(longArrayOf()))
             }
+
             R.id.drawerItemArchived -> {
                 _currentHomeDestination.value = HomeDestination.Status(NoteStatus.ARCHIVED)
             }
+
             R.id.drawerItemDeleted -> {
                 _currentHomeDestination.value = HomeDestination.Status(NoteStatus.DELETED)
             }
+
             R.id.drawerItemSettings -> {
                 _navDirectionsEvent.send(HomeFragmentDirections.actionHomeToSettings())
             }
@@ -241,6 +247,7 @@ class MainViewModel @AssistedInject constructor(
         override fun create(savedStateHandle: SavedStateHandle): MainViewModel
     }
 
+    @Keep
     data class NewNoteData(val type: NoteType, val title: String = "", val content: String = "")
 
     companion object {

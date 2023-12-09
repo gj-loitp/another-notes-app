@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.labels
 
 import androidx.lifecycle.LiveData
@@ -120,7 +118,7 @@ class LabelViewModel @AssistedInject constructor(
                 selectedLabelIds.clear()
                 selectedLabelIds += labelsRepository.getLabelIdsForNote(noteIds.first())
                 for (noteId in noteIds.listIterator(1)) {
-                    selectedLabelIds.retainAll(labelsRepository.getLabelIdsForNote(noteId))
+                    selectedLabelIds.retainAll(labelsRepository.getLabelIdsForNote(noteId).toSet())
                 }
 
                 savedStateHandle[KEY_NOTE_IDS] = noteIds
@@ -141,7 +139,7 @@ class LabelViewModel @AssistedInject constructor(
                     selectedLabels.clear()
                 }
                 listItems = labels.mapTo(mutableListOf()) { label ->
-                    LabelListItem(label.id, label, label.id in selectedLabelIds)
+                    LabelListItem(id = label.id, label = label, checked = label.id in selectedLabelIds)
                 }
             }
         }
@@ -156,8 +154,12 @@ class LabelViewModel @AssistedInject constructor(
                 val unchangedLabels = labelsToAdd intersect labelsToRemove
                 labelsToRemove.removeAll(unchangedLabels)
                 labelsToAdd.removeAll(unchangedLabels)
-                labelsRepository.deleteLabelRefs(labelsToRemove.map { LabelRef(noteId, it) })
-                labelsRepository.insertLabelRefs(labelsToAdd.map { LabelRef(noteId, it) })
+                labelsRepository.deleteLabelRefs(labelsToRemove.map {
+                    LabelRef(noteId, it)
+                })
+                labelsRepository.insertLabelRefs(labelsToAdd.map {
+                    LabelRef(noteId, it)
+                })
             }
             _exitEvent.send()
         }

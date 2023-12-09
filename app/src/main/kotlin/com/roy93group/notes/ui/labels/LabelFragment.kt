@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.labels
 
 import android.animation.ArgbEvaluator
@@ -54,11 +52,15 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
 
     @Inject
     lateinit var viewModelFactory: LabelViewModel.Factory
-    val viewModel by viewModel { viewModelFactory.create(it) }
+    val viewModel by viewModel {
+        viewModelFactory.create(it)
+    }
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
-    private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) { sharedViewModelProvider.get() }
+    private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) {
+        sharedViewModelProvider.get()
+    }
 
     private val args: LabelFragmentArgs by navArgs()
 
@@ -82,7 +84,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        state: Bundle?
+        state: Bundle?,
     ): View {
         _binding = FLabelBinding.inflate(inflater, container, false)
         return binding.root
@@ -100,11 +102,13 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
             setNavigationOnClickListener {
                 findNavController().popBackStack()
             }
-            setTitle(if (args.noteIds.isEmpty()) {
-                R.string.label_manage
-            } else {
-                R.string.label_select
-            })
+            setTitle(
+                if (args.noteIds.isEmpty()) {
+                    R.string.label_manage
+                } else {
+                    R.string.label_select
+                }
+            )
             menu.findItem(R.id.itemConfirm).isVisible = (args.noteIds.isNotEmpty())
         }
 
@@ -192,7 +196,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
             title = R.string.action_delete_selection,
             message = R.string.label_delete_message,
             btnPositive = R.string.action_delete
-        ).show(childFragmentManager, DELETE_CONFIRM_DIALOG_TAG)
+        ).show(/* manager = */ childFragmentManager, /* tag = */ DELETE_CONFIRM_DIALOG_TAG)
     }
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
@@ -213,7 +217,12 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
         return true
     }
 
-    private fun switchStatusBarColor(colorFrom: Int, colorTo: Int, duration: Long, endAsTransparent: Boolean = false) {
+    private fun switchStatusBarColor(
+        colorFrom: Int,
+        colorTo: Int,
+        duration: Long,
+        endAsTransparent: Boolean = false,
+    ) {
         val anim = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
 
         anim.duration = duration
@@ -238,9 +247,9 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
         mode.menuInflater.inflate(R.menu.menu_cab_label_selection, menu)
         if (Build.VERSION.SDK_INT >= 23) {
             switchStatusBarColor(
-                (binding.toolbarLayout.background as MaterialShapeDrawable).resolvedTintColor,
-                MaterialColors.getColor(requireView(), RMaterial.attr.colorSurfaceVariant),
-                resources.getInteger(RMaterial.integer.material_motion_duration_long_2).toLong()
+                colorFrom = (binding.toolbarLayout.background as MaterialShapeDrawable).resolvedTintColor,
+                colorTo = MaterialColors.getColor(requireView(), RMaterial.attr.colorSurfaceVariant),
+                duration = resources.getInteger(RMaterial.integer.material_motion_duration_long_2).toLong()
             )
         }
         return true
@@ -253,10 +262,10 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
         viewModel.clearSelection()
         if (Build.VERSION.SDK_INT >= 23) {
             switchStatusBarColor(
-                MaterialColors.getColor(requireView(), RMaterial.attr.colorSurfaceVariant),
-                (binding.toolbarLayout.background as MaterialShapeDrawable).resolvedTintColor,
-                resources.getInteger(RMaterial.integer.material_motion_duration_long_1).toLong(),
-                true
+                colorFrom = MaterialColors.getColor(requireView(), RMaterial.attr.colorSurfaceVariant),
+                colorTo = (binding.toolbarLayout.background as MaterialShapeDrawable).resolvedTintColor,
+                duration = resources.getInteger(RMaterial.integer.material_motion_duration_long_1).toLong(),
+                endAsTransparent = true
             )
         }
     }

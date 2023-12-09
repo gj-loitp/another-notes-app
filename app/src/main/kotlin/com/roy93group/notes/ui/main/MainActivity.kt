@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.main
 
 import android.content.Intent
@@ -27,14 +25,14 @@ import com.google.android.material.color.DynamicColors
 import com.roy93group.notes.App
 import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
-import com.roy93group.notes.ext.TAG
 import com.roy93group.notes.databinding.AMainBinding
+import com.roy93group.notes.ext.TAG
+import com.roy93group.notes.ext.navigateSafe
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.converter.NoteTypeConverter
 import com.roy93group.notes.model.entity.Note
 import com.roy93group.notes.model.entity.NoteStatus
 import com.roy93group.notes.model.entity.NoteType
-import com.roy93group.notes.ext.navigateSafe
 import com.roy93group.notes.receiver.AlarmReceiver
 import com.roy93group.notes.ui.SharedViewModel
 import com.roy93group.notes.ui.main.MainViewModel.NewNoteData
@@ -51,11 +49,15 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
-    private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) { sharedViewModelProvider.get() }
+    private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) {
+        sharedViewModelProvider.get()
+    }
 
     @Inject
     lateinit var viewModelFactory: MainViewModel.Factory
-    private val viewModel by viewModel { viewModelFactory.create(it) }
+    private val viewModel by viewModel {
+        viewModelFactory.create(it)
+    }
 
     @Inject
     lateinit var prefs: PrefsManager
@@ -111,8 +113,8 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
         binding.navView.setNavigationItemSelectedListener { item ->
             viewModel.navigationItemSelected(
-                item,
-                binding.navView.menu.findItem(R.id.drawerLabels).subMenu!!
+                item = item,
+                labelsMenu = binding.navView.menu.findItem(R.id.drawerLabels).subMenu!!
             )
             true
         }
@@ -192,21 +194,25 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         }
 
         viewModel.autoExportEvent.observeEvent(this) { uri ->
-            viewModel.autoExport(try {
-                // write and *truncate*. Otherwise the file is not overwritten!
-                contentResolver.openOutputStream(Uri.parse(uri), "wt")
-            } catch (e: Exception) {
-                Log.i(TAG, "Auto data export failed", e)
-                null
-            })
+            viewModel.autoExport(
+                try {
+                    // write and *truncate*. Otherwise the file is not overwritten!
+                    contentResolver.openOutputStream(Uri.parse(uri), "wt")
+                } catch (e: Exception) {
+                    Log.i(TAG, "Auto data export failed", e)
+                    null
+                }
+            )
         }
 
         viewModel.createNoteEvent.observeEvent(this) { newNoteData ->
-            navController.navigateSafe(NavGraphMainDirections.actionEditNote(
-                type = newNoteData.type.value,
-                title = newNoteData.title,
-                content = newNoteData.content
-            ))
+            navController.navigateSafe(
+                NavGraphMainDirections.actionEditNote(
+                    type = newNoteData.type.value,
+                    title = newNoteData.title,
+                    content = newNoteData.content
+                )
+            )
         }
     }
 
@@ -215,12 +221,18 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         this.intent = intent
     }
 
-    override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
-        drawerLayout.setDrawerLockMode(if (destination.id == R.id.fragment_home) {
-            DrawerLayout.LOCK_MODE_UNLOCKED
-        } else {
-            DrawerLayout.LOCK_MODE_LOCKED_CLOSED
-        })
+    override fun onDestinationChanged(
+        controller: NavController,
+        destination: NavDestination,
+        arguments: Bundle?,
+    ) {
+        drawerLayout.setDrawerLockMode(
+            if (destination.id == R.id.fragment_home) {
+                DrawerLayout.LOCK_MODE_UNLOCKED
+            } else {
+                DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+            }
+        )
     }
 
     override fun onStart() {
@@ -257,16 +269,20 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                         viewModel.createNote(noteData)
                     }
                 }
+
                 INTENT_ACTION_CREATE -> {
                     // Intent to create a note of a certain type. Used by launcher shortcuts.
                     val type = NoteTypeConverter.toType(
-                        intent.getIntExtra(EXTRA_NOTE_TYPE, 0))
+                        intent.getIntExtra(EXTRA_NOTE_TYPE, 0)
+                    )
                     viewModel.createNote(NewNoteData(type))
                 }
+
                 INTENT_ACTION_EDIT -> {
                     // Intent to edit a specific note. This is used by reminder notification.
                     viewModel.editNote(intent.getLongExtra(AlarmReceiver.EXTRA_NOTE_ID, Note.NO_ID))
                 }
+
                 INTENT_ACTION_SHOW_REMINDERS -> {
                     // Show reminders screen in HomeFragment. Used by launcher shortcut.
                     binding.navView.menu.findItem(R.id.drawerItemReminders).isChecked = true
@@ -311,9 +327,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
     companion object {
         private const val KEY_INTENT_HANDLED = "com.roy93group.notes.INTENT_HANDLED"
-
         const val EXTRA_NOTE_TYPE = "com.roy93group.notes.NOTE_TYPE"
-
         const val INTENT_ACTION_CREATE = "com.roy93group.notes.CREATE"
         const val INTENT_ACTION_EDIT = "com.roy93group.notes.EDIT"
         const val INTENT_ACTION_SHOW_REMINDERS = "com.roy93group.notes.SHOW_REMINDERS"

@@ -1,10 +1,7 @@
-
-
 package com.roy93group.notes.ui.labels.adapter
 
 import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.RecyclerView
-import com.roy93group.notes.BuildConfig
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.VItemLabelBinding
 
@@ -24,11 +21,13 @@ class LabelListViewHolder(val binding: VItemLabelBinding) : RecyclerView.ViewHol
         if (adapter.callback.shouldHighlightCheckedItems) {
             view.isActivated = item.checked
         } else {
-            binding.labelImv.setImageResource(if (item.checked) {
-                R.drawable.ic_label
-            } else {
-                R.drawable.ic_label_outline
-            })
+            binding.labelImv.setImageResource(
+                if (item.checked) {
+                    R.drawable.ic_label
+                } else {
+                    R.drawable.ic_label_outline
+                }
+            )
         }
 
         binding.labelImv.setOnClickListener {

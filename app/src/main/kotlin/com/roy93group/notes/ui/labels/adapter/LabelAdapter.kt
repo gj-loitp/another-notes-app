@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.labels.adapter
 
 import android.content.Context
@@ -23,7 +21,7 @@ class LabelAdapter(
     }
 
     override fun onBindViewHolder(holder: LabelListViewHolder, position: Int) {
-        holder.bind(getItem(position), this)
+        holder.bind(item = getItem(position), adapter = this)
     }
 
     override fun getItemId(position: Int) = getItem(position).id

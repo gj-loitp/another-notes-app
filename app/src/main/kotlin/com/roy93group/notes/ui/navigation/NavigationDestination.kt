@@ -1,8 +1,7 @@
-
-
 package com.roy93group.notes.ui.navigation
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import androidx.navigation.NavDirections
 import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.model.entity.NoteStatus
@@ -27,12 +26,14 @@ sealed interface HomeDestination : NavigationDestination, Parcelable {
      * Destination to view all notes of with a specific [status].
      */
     @Parcelize
+    @Keep
     data class Status(val status: NoteStatus) : HomeDestination
 
     /**
      * Destination to view all notes with a [label].
      */
     @Parcelize
+    @Keep
     data class Labels(val label: Label) : HomeDestination
 
     /**
