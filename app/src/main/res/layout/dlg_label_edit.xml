@@ -1,59 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="8dp"
-    app:backgroundInsetTop="30dp"
     app:backgroundInsetBottom="30dp"
-    >
+    app:backgroundInsetTop="30dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         android:orientation="vertical"
-        >
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp">
 
         <!-- The dialog is unusable in landscape mode
              with keyboard shown, but there's not much to do about it. -->
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/label_input_layout"
+            android:id="@+id/labelInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintEnabled="false"
-            >
+            app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/label_input"
+                android:id="@+id/labelInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="Label text"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp"
                 android:imeOptions="actionDone"
-                android:singleLine="true"
-                android:maxLines="1"
                 android:maxLength="50"
+                android:maxLines="1"
                 android:nextFocusDown="@android:id/button1"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:singleLine="true"
                 android:textDirection="anyRtl"
-                />
+                tools:text="Label text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
-            android:id="@+id/label_hidden_chk"
+            android:id="@+id/labelHiddenChk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/label_hidden_option"
-            android:textAlignment="viewStart"
-            />
+            android:textAlignment="viewStart" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

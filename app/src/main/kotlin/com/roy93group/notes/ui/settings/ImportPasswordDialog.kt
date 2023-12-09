@@ -25,7 +25,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.roy93group.notes.App
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.DialogImportPasswordBinding
+import com.roy93group.notes.databinding.DlgImportPasswordBinding
 import com.roy93group.notes.hideCursorInAllViews
 import com.roy93group.notes.setTitleIfEnoughSpace
 import com.roy93group.notes.ui.observeEvent
@@ -45,7 +45,7 @@ class ImportPasswordDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val context = requireContext()
-        val binding = DialogImportPasswordBinding.inflate(layoutInflater, null, false)
+        val binding = DlgImportPasswordBinding.inflate(layoutInflater, null, false)
 
         val passwordInput = binding.passwordInput
 

@@ -69,7 +69,7 @@ inline fun <reified VM : ViewModel> Fragment.navGraphViewModel(
 @MainThread
 inline fun <reified VM : ViewModel> ComponentActivity.navGraphViewModel(
     @IdRes navGraphId: Int,
-    @IdRes navHostId: Int = R.id.nav_host_fragment,
+    @IdRes navHostId: Int = R.id.navHostFragment,
     noinline provider: (SavedStateHandle) -> VM
 ): Lazy<VM> {
     val backStackEntry by lazy { findNavController(navHostId).getBackStackEntry(navGraphId) }

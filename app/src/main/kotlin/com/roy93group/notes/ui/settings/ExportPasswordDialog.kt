@@ -28,7 +28,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.roy93group.notes.App
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.DialogExportPasswordBinding
+import com.roy93group.notes.databinding.DlgExportPasswordBinding
 import com.roy93group.notes.hideCursorInAllViews
 import com.roy93group.notes.setTitleIfEnoughSpace
 import com.roy93group.notes.ui.observeEvent
@@ -48,7 +48,7 @@ class ExportPasswordDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val context = requireContext()
-        val binding = DialogExportPasswordBinding.inflate(layoutInflater, null, false)
+        val binding = DlgExportPasswordBinding.inflate(layoutInflater, null, false)
 
         val passwordInput = binding.passwordInput
         val passwordLayout = binding.passwordInputLayout

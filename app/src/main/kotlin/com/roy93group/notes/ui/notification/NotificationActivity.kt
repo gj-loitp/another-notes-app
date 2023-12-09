@@ -46,7 +46,7 @@ class NotificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         (applicationContext as App).appComponent.inject(this)
 
-        setContentView(R.layout.activity_notification)
+        setContentView(R.layout.a_notification)
 
         setupViewModelObservers()
 

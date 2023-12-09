@@ -26,7 +26,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.roy93group.notes.App
 import com.roy93group.notes.R
-import com.roy93group.notes.databinding.DialogLabelEditBinding
+import com.roy93group.notes.databinding.DlgLabelEditBinding
 import com.roy93group.notes.hideCursorInAllViews
 import com.roy93group.notes.model.entity.Label
 import com.roy93group.notes.setTitleIfEnoughSpace
@@ -57,7 +57,7 @@ class LabelEditDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val context = requireContext()
-        val binding = DialogLabelEditBinding.inflate(layoutInflater, null, false)
+        val binding = DlgLabelEditBinding.inflate(layoutInflater, null, false)
 
         // Using `this` as lifecycle owner, cannot show dialog twice with same instance to avoid double observation.
         debugCheck(!viewModel.setLabelEvent.hasObservers()) { "Dialog was shown twice with same instance." }

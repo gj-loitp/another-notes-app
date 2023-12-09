@@ -42,7 +42,7 @@ import com.roy93group.notes.App
 import com.roy93group.notes.NavGraphMainDirections
 import com.roy93group.notes.R
 import com.roy93group.notes.TAG
-import com.roy93group.notes.databinding.ActivityMainBinding
+import com.roy93group.notes.databinding.AMainBinding
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.model.converter.NoteTypeConverter
 import com.roy93group.notes.model.entity.Note
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     lateinit var drawerLayout: DrawerLayout
 
     private lateinit var navController: NavController
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: AMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_DayNight)
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 //        venom.initialize()
 //        venom.start()
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = AMainBinding.inflate(layoutInflater)
         drawerLayout = binding.drawerLayout
         setContentView(binding.root)
 
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             insets
         }
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
         navController.addOnDestinationChangedListener(this)
 
