@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui
 
 import androidx.lifecycle.LifecycleOwner

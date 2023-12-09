@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui
 
 import android.os.Bundle
@@ -20,7 +18,7 @@ import kotlin.reflect.KClass
 
 @MainThread
 inline fun <reified VM : ViewModel> ComponentActivity.viewModel(
-    noinline provider: (SavedStateHandle) -> VM
+    noinline provider: (SavedStateHandle) -> VM,
 ) = createLazyViewModel(
     viewModelClass = VM::class,
     savedStateRegistryOwnerProducer = { this },
@@ -30,7 +28,7 @@ inline fun <reified VM : ViewModel> ComponentActivity.viewModel(
 
 @MainThread
 inline fun <reified VM : ViewModel> Fragment.viewModel(
-    noinline provider: (SavedStateHandle) -> VM
+    noinline provider: (SavedStateHandle) -> VM,
 ) = createLazyViewModel(
     viewModelClass = VM::class,
     savedStateRegistryOwnerProducer = { this },
@@ -41,7 +39,7 @@ inline fun <reified VM : ViewModel> Fragment.viewModel(
 @MainThread
 inline fun <reified VM : ViewModel> Fragment.navGraphViewModel(
     @IdRes navGraphId: Int,
-    noinline provider: (SavedStateHandle) -> VM
+    noinline provider: (SavedStateHandle) -> VM,
 ): Lazy<VM> {
     val backStackEntry by lazy { findNavController().getBackStackEntry(navGraphId) }
     return createLazyViewModel(
@@ -56,7 +54,7 @@ inline fun <reified VM : ViewModel> Fragment.navGraphViewModel(
 inline fun <reified VM : ViewModel> ComponentActivity.navGraphViewModel(
     @IdRes navGraphId: Int,
     @IdRes navHostId: Int = R.id.navHostFragment,
-    noinline provider: (SavedStateHandle) -> VM
+    noinline provider: (SavedStateHandle) -> VM,
 ): Lazy<VM> {
     val backStackEntry by lazy { findNavController(navHostId).getBackStackEntry(navGraphId) }
     return createLazyViewModel(
@@ -71,14 +69,14 @@ fun <VM : ViewModel> createLazyViewModel(
     viewModelClass: KClass<VM>,
     savedStateRegistryOwnerProducer: () -> SavedStateRegistryOwner,
     viewModelStoreOwnerProducer: () -> ViewModelStoreOwner,
-    viewModelProvider: (SavedStateHandle) -> VM
+    viewModelProvider: (SavedStateHandle) -> VM,
 ) = ViewModelLazy(viewModelClass, { viewModelStoreOwnerProducer().viewModelStore }, {
     object : AbstractSavedStateViewModelFactory(savedStateRegistryOwnerProducer(), Bundle()) {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(
             key: String,
             modelClass: Class<T>,
-            handle: SavedStateHandle
+            handle: SavedStateHandle,
         ) = viewModelProvider(handle) as T
     }
 })
