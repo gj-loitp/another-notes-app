@@ -15,6 +15,11 @@ class ExportPasswordViewModel @AssistedInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
+    companion object {
+        private const val KEY_PASSWORD = "password"
+        private const val KEY_PASSWORD_REPEAT = "passwordRepeat"
+    }
+
     private val _setDialogDataEvent = MutableLiveData<Event<Pair<String, String>>>()
     val setDialogDataEvent: LiveData<Event<Pair<String, String>>>
         get() = _setDialogDataEvent
@@ -56,10 +61,5 @@ class ExportPasswordViewModel @AssistedInject constructor(
     @AssistedFactory
     interface Factory : AssistedSavedStateViewModelFactory<ExportPasswordViewModel> {
         override fun create(savedStateHandle: SavedStateHandle): ExportPasswordViewModel
-    }
-
-    companion object {
-        private const val KEY_PASSWORD = "password"
-        private const val KEY_PASSWORD_REPEAT = "passwordRepeat"
     }
 }

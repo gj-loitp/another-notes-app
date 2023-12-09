@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.settings
 
 import android.os.Build
@@ -42,7 +40,7 @@ class SettingsViewModel @AssistedInject constructor(
     private val prefsManager: PrefsManager,
     private val jsonManager: JsonManager,
     private val reminderAlarmManager: ReminderAlarmManager,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    @Assisted private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val _messageEvent = MutableLiveData<Event<Int>>()
@@ -155,19 +153,22 @@ class SettingsViewModel @AssistedInject constructor(
     }
 
     private fun showImportResultMessage(result: ImportResult) {
-        showMessage(when (result) {
-            ImportResult.BAD_FORMAT -> R.string.import_bad_format
-            ImportResult.BAD_DATA -> R.string.import_bad_data
-            ImportResult.FUTURE_VERSION -> R.string.import_future_version
-            ImportResult.KEY_MISSING_OR_INCORRECT -> {
-                if (Build.VERSION.SDK_INT >= 26) {
-                    R.string.encrypted_import_key_error
-                } else {
-                    R.string.encrypted_import_encryption_unsupported
+        showMessage(
+            when (result) {
+                ImportResult.BAD_FORMAT -> R.string.import_bad_format
+                ImportResult.BAD_DATA -> R.string.import_bad_data
+                ImportResult.FUTURE_VERSION -> R.string.import_future_version
+                ImportResult.KEY_MISSING_OR_INCORRECT -> {
+                    if (Build.VERSION.SDK_INT >= 26) {
+                        R.string.encrypted_import_key_error
+                    } else {
+                        R.string.encrypted_import_encryption_unsupported
+                    }
                 }
+
+                ImportResult.SUCCESS -> R.string.import_success
             }
-            ImportResult.SUCCESS -> R.string.import_success
-        })
+        )
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

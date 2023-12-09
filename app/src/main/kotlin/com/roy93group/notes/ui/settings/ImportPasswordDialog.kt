@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.settings
 
 import android.app.Dialog
@@ -20,13 +18,20 @@ import javax.inject.Inject
 
 class ImportPasswordDialog : DialogFragment() {
 
+    companion object {
+        fun newInstance(): ImportPasswordDialog {
+            return ImportPasswordDialog()
+        }
+    }
+
     @Inject
     lateinit var viewModelFactory: ImportPasswordViewModel.Factory
     val viewModel by viewModel { viewModelFactory.create(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
+
+        (requireContext().applicationContext as App?)?.appComponent?.inject(this)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -85,11 +90,5 @@ class ImportPasswordDialog : DialogFragment() {
         fun onImportPasswordDialogPositiveButtonClicked(password: String) = Unit
         fun onImportPasswordDialogNegativeButtonClicked() = Unit
         fun onImportPasswordDialogCancelled() = Unit
-    }
-
-    companion object {
-        fun newInstance(): ImportPasswordDialog {
-            return ImportPasswordDialog()
-        }
     }
 }

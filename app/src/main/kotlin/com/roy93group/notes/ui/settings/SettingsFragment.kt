@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.settings
 
 import android.app.Activity
@@ -26,18 +24,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialElevationScale
+import com.mikepenz.aboutlibraries.LibsBuilder
 import com.roy93group.notes.App
 import com.roy93group.notes.R
-import com.roy93group.notes.ext.TAG
 import com.roy93group.notes.databinding.FSettingsBinding
-import com.roy93group.notes.model.PrefsManager
+import com.roy93group.notes.ext.TAG
 import com.roy93group.notes.ext.navigateSafe
+import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.ui.AppTheme
 import com.roy93group.notes.ui.common.ConfirmDialog
 import com.roy93group.notes.ui.main.MainActivity
 import com.roy93group.notes.ui.observeEvent
 import com.roy93group.notes.ui.viewModel
-import com.mikepenz.aboutlibraries.LibsBuilder
 import java.text.DateFormat
 import javax.inject.Inject
 import com.google.android.material.R as RMaterial
@@ -45,9 +43,17 @@ import com.google.android.material.R as RMaterial
 class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, ExportPasswordDialog.Callback,
     ImportPasswordDialog.Callback {
 
+    companion object {
+        private const val RESTART_DIALOG_TAG = "restart_dialog"
+        private const val CLEAR_DATA_DIALOG_TAG = "clear_data_dialog"
+        private const val AUTOMATIC_EXPORT_DIALOG_TAG = "automatic_export_dialog"
+    }
+
     @Inject
     lateinit var viewModelFactory: SettingsViewModel.Factory
-    val viewModel by viewModel { viewModelFactory.create(it) }
+    val viewModel by viewModel {
+        viewModelFactory.create(it)
+    }
 
     private var exportDataLauncher: ActivityResultLauncher<Intent>? = null
     private var autoExportLauncher: ActivityResultLauncher<Intent>? = null
@@ -84,11 +90,12 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
                     cr.takePersistableUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
                     cr.openOutputStream(uri)
                 } catch (e: Exception) {
-                    Log.i(TAG, "Data export failed", e)
+//                    Log.i(TAG, "Data export failed", e)
+                    e.printStackTrace()
                     null
                 }
                 if (output != null) {
-                    viewModel.setupAutoExport(output, uri.toString())
+                    viewModel.setupAutoExport(output = output, uri = uri.toString())
                 } else {
                     showMessage(R.string.export_fail)
                     autoExportPref.isChecked = false
@@ -102,7 +109,8 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
                 val input = try {
                     context.contentResolver.openInputStream(uri)
                 } catch (e: Exception) {
-                    Log.i(TAG, "Data import failed", e)
+//                    Log.i(TAG, "Data import failed", e)
+                    e.printStackTrace()
                     null
                 }
                 if (input != null) {
@@ -148,8 +156,10 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
         }
         viewModel.releasePersistableUriEvent.observeEvent(viewLifecycleOwner) { uri ->
             try {
-                requireContext().contentResolver.releasePersistableUriPermission(Uri.parse(uri),
-                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                requireContext().contentResolver.releasePersistableUriPermission(
+                    Uri.parse(uri),
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                )
             } catch (e: Exception) {
                 // Permission was revoked? will probably happen sometimes
                 Log.i(TAG, "Failed to release persistable URI permission", e)
@@ -187,8 +197,11 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
         }
 
         requirePreference<Preference>(PrefsManager.PREVIEW_LINES).setOnPreferenceClickListener {
-            findNavController().navigateSafe(SettingsFragmentDirections.actionNestedSettings(
-                R.xml.prefs_preview_lines, R.string.pref_preview_lines))
+            findNavController().navigateSafe(
+                SettingsFragmentDirections.actionNestedSettings(
+                    R.xml.prefs_preview_lines, R.string.pref_preview_lines
+                )
+            )
             true
         }
 
@@ -271,7 +284,8 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
     private fun showMessage(@StringRes messageId: Int) {
         val snackbar = Snackbar.make(requireView(), messageId, Snackbar.LENGTH_SHORT)
             .setGestureInsetBottomIgnored(true)
-        snackbar.view.findViewById<androidx.appcompat.widget.AppCompatTextView>(com.google.android.material.R.id.snackbar_text).maxLines = 5
+        snackbar.view.findViewById<androidx.appcompat.widget.AppCompatTextView>(com.google.android.material.R.id.snackbar_text).maxLines =
+            5
         snackbar.show()
     }
 
@@ -285,8 +299,12 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
         if (enabled) {
             autoExportPref.summary = buildString {
                 appendLine(getString(R.string.pref_data_auto_export_summary))
-                append(getString(R.string.pref_data_auto_export_date,
-                    DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(date)))
+                append(
+                    getString(
+                        R.string.pref_data_auto_export_date,
+                        DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(date)
+                    )
+                )
             }
         } else {
             autoExportPref.summary = getString(R.string.pref_data_auto_export_summary)
@@ -300,9 +318,11 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
                 requireActivity().finish()
                 startActivity(Intent(requireContext(), MainActivity::class.java))
             }
+
             CLEAR_DATA_DIALOG_TAG -> {
                 viewModel.clearData()
             }
+
             AUTOMATIC_EXPORT_DIALOG_TAG -> {
                 val intent = Intent(Intent.ACTION_CREATE_DOCUMENT)
                     .setType("application/json")
@@ -345,11 +365,5 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onImportPasswordDialogPositiveButtonClicked(password: String) {
         viewModel.importSavedEncryptedJsonData(password)
-    }
-
-    companion object {
-        private const val RESTART_DIALOG_TAG = "restart_dialog"
-        private const val CLEAR_DATA_DIALOG_TAG = "clear_data_dialog"
-        private const val AUTOMATIC_EXPORT_DIALOG_TAG = "automatic_export_dialog"
     }
 }

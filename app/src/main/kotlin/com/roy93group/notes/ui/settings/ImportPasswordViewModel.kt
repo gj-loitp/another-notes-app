@@ -14,6 +14,9 @@ import dagger.assisted.AssistedInject
 class ImportPasswordViewModel @AssistedInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
+    companion object {
+        private const val KEY_PASSWORD = "password"
+    }
 
     private val _setDialogDataEvent = MutableLiveData<Event<String>>()
     val setDialogDataEvent: LiveData<Event<String>>
@@ -38,9 +41,5 @@ class ImportPasswordViewModel @AssistedInject constructor(
     @AssistedFactory
     interface Factory : AssistedSavedStateViewModelFactory<ImportPasswordViewModel> {
         override fun create(savedStateHandle: SavedStateHandle): ImportPasswordViewModel
-    }
-
-    companion object {
-        private const val KEY_PASSWORD = "password"
     }
 }

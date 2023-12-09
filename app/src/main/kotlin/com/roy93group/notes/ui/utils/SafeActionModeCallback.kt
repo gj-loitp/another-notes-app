@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.utils
 
 import android.view.ActionMode
@@ -14,22 +12,22 @@ import android.view.View
  * See [https://stackoverflow.com/questions/53261839/trying-to-detect-actionmode-memory-leak].
  */
 private class SafeActionModeCallback(
-    private var callback: ActionMode.Callback?
+    private var callback: ActionMode.Callback?,
 ) : ActionMode.Callback {
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
-        return callback!!.onCreateActionMode(mode, menu)
+        return callback?.onCreateActionMode(mode, menu) ?: false
     }
 
     override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
-        return callback!!.onPrepareActionMode(mode, menu)
+        return callback?.onPrepareActionMode(mode, menu) ?: false
     }
 
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
-        return callback!!.onActionItemClicked(mode, item)
+        return callback?.onActionItemClicked(mode, item) ?: false
     }
 
     override fun onDestroyActionMode(mode: ActionMode) {
-        callback!!.onDestroyActionMode(mode)
+        callback?.onDestroyActionMode(mode)
         callback = null
     }
 }

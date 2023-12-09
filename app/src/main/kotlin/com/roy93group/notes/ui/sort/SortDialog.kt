@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.sort
 
 import android.app.Dialog
@@ -24,15 +22,19 @@ class SortDialog : DialogFragment() {
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
-    private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) { sharedViewModelProvider.get() }
+    private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) {
+        sharedViewModelProvider.get()
+    }
 
     @Inject
     lateinit var viewModelProvider: Provider<SortViewModel>
-    private val viewModel by viewModel { viewModelProvider.get() }
+    private val viewModel by viewModel {
+        viewModelProvider.get()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
+        (requireContext().applicationContext as App?)?.appComponent?.inject(this)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

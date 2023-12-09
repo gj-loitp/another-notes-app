@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.settings
 
 import android.app.Dialog
@@ -29,7 +27,8 @@ class ExportPasswordDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
+
+        (requireContext().applicationContext as App?)?.appComponent?.inject(this)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -79,8 +78,8 @@ class ExportPasswordDialog : DialogFragment() {
         passwordInput.requestFocus()
 
         val passwordToggleListener = OnClickListener {
-            passwordLayout.togglePasswordVisibile()
-            passwordRepeatLayout.togglePasswordVisibile()
+            passwordLayout.togglePasswordVisible()
+            passwordRepeatLayout.togglePasswordVisible()
         }
         passwordLayout.setEndIconOnClickListener(passwordToggleListener)
         passwordRepeatLayout.setEndIconOnClickListener(passwordToggleListener)
@@ -96,7 +95,7 @@ class ExportPasswordDialog : DialogFragment() {
         return dialog
     }
 
-    private fun TextInputLayout.togglePasswordVisibile() {
+    private fun TextInputLayout.togglePasswordVisible() {
         val editText = editText ?: return
         // Store the current cursor position
         val selection = editText.selectionEnd

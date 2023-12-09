@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.settings
 
 import android.os.Bundle
