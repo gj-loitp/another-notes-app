@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.search
 
 /**
@@ -25,15 +23,18 @@ object SearchQueryCleaner {
                     inSearchTerm = false
                     append('"')
                 }
+
                 '^', ':', '*', '(', ')', '\\' -> {
                     // Disable column start, column name separator, wildcard,
                     // boolean operators grouping parenthesis, escapes.
                     continue
                 }
+
                 '-' -> {
                     // equivalent to NOT operator, allowed.
                     append('-')
                 }
+
                 ' ', ',', ';' -> {
                     // Last search term has ended, add wildcard and separator
                     if (inSearchTerm) {
@@ -45,6 +46,7 @@ object SearchQueryCleaner {
                         terms++
                     }
                 }
+
                 else -> {
                     // Lowercase char to disable MATCH keywords.
                     append(c.lowercaseChar())
@@ -63,7 +65,7 @@ object SearchQueryCleaner {
             // Negative term but no other, ignore negative.
             deleteCharAt(0)
         }
-        if (length > 0 && this[lastIndex] == ' ') {
+        if (isNotEmpty() && this[lastIndex] == ' ') {
             deleteCharAt(lastIndex)
         }
     }

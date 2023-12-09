@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.search
 
 import android.database.sqlite.SQLiteException
@@ -32,8 +30,21 @@ class SearchViewModel @AssistedInject constructor(
     prefs: PrefsManager,
     reminderAlarmManager: ReminderAlarmManager,
     noteItemFactory: NoteItemFactory,
-) : NoteViewModel(savedStateHandle, notesRepository, labelsRepository, prefs, noteItemFactory, reminderAlarmManager),
+) : NoteViewModel(
+    savedStateHandle = savedStateHandle,
+    notesRepository = notesRepository,
+    labelsRepository = labelsRepository,
+    prefs = prefs,
+    noteItemFactory = noteItemFactory,
+    reminderAlarmManager = reminderAlarmManager
+),
     NoteAdapter.Callback {
+
+    companion object {
+        val ARCHIVED_HEADER_ITEM = HeaderItem(-1, R.string.note_location_archived)
+
+        private const val SEARCH_DEBOUNCE_DELAY = 100L
+    }
 
     // No need to save this is a saved state handle, SearchView will
     // call query changed listener after it's been recreated.
@@ -97,16 +108,11 @@ class SearchViewModel @AssistedInject constructor(
     }
 
     override fun updatePlaceholder() = PlaceholderData(
-        R.drawable.ic_search, R.string.search_empty_placeholder)
+        R.drawable.ic_search, R.string.search_empty_placeholder
+    )
 
     @AssistedFactory
     interface Factory : AssistedSavedStateViewModelFactory<SearchViewModel> {
         override fun create(savedStateHandle: SavedStateHandle): SearchViewModel
-    }
-
-    companion object {
-        val ARCHIVED_HEADER_ITEM = HeaderItem(-1, R.string.note_location_archived)
-
-        private const val SEARCH_DEBOUNCE_DELAY = 100L
     }
 }

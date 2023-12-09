@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.reminder
 
 import androidx.lifecycle.LiveData
@@ -7,15 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.maltaisn.recurpicker.Recurrence
+import com.maltaisn.recurpicker.RecurrenceFinder
+import com.roy93group.notes.ext.setToStartOfDay
 import com.roy93group.notes.model.NotesRepository
 import com.roy93group.notes.model.ReminderAlarmManager
 import com.roy93group.notes.model.entity.Reminder
-import com.roy93group.notes.ext.setToStartOfDay
 import com.roy93group.notes.ui.AssistedSavedStateViewModelFactory
 import com.roy93group.notes.ui.Event
 import com.roy93group.notes.ui.send
-import com.maltaisn.recurpicker.Recurrence
-import com.maltaisn.recurpicker.RecurrenceFinder
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -26,11 +24,10 @@ import java.util.Date
 class ReminderViewModel @AssistedInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
     private val notesRepository: NotesRepository,
-    private val reminderAlarmManager: ReminderAlarmManager
+    private val reminderAlarmManager: ReminderAlarmManager,
 ) : ViewModel() {
 
     private val calendar = Calendar.getInstance()
-
     private var noteIds = emptyList<Long>()
     private var date: Long   // UTC millis
     private var recurrence: Recurrence
@@ -265,7 +262,7 @@ class ReminderViewModel @AssistedInject constructor(
             // Default values to be shown in short delay before initialization.
             ReminderDetails(System.currentTimeMillis(), Recurrence.DOES_NOT_REPEAT)
         } else {
-            ReminderDetails(date, recurrence)
+            ReminderDetails(date = date, recurrence = recurrence)
         }
     }
 

@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.reminder
 
 import android.Manifest
@@ -24,15 +22,6 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.roy93group.notes.App
-import com.roy93group.notes.R
-import com.roy93group.notes.ext.contains
-import com.roy93group.notes.databinding.DlgReminderBinding
-import com.roy93group.notes.ext.setMaxWidth
-import com.roy93group.notes.ui.SharedViewModel
-import com.roy93group.notes.ui.common.ConfirmDialog
-import com.roy93group.notes.ui.navGraphViewModel
-import com.roy93group.notes.ui.observeEvent
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.RecurrencePickerSettings
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
@@ -40,6 +29,15 @@ import com.maltaisn.recurpicker.list.RecurrenceListCallback
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerCallback
 import com.maltaisn.recurpicker.picker.RecurrencePickerDialog
+import com.roy93group.notes.App
+import com.roy93group.notes.R
+import com.roy93group.notes.databinding.DlgReminderBinding
+import com.roy93group.notes.ext.contains
+import com.roy93group.notes.ext.setMaxWidth
+import com.roy93group.notes.ui.SharedViewModel
+import com.roy93group.notes.ui.common.ConfirmDialog
+import com.roy93group.notes.ui.navGraphViewModel
+import com.roy93group.notes.ui.observeEvent
 import debugCheck
 import java.text.DateFormat
 import java.util.Calendar
@@ -51,24 +49,27 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
-    private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) { sharedViewModelProvider.get() }
+    private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) {
+        sharedViewModelProvider.get()
+    }
 
     @Inject
     lateinit var viewModelFactory: ReminderViewModel.Factory
-    private val viewModel by navGraphViewModel(R.id.nav_graph_reminder) { viewModelFactory.create(it) }
+    private val viewModel by navGraphViewModel(R.id.nav_graph_reminder) {
+        viewModelFactory.create(it)
+    }
 
     private val args: ReminderDialogArgs by navArgs()
 
     private val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM)
     private val timeFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
     private val recurrenceFormat = RecurrenceFormatter(dateFormat)
-
     private var requestPermissionLauncher: ActivityResultLauncher<String>? = null
     private var permissionRequested = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
+        (requireContext().applicationContext as App?)?.appComponent?.inject(this)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -93,8 +94,11 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
             .setNegativeButton(R.string.action_cancel, null)
             .create()
         dialog.setOnShowListener {
-            dialog.setMaxWidth(context.resources.getDimensionPixelSize(
-                R.dimen.reminder_dialog_max_width), binding.root)
+            dialog.setMaxWidth(
+                context.resources.getDimensionPixelSize(
+                    R.dimen.reminder_dialog_max_width
+                ), binding.root
+            )
             onDialogShown(dialog)
         }
 
@@ -138,8 +142,10 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
         viewModel.details.observe(this) { details ->
             binding.dateInput.setText(dateFormat.format(details.date))
             binding.timeInput.setText(timeFormat.format(details.date))
-            binding.recurrenceTxv.text = recurrenceFormat.format(requireContext(),
-                details.recurrence, details.date)
+            binding.recurrenceTxv.text = recurrenceFormat.format(
+                requireContext(),
+                details.recurrence, details.date
+            )
         }
 
         viewModel.invalidTime.observe(this) { invalid ->
@@ -225,10 +231,13 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
             }
         }
         when {
-            ContextCompat.checkSelfPermission(requireContext(),
-                Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED -> {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED -> {
                 // OK, permission already granted.
             }
+
             shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
                 // Show dialog explaning permission request.
                 ConfirmDialog.newInstance(
@@ -237,6 +246,7 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
                 ).show(childFragmentManager, NOTIF_PERMISSION_DIALOG)
                 permissionRequested = true
             }
+
             else -> {
                 requestPermissionLauncher?.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
@@ -248,13 +258,17 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
             val calendar = Calendar.getInstance()
             // MaterialDatePicker operates on UTC timezone... convert to local timezone (in UTC millis).
             calendar.timeInMillis = selection - TimeZone.getDefault().getOffset(selection)
-            viewModel.changeDate(calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
+            viewModel.changeDate(
+                year = calendar[Calendar.YEAR],
+                month = calendar[Calendar.MONTH],
+                day = calendar[Calendar.DAY_OF_MONTH]
+            )
         }
     }
 
     private fun registerTimePickerListener(picker: MaterialTimePicker) {
         picker.addOnPositiveButtonClickListener {
-            viewModel.changeTime(picker.hour, picker.minute)
+            viewModel.changeTime(hour = picker.hour, minute = picker.minute)
         }
     }
 
@@ -298,6 +312,7 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
                     // First time asking, can request normally.
                     requestPermissionLauncher?.launch(Manifest.permission.POST_NOTIFICATIONS)
                 }
+
                 NOTIF_PERMISSION_DENIED_DIALOG -> {
                     // Not first time asking, open notification settings window to let user do it.
                     val settingsIntent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)

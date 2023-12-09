@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.ui.search
 
 import android.os.Bundle
@@ -23,7 +21,9 @@ class SearchFragment : NoteFragment() {
     @Inject
     lateinit var viewModelFactory: SearchViewModel.Factory
 
-    override val viewModel by viewModel { viewModelFactory.create(it) }
+    override val viewModel by viewModel {
+        viewModelFactory.create(it)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
