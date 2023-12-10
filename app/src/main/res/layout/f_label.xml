@@ -17,7 +17,7 @@
         android:fitsSystemWindows="true"
         app:layout_behavior=".ui.common.AppBarLayoutWithPaddingBehavior"
         app:liftOnScroll="true"
-        app:liftOnScrollTargetViewId="@id/recyclerView">
+        app:liftOnScrollTargetViewId="@id/recycler_view">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -63,7 +63,7 @@
             tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="false"

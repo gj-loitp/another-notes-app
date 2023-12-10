@@ -62,7 +62,8 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
         val context = requireContext()
-        (context.applicationContext as App).appComponent.inject(this)
+
+        (context.applicationContext as App?)?.appComponent?.inject(this)
 
         exportDataLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val uri = result.data?.data
@@ -131,6 +132,7 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val binding = FSettingsBinding.bind(view)
 
         binding.toolbar.setNavigationOnClickListener {
@@ -138,7 +140,12 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
         }
 
         // Apply padding so that the settings don't overlap with the navigation bar
-        val rcv = view.findViewById<RecyclerView>(R.id.recyclerView)
+        val rcv = view.findViewById<RecyclerView>(R.id.recycler_view)
+//        if (rcv == null) {
+//            Log.e("roy93~", "onViewCreated: rcv == null")
+//        } else {
+//            Log.e("roy93~", "onViewCreated: rcv != null")
+//        }
 
         ViewCompat.setOnApplyWindowInsetsListener(rcv) { _, insets ->
             val sysWindow = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
