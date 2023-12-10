@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.model
 
 import android.content.Context
@@ -37,10 +35,8 @@ class PrefsManager @Inject constructor(
     val swipeActionRight: SwipeAction by enumPreference(SWIPE_ACTION_RIGHT, SwipeAction.ARCHIVE)
     val shownDateField: ShownDateField by enumPreference(SHOWN_DATE, ShownDateField.NONE)
     val maximumPreviewLabels: Int by preference(PREVIEW_LABELS, 0)
-
     var sortField: SortField by enumPreference(SORT_FIELD, SortField.MODIFIED_DATE)
     var sortDirection: SortDirection by enumPreference(SORT_DIRECTION, SortDirection.DESCENDING)
-
     var shouldEncryptExportedData: Boolean by preference(ENCRYPTED_EXPORT, false)
     var encryptedExportKeyDerivationSalt: String by preference(ENCRYPTED_EXPORT_KEY_DERIVATION_SALT, "")
     var encryptedImportKeyDerivationSalt: String by preference(ENCRYPTED_IMPORT_KEY_DERIVATION_SALT, "")
@@ -48,7 +44,6 @@ class PrefsManager @Inject constructor(
     var autoExportUri: String by preference(AUTO_EXPORT_URI, "")
     var autoExportFailed: Boolean by preference(AUTO_EXPORT_FAILED, false)
     var lastAutoExportTime: Long by preference(LAST_AUTO_EXPORT_TIME, 0)
-
     var lastTrashReminderTime: Long by preference(LAST_TRASH_REMIND_TIME, 0)
     var lastRestrictedBatteryReminderTime: Long by preference(LAST_RESTRICTED_BATTERY_REMIND_TIME, 0)
 
@@ -61,6 +56,7 @@ class PrefsManager @Inject constructor(
                 NoteType.TEXT -> PREVIEW_LINES_TEXT_LIST
                 NoteType.LIST -> PREVIEW_LINES_LIST_LIST
             }
+
             NoteListLayoutMode.GRID -> when (noteType) {
                 NoteType.TEXT -> PREVIEW_LINES_TEXT_GRID
                 NoteType.LIST -> PREVIEW_LINES_LIST_GRID
@@ -225,4 +221,3 @@ class PrefsManager @Inject constructor(
         const val MAXIMUM_RELATIVE_DATE_DAYS = 6
     }
 }
-

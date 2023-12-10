@@ -1,8 +1,7 @@
-
-
 package com.roy93group.notes.model.entity
 
 import android.os.Parcelable
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -11,6 +10,7 @@ import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
+@Keep
 @Serializable
 @Entity(tableName = "labels")
 @Parcelize
@@ -66,6 +66,8 @@ data class Label(
         ),
     ]
 )
+
+@Keep
 data class LabelRef(
     @ColumnInfo(name = "noteId", index = true)
     val noteId: Long,

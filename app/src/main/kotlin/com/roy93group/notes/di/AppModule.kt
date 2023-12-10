@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.di
 
 import android.content.Context
@@ -18,10 +16,12 @@ import dagger.Module
 import dagger.Provides
 import kotlinx.serialization.json.Json
 
-@Module(includes = [
-    DatabaseModule::class,
-    BuildTypeModule::class,
-])
+@Module(
+    includes = [
+        DatabaseModule::class,
+        BuildTypeModule::class,
+    ]
+)
 abstract class AppModule {
 
     @get:Binds

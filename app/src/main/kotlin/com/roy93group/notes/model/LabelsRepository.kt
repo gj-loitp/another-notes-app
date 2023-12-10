@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.model
 
 import com.roy93group.notes.model.entity.Label

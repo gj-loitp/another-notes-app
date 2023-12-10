@@ -1,7 +1,6 @@
-
-
 package com.roy93group.notes.model.entity
 
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -15,6 +14,7 @@ import kotlinx.serialization.Transient
 import java.util.Date
 
 @Entity(tableName = "notes")
+@Keep
 data class Note(
     /**
      * Note ID in the database.
@@ -87,10 +87,12 @@ data class Note(
 
     init {
         // Validate the type of metadata.
-        require(when (type) {
-            NoteType.TEXT -> metadata is BlankNoteMetadata
-            NoteType.LIST -> metadata is ListNoteMetadata
-        })
+        require(
+            when (type) {
+                NoteType.TEXT -> metadata is BlankNoteMetadata
+                NoteType.LIST -> metadata is ListNoteMetadata
+            }
+        )
 
         debugRequire(addedDate.time <= lastModifiedDate.time) {
             "Note added date must be before or on last modified date."
@@ -226,7 +228,7 @@ data class Note(
         fun getCopiedNoteTitle(
             currentTitle: String,
             untitledName: String,
-            copySuffix: String
+            copySuffix: String,
         ): String {
             val match = "^(.*) - $copySuffix(?:\\s+([1-9]\\d*))?$".toRegex().find(currentTitle)
             return when {
@@ -235,6 +237,7 @@ data class Note(
                     val number = (match.groupValues[2].toIntOrNull() ?: 1) + 1
                     "$name - $copySuffix $number"
                 }
+
                 currentTitle.isBlank() -> "$untitledName - $copySuffix"
                 else -> "$currentTitle - $copySuffix"
             }
@@ -242,6 +245,7 @@ data class Note(
     }
 }
 
+@Keep
 data class NoteWithLabels(
     @Embedded
     val note: Note,
@@ -253,13 +257,15 @@ data class NoteWithLabels(
             LabelRef::class,
             parentColumn = "noteId",
             entityColumn = "labelId",
-        ))
-    val labels: List<Label>
+        )
+    )
+    val labels: List<Label>,
 )
 
 /**
  * Representation of a list note item for [Note.listItems].
  */
+@Keep
 data class ListNoteItem(val content: String, val checked: Boolean) {
 
     init {

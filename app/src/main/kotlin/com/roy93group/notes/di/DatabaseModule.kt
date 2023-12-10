@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.di
 
 import android.content.Context
@@ -14,8 +12,10 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun providesDatabase(context: Context) = Room.databaseBuilder(context,
-        NotesDatabase::class.java, "notes_db")
+    fun providesDatabase(context: Context) = Room.databaseBuilder(
+        context,
+        NotesDatabase::class.java, "notes_db"
+    )
         .addMigrations(*NotesDatabase.ALL_MIGRATIONS)
         .build()
 

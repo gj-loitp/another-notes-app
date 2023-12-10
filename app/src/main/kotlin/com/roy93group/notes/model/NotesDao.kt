@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.model
 
 import androidx.room.Dao
@@ -79,23 +77,27 @@ interface NotesDao {
      * Exclude notes with a label marked as hidden, except if the note is deleted.
      * This is used to display notes for each status destination.
      */
-    fun getByStatus(status: NoteStatus, sort: SortSettings) = sortedQuery("""
+    fun getByStatus(status: NoteStatus, sort: SortSettings) = sortedQuery(
+        """
             SELECT * FROM notes WHERE status == :status AND (:status == 2 OR id NOT IN 
             (SELECT DISTINCT notes.id FROM notes JOIN label_refs ON noteId == notes.id 
             JOIN labels ON labelId == labels.id WHERE labels.hidden == 1))
             ORDER BY pinned DESC, :sort, id ASC
-        """, sort, NoteStatusConverter.toInt(status))
+        """, sort, NoteStatusConverter.toInt(status)
+    )
 
     /**
      * Get all notes tagged with a label ([labelId]), except deleted notes.
      * The notes are sorted by status then by pinned status (pinned first), then by last modified date.
      * This is used to display notes by label.
      */
-    fun getByLabel(labelId: Long, sort: SortSettings) = sortedQuery("""
+    fun getByLabel(labelId: Long, sort: SortSettings) = sortedQuery(
+        """
             SELECT notes.* FROM notes JOIN 
             (SELECT noteId FROM label_refs WHERE labelId == :labelId) ON noteId == id
             WHERE status != 2 ORDER BY status ASC, pinned DESC, :sort, id ASC
-        """, sort, labelId)
+        """, sort, labelId
+    )
 
     /**
      * Get all notes with a reminder set and reminder not done, sorted by ascending date.
@@ -109,11 +111,13 @@ interface NotesDao {
      * Search active and archived notes for a [query] using full-text search,
      * sorted by status first then by last modified date.
      */
-    fun search(query: String, sort: SortSettings) = sortedQuery("""
+    fun search(query: String, sort: SortSettings) = sortedQuery(
+        """
             SELECT * FROM notes JOIN notes_fts ON notes_fts.rowid == notes.id
             WHERE notes_fts MATCH :query AND status != 2
             ORDER BY status ASC, :sort
-        """, sort, query)
+        """, sort, query
+    )
 
     /**
      * For internal DAO use, to support query with variable sort field and direction.
@@ -128,16 +132,20 @@ interface NotesDao {
      */
     private fun sortedQuery(query: String, sort: SortSettings, vararg args: Any): Flow<List<NoteWithLabels>> {
         val queryWithSort = query.replaceFirst(":sort", buildString {
-            append(when (sort.field) {
-                SortField.MODIFIED_DATE -> "notes.modified_date"
-                SortField.ADDED_DATE -> "notes.added_date"
-                SortField.TITLE -> "LOWER(notes.title)"
-            })
+            append(
+                when (sort.field) {
+                    SortField.MODIFIED_DATE -> "notes.modified_date"
+                    SortField.ADDED_DATE -> "notes.added_date"
+                    SortField.TITLE -> "LOWER(notes.title)"
+                }
+            )
             append(" ")
-            append(when (sort.direction) {
-                SortDirection.ASCENDING -> "ASC"
-                SortDirection.DESCENDING -> "DESC"
-            })
+            append(
+                when (sort.direction) {
+                    SortDirection.ASCENDING -> "ASC"
+                    SortDirection.DESCENDING -> "DESC"
+                }
+            )
 
         })
         return runtimeQuery(SimpleSQLiteQuery(queryWithSort, args))

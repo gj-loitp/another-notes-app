@@ -1,11 +1,15 @@
-
-
-@file:UseSerializers(DateTimeConverter::class, NoteTypeConverter::class,
-    NoteStatusConverter::class, NoteMetadataConverter::class, PinnedStatusConverter::class)
+@file:UseSerializers(
+    DateTimeConverter::class,
+    NoteTypeConverter::class,
+    NoteStatusConverter::class,
+    NoteMetadataConverter::class,
+    PinnedStatusConverter::class
+)
 
 package com.roy93group.notes.model
 
 import android.util.Base64
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import com.roy93group.notes.model.JsonManager.ImportResult
 import com.roy93group.notes.model.converter.DateTimeConverter
@@ -26,7 +30,6 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.security.KeyStore
@@ -186,9 +189,9 @@ class DefaultJsonManager @Inject constructor(
                         newName = "$name ($num)"
                         num++
                     } while (newName in existingLabelsNameMap)
-                    newLabelsMap[id] = labelsDao.insert(Label(id, newName, false))
+                    newLabelsMap[id] = labelsDao.insert(Label(id = id, name = newName, hidden = false))
                 } else {
-                    newLabelsMap[id] = labelsDao.insert(Label(id, name, label.hidden))
+                    newLabelsMap[id] = labelsDao.insert(Label(id = id, name = name, hidden = label.hidden))
                 }
             }
         }
@@ -200,8 +203,18 @@ class DefaultJsonManager @Inject constructor(
         val labelRefs = mutableListOf<LabelRef>()
         for ((id, ns) in notesData.notes) {
             var noteId = id
-            val newNote = Note(id, ns.type, ns.title, ns.content, ns.metadata, ns.addedDate,
-                ns.lastModifiedDate, ns.status, ns.pinned, ns.reminder)
+            val newNote = Note(
+                id = id,
+                type = ns.type,
+                title = ns.title,
+                content = ns.content,
+                metadata = ns.metadata,
+                addedDate = ns.addedDate,
+                lastModifiedDate = ns.lastModifiedDate,
+                status = ns.status,
+                pinned = ns.pinned,
+                reminder = ns.reminder
+            )
             val oldNote = existingNotes[noteId]
 
             // Remap labels appropriately and discard unresolved label IDs.
@@ -211,6 +224,7 @@ class DefaultJsonManager @Inject constructor(
                 oldNote == null -> {
                     notesDao.insert(newNote)
                 }
+
                 oldNote.note.addedDate == newNote.addedDate &&
                         oldNote.note.lastModifiedDate == newNote.lastModifiedDate -> {
                     // existing note has same added and modified date as the data, assume this is the same
@@ -224,6 +238,7 @@ class DefaultJsonManager @Inject constructor(
                         noteId = notesDao.insert(newNote.copy(id = Note.NO_ID))
                     }
                 }
+
                 else -> {
                     // ID clash, assign new ID.
                     noteId = notesDao.insert(newNote.copy(id = Note.NO_ID))
@@ -244,6 +259,7 @@ class DefaultJsonManager @Inject constructor(
                 // Old and new notes have different reminders, do not merge to avoid losing one or the other.
                 return null
             }
+
             else -> null
         }
 
@@ -267,6 +283,7 @@ class DefaultJsonManager @Inject constructor(
  * adding [labels] to store label references.
  */
 @Serializable
+@Keep
 private data class NoteSurrogate(
     @SerialName("type")
     val type: NoteType,
@@ -292,21 +309,23 @@ private data class NoteSurrogate(
 )
 
 @Serializable
+@Keep
 private data class NotesData(
     @SerialName("version")
     val version: Int,
     @SerialName("notes")
     val notes: Map<Long, NoteSurrogate> = emptyMap(),
     @SerialName("labels")
-    val labels: Map<Long, Label> = emptyMap()
+    val labels: Map<Long, Label> = emptyMap(),
 )
 
 @Serializable
+@Keep
 private data class EncryptedNotesData(
     @SerialName("salt")
     val salt: String,
     @SerialName("nonce")
     val nonce: String,
     @SerialName("ciphertext")
-    val ciphertext: String
+    val ciphertext: String,
 )

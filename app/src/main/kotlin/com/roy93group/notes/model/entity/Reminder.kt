@@ -1,13 +1,11 @@
-
-
 @file:UseSerializers(DateTimeConverter::class, RecurrenceConverter::class)
 
 package com.roy93group.notes.model.entity
 
-import com.roy93group.notes.model.converter.DateTimeConverter
-import com.roy93group.notes.model.converter.RecurrenceConverter
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.RecurrenceFinder
+import com.roy93group.notes.model.converter.DateTimeConverter
+import com.roy93group.notes.model.converter.RecurrenceConverter
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
@@ -52,7 +50,7 @@ data class Reminder(
      * Whether the last occurence of this reminder was marked as done by user.
      */
     @SerialName("done")
-    val done: Boolean
+    val done: Boolean,
 ) {
 
     init {
@@ -71,8 +69,10 @@ data class Reminder(
             this
         } else {
             // Find next occurence based on the last.
-            val found = recurrenceFinder.findBasedOn(recurrence, start.time, next.time,
-                count, 1, includeStart = false)
+            val found = recurrenceFinder.findBasedOn(
+                recurrence, start.time, next.time,
+                count, 1, includeStart = false
+            )
             if (found.isEmpty()) {
                 // Recurrence is done.
                 this
@@ -112,10 +112,12 @@ data class Reminder(
             val date = if (recur == null) {
                 start
             } else {
-                Date(recurrenceFinder.find(recur, start.time, 1).firstOrNull()
-                    ?: throw InvalidReminderException("Recurring reminder has no events."))
+                Date(
+                    recurrenceFinder.find(recur, start.time, 1).firstOrNull()
+                        ?: throw InvalidReminderException("Recurring reminder has no events.")
+                )
             }
-            return Reminder(start, recur, date, 1, false)
+            return Reminder(start = start, recurrence = recur, next = date, count = 1, done = false)
         }
     }
 }

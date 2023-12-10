@@ -1,10 +1,8 @@
-
-
 package com.roy93group.notes.model
 
 import androidx.annotation.OpenForTesting
-import com.roy93group.notes.model.entity.Note
 import com.maltaisn.recurpicker.RecurrenceFinder
+import com.roy93group.notes.model.entity.Note
 import kotlinx.coroutines.flow.first
 import java.util.Date
 import javax.inject.Inject
@@ -12,7 +10,7 @@ import javax.inject.Inject
 @OpenForTesting
 class ReminderAlarmManager @Inject constructor(
     private val notesRepository: NotesRepository,
-    private val alarmCallback: ReminderAlarmCallback
+    private val alarmCallback: ReminderAlarmCallback,
 ) {
 
     private val recurrenceFinder = RecurrenceFinder()

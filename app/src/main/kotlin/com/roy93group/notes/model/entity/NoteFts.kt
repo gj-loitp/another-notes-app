@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.model.entity
 
 import androidx.room.ColumnInfo
@@ -17,5 +15,5 @@ data class NoteFts(
     val title: String,
 
     @ColumnInfo(name = "content")
-    val content: String
+    val content: String,
 )

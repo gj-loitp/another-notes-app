@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.model
 
 import androidx.room.Dao
@@ -45,8 +43,10 @@ interface LabelsDao {
      * Used for viewing labels.
      * Left join so that labels with no references are returned.
      */
-    @Query("""SELECT labels.* FROM labels LEFT JOIN label_refs ON labelId == id GROUP BY id
-                    ORDER BY CASE WHEN labelId IS NULL THEN 0 ELSE COUNT(*) END DESC, name ASC""")
+    @Query(
+        """SELECT labels.* FROM labels LEFT JOIN label_refs ON labelId == id GROUP BY id
+                    ORDER BY CASE WHEN labelId IS NULL THEN 0 ELSE COUNT(*) END DESC, name ASC"""
+    )
     fun getAllByUsage(): Flow<List<Label>>
 
     /**

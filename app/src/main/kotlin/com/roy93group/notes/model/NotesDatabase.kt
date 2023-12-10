@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.model
 
 import androidx.room.Database
@@ -25,7 +23,8 @@ import com.roy93group.notes.model.entity.NoteFts
         Label::class,
         LabelRef::class,
     ],
-    version = NotesDatabase.VERSION)
+    version = NotesDatabase.VERSION
+)
 @TypeConverters(
     DateTimeConverter::class,
     NoteTypeConverter::class,
@@ -44,7 +43,7 @@ abstract class NotesDatabase : RoomDatabase() {
     companion object {
         const val VERSION = 4
 
-        val MIGRATION_1_2 = object : Migration(1, 2) {
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 // By removing the sync feature, some data is now useless.
                 // - Deleted notes table
@@ -52,19 +51,23 @@ abstract class NotesDatabase : RoomDatabase() {
                 // - UUID flag on notes (unique ID across devices)
                 db.apply {
                     execSQL("DROP TABLE deleted_notes")
-                    execSQL("""CREATE TABLE notes_temp (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+                    execSQL(
+                        """CREATE TABLE notes_temp (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
                         type INTEGER NOT NULL, title TEXT NOT NULL, content TEXT NOT NULL, metadata TEXT NOT NULL, 
-                        added_date INTEGER NOT NULL, modified_date INTEGER NOT NULL, status INTEGER NOT NULL)""")
-                    execSQL("""INSERT INTO notes_temp (id, type, title, content, metadata, added_date, 
+                        added_date INTEGER NOT NULL, modified_date INTEGER NOT NULL, status INTEGER NOT NULL)"""
+                    )
+                    execSQL(
+                        """INSERT INTO notes_temp (id, type, title, content, metadata, added_date, 
                         modified_date, status) SELECT id, type, title, content, metadata, added_date,
-                        modified_date, status FROM notes""")
+                        modified_date, status FROM notes"""
+                    )
                     execSQL("DROP TABLE notes")
                     execSQL("ALTER TABLE notes_temp RENAME TO notes")
                 }
             }
         }
 
-        val MIGRATION_2_3 = object : Migration(2, 3) {
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.apply {
                     // Add pinned column to notes table. 'unpinned' for active notes, 'can't pin' for others.
@@ -80,10 +83,12 @@ abstract class NotesDatabase : RoomDatabase() {
 
                     // Add label tables
                     execSQL("CREATE TABLE labels (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT NOT NULL)")
-                    execSQL("""CREATE TABLE label_refs (noteId INTEGER NOT NULL, labelId INTEGER NOT NULL,
+                    execSQL(
+                        """CREATE TABLE label_refs (noteId INTEGER NOT NULL, labelId INTEGER NOT NULL,
                                PRIMARY KEY(noteId, labelId),
                                FOREIGN KEY(noteId) REFERENCES notes(id) ON UPDATE NO ACTION ON DELETE CASCADE,
-                               FOREIGN KEY(labelId) REFERENCES labels(id) ON UPDATE NO ACTION ON DELETE CASCADE)""")
+                               FOREIGN KEY(labelId) REFERENCES labels(id) ON UPDATE NO ACTION ON DELETE CASCADE)"""
+                    )
                     execSQL("CREATE INDEX index_labels_name ON labels (name)")
                     execSQL("CREATE INDEX IF NOT EXISTS index_label_refs_noteId ON label_refs (noteId)")
                     execSQL("CREATE INDEX IF NOT EXISTS index_label_refs_labelId ON label_refs (labelId)")
@@ -91,7 +96,7 @@ abstract class NotesDatabase : RoomDatabase() {
             }
         }
 
-        val MIGRATION_3_4 = object : Migration(3, 4) {
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.apply {
                     // Add hidden attribute for labels

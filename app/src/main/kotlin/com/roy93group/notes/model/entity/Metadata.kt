@@ -1,7 +1,6 @@
-
-
 package com.roy93group.notes.model.entity
 
+import androidx.annotation.Keep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -20,9 +19,10 @@ object BlankNoteMetadata : NoteMetadata() {
 /**
  * Metadata to keep the checked state of each item, for a list note.
  */
+@Keep
 @Serializable
 @SerialName("list")
 data class ListNoteMetadata(
     @SerialName("checked")
-    val checked: List<Boolean>
+    val checked: List<Boolean>,
 ) : NoteMetadata()

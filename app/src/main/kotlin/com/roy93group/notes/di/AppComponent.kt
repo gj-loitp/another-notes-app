@@ -1,5 +1,3 @@
-
-
 package com.roy93group.notes.di
 
 import android.content.Context

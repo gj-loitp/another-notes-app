@@ -1,7 +1,8 @@
-
-
 package com.roy93group.notes.model
 
+import androidx.annotation.Keep
+
+@Keep
 data class SortSettings(val field: SortField, val direction: SortDirection)
 
 enum class SortField(override val value: String) : ValueEnum<String> {
