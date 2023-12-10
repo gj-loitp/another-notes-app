@@ -29,7 +29,11 @@ import com.roy93group.notes.App
 import com.roy93group.notes.R
 import com.roy93group.notes.databinding.FSettingsBinding
 import com.roy93group.notes.ext.TAG
+import com.roy93group.notes.ext.moreApp
 import com.roy93group.notes.ext.navigateSafe
+import com.roy93group.notes.ext.openBrowserPolicy
+import com.roy93group.notes.ext.rateApp
+import com.roy93group.notes.ext.shareApp
 import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.ui.AppTheme
 import com.roy93group.notes.ui.common.ConfirmDialog
@@ -279,19 +283,19 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
 //        }
 
         requirePreference<Preference>("shareApp").setOnPreferenceClickListener {
-
+            activity?.shareApp()
             true
         }
         requirePreference<Preference>("rateApp").setOnPreferenceClickListener {
-
+            activity?.rateApp(activity?.packageName ?: "")
             true
         }
         requirePreference<Preference>("moreApp").setOnPreferenceClickListener {
-
+            activity?.moreApp()
             true
         }
         requirePreference<Preference>("policy").setOnPreferenceClickListener {
-
+            activity?.openBrowserPolicy()
             true
         }
 
