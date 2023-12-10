@@ -259,5 +259,9 @@
     </plurals>
     <!-- format values: date, time -->
     <string name="date_rel_absolute">%1$s, %2$s</string>
+    <string name="term_policy"><![CDATA[Term & Policy]]></string>
+    <string name="rate_this_app_5">Rate this app 5★</string>
+    <string name="get_more_apps">Get more apps</string>
+    <string name="share_this_app">Share this app</string>
 
 </resources>

@@ -115,9 +115,26 @@
                 android:data="@string/view_source_url" />
         </Preference>
 
-<!--        <Preference-->
-<!--            app:key="view_licenses"-->
-<!--            app:title="@string/pref_about_view_licenses" />-->
+        <!--        <Preference-->
+        <!--            app:key="view_licenses"-->
+        <!--            app:title="@string/pref_about_view_licenses" />-->
+
+        <Preference
+            app:icon="@drawable/ios_share_24px"
+            app:key="shareApp"
+            app:title="@string/share_this_app" />
+        <Preference
+            app:icon="@drawable/kid_star_24px"
+            app:key="rateApp"
+            app:title="@string/rate_this_app_5" />
+        <Preference
+            app:icon="@drawable/recommend_24px"
+            app:key="moreApp"
+            app:title="@string/get_more_apps" />
+        <Preference
+            app:icon="@drawable/policy_24px"
+            app:key="policy"
+            app:title="@string/term_policy" />
 
         <Preference
             app:key="version"
