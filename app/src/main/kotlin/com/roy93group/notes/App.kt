@@ -14,15 +14,14 @@ import javax.inject.Inject
 //TODO applovin
 //TODO double to exit app
 
-//TODO policy
-//TODO rate app, share app, more app
-//TODO keystore
-
 //done
 //leakcanary
 //permission ad_id
 //proguard
 //change icon launcher
+//rate app, share app, more app
+//policy
+//keystore
 
 class App : Application() {
 
