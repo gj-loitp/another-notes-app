@@ -115,9 +115,9 @@
                 android:data="@string/view_source_url" />
         </Preference>
 
-        <Preference
-            app:key="view_licenses"
-            app:title="@string/pref_about_view_licenses" />
+<!--        <Preference-->
+<!--            app:key="view_licenses"-->
+<!--            app:title="@string/pref_about_view_licenses" />-->
 
         <Preference
             app:key="version"

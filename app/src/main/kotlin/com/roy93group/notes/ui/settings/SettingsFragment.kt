@@ -266,17 +266,17 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
             true
         }
 
-        requirePreference<Preference>(PrefsManager.VIEW_LICENSES).setOnPreferenceClickListener {
-            findNavController().navigate(R.id.action_about_libraries, bundleOf(
-                // Navigation component safe args seem to fail for cross module navigation.
-                // So pass the customization argument the old way.
-                "data" to LibsBuilder().apply {
-                    aboutShowIcon = false
-                    aboutShowVersion = false
-                }
-            ))
-            true
-        }
+//        requirePreference<Preference>(PrefsManager.VIEW_LICENSES).setOnPreferenceClickListener {
+//            findNavController().navigate(R.id.action_about_libraries, bundleOf(
+//                // Navigation component safe args seem to fail for cross module navigation.
+//                // So pass the customization argument the old way.
+//                "data" to LibsBuilder().apply {
+//                    aboutShowIcon = false
+//                    aboutShowVersion = false
+//                }
+//            ))
+//            true
+//        }
 
         // Set version name as summary text for version preference
         requirePreference<Preference>(PrefsManager.VERSION).summary = com.roy93group.notes.BuildConfig.VERSION_NAME
