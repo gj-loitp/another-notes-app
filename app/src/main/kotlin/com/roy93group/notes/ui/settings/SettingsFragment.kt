@@ -278,6 +278,23 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
 //            true
 //        }
 
+        requirePreference<Preference>("shareApp").setOnPreferenceClickListener {
+
+            true
+        }
+        requirePreference<Preference>("rateApp").setOnPreferenceClickListener {
+
+            true
+        }
+        requirePreference<Preference>("moreApp").setOnPreferenceClickListener {
+
+            true
+        }
+        requirePreference<Preference>("policy").setOnPreferenceClickListener {
+
+            true
+        }
+
         // Set version name as summary text for version preference
         requirePreference<Preference>(PrefsManager.VERSION).summary = com.roy93group.notes.BuildConfig.VERSION_NAME
     }
