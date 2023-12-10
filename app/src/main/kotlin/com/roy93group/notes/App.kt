@@ -11,6 +11,19 @@ import com.roy93group.notes.model.PrefsManager
 import com.roy93group.notes.ui.AppTheme
 import javax.inject.Inject
 
+//TODO applovin
+//TODO double to exit app
+
+//TODO permission ad_id
+//TODO proguard
+//TODO change icon launcher
+//TODO policy
+//TODO rate app, share app, more app
+//TODO keystore
+
+//done
+//leakcanary
+
 class App : Application() {
 
     val appComponent by lazy {
