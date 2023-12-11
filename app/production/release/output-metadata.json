@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.roy93group.notes",
+  "variantName": "productionRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 20231211,
+      "versionName": "2023.12.11",
+      "outputFile": "com.roy93group.notesrelease_2023.12.11_20231211.apk"
+    }
+  ],
+  "elementType": "File"
+}
