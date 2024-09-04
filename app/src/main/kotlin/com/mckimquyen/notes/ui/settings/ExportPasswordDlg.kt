@@ -19,10 +19,10 @@ import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.viewModel
 import javax.inject.Inject
 
-class ExportPasswordDialog : DialogFragment() {
+class ExportPasswordDlg : DialogFragment() {
 
     @Inject
-    lateinit var viewModelFactory: ExportPasswordViewModel.Factory
+    lateinit var viewModelFactory: ExportPasswordVM.Factory
     val viewModel by viewModel { viewModelFactory.create(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,7 +125,7 @@ class ExportPasswordDialog : DialogFragment() {
     private val callback: Callback
         get() = (parentFragment as? Callback)
             ?: (activity as? Callback)
-            ?: error("No callback for ExportPasswordDialog")
+            ?: error("No callback for ExportPasswordDlg")
 
     interface Callback {
         fun onExportPasswordDialogPositiveButtonClicked(password: String) = Unit
@@ -134,8 +134,8 @@ class ExportPasswordDialog : DialogFragment() {
     }
 
     companion object {
-        fun newInstance(): ExportPasswordDialog {
-            return ExportPasswordDialog()
+        fun newInstance(): ExportPasswordDlg {
+            return ExportPasswordDlg()
         }
     }
 }

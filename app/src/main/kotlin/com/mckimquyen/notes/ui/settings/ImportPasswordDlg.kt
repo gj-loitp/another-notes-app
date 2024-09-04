@@ -16,16 +16,16 @@ import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.viewModel
 import javax.inject.Inject
 
-class ImportPasswordDialog : DialogFragment() {
+class ImportPasswordDlg : DialogFragment() {
 
     companion object {
-        fun newInstance(): ImportPasswordDialog {
-            return ImportPasswordDialog()
+        fun newInstance(): ImportPasswordDlg {
+            return ImportPasswordDlg()
         }
     }
 
     @Inject
-    lateinit var viewModelFactory: ImportPasswordViewModel.Factory
+    lateinit var viewModelFactory: ImportPasswordVM.Factory
     val viewModel by viewModel { viewModelFactory.create(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,7 +84,7 @@ class ImportPasswordDialog : DialogFragment() {
     private val callback: Callback
         get() = (parentFragment as? Callback)
             ?: (activity as? Callback)
-            ?: error("No callback for ImportPasswordDialog")
+            ?: error("No callback for ImportPasswordDlg")
 
     interface Callback {
         fun onImportPasswordDialogPositiveButtonClicked(password: String) = Unit

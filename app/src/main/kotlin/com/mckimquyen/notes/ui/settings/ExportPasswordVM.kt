@@ -11,7 +11,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
-class ExportPasswordViewModel @AssistedInject constructor(
+class ExportPasswordVM @AssistedInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -59,7 +59,7 @@ class ExportPasswordViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<ExportPasswordViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): ExportPasswordViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<ExportPasswordVM> {
+        override fun create(savedStateHandle: SavedStateHandle): ExportPasswordVM
     }
 }

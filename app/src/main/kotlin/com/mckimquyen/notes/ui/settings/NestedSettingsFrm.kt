@@ -16,9 +16,9 @@ import com.google.android.material.R as RMaterial
  * Instead of making one fragment per nested screen, this fragment takes an argument indicating
  * the preferences XML to display. The argument is passed via navigation component safe args.
  */
-class NestedSettingsFragment : PreferenceFragmentCompat() {
+class NestedSettingsFrm : PreferenceFragmentCompat() {
 
-    private val args: NestedSettingsFragmentArgs by navArgs()
+    private val args: NestedSettingsFrmArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

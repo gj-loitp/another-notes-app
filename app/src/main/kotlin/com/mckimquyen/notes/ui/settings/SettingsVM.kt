@@ -34,7 +34,7 @@ import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.SecretKeySpec
 
-class SettingsViewModel @AssistedInject constructor(
+class SettingsVM @AssistedInject constructor(
     private val notesRepository: NotesRepository,
     private val labelsRepository: LabelsRepository,
     private val prefsManager: PrefsManager,
@@ -231,8 +231,8 @@ class SettingsViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<SettingsViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): SettingsViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<SettingsVM> {
+        override fun create(savedStateHandle: SavedStateHandle): SettingsVM
     }
 
     companion object {

@@ -42,8 +42,8 @@ import java.text.DateFormat
 import javax.inject.Inject
 import com.google.android.material.R as RMaterial
 
-class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, ExportPasswordDialog.Callback,
-    ImportPasswordDialog.Callback {
+class SettingsFrm : PreferenceFragmentCompat(), ConfirmDialog.Callback, ExportPasswordDlg.Callback,
+    ImportPasswordDlg.Callback {
 
     companion object {
         private const val RESTART_DIALOG_TAG = "restart_dialog"
@@ -52,7 +52,7 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
     }
 
     @Inject
-    lateinit var viewModelFactory: SettingsViewModel.Factory
+    lateinit var viewModelFactory: SettingsVM.Factory
     val viewModel by viewModel {
         viewModelFactory.create(it)
     }
@@ -175,7 +175,7 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
             }
         }
         viewModel.showImportPasswordDialogEvent.observeEvent(viewLifecycleOwner) {
-            ImportPasswordDialog.newInstance()
+            ImportPasswordDlg.newInstance()
                 .show(childFragmentManager, null)
         }
     }
@@ -207,7 +207,7 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
 
         requirePreference<Preference>(PrefsManager.PREVIEW_LINES).setOnPreferenceClickListener {
             findNavController().navigateSafe(
-                SettingsFragmentDirections.actionNestedSettings(
+                SettingsFrmDirections.actionNestedSettings(
                     R.xml.prefs_preview_lines, R.string.pref_preview_lines
                 )
             )
@@ -229,7 +229,7 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
 
         encryptedExportPref.setOnPreferenceChangeListener { _, newValue ->
             if (newValue == true) {
-                ExportPasswordDialog.newInstance()
+                ExportPasswordDlg.newInstance()
                     .show(childFragmentManager, null)
             } else {
                 viewModel.deleteExportKey()

@@ -11,7 +11,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
-class ImportPasswordViewModel @AssistedInject constructor(
+class ImportPasswordVM @AssistedInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     companion object {
@@ -39,7 +39,7 @@ class ImportPasswordViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<ImportPasswordViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): ImportPasswordViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<ImportPasswordVM> {
+        override fun create(savedStateHandle: SavedStateHandle): ImportPasswordVM
     }
 }
