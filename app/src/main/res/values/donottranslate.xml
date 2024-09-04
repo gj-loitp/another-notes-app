@@ -2,4 +2,5 @@
 <resources>
     <string name="action_extra" translatable="false">Do extra action</string>
     <string name="view_source_url" translatable="false">https://github.com/maltaisn/another-notes-app</string>
+    <string name="view_source_url_fork" translatable="false">https://github.com/gj-loitp/5_another-notes-app</string>
 </resources>

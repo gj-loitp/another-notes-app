@@ -114,6 +114,14 @@
                 android:action="android.intent.action.VIEW"
                 android:data="@string/view_source_url" />
         </Preference>
+        <Preference
+            app:icon="@drawable/ic_code"
+            app:key="view_source"
+            app:title="@string/pref_about_view_source_fork">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/view_source_url_fork" />
+        </Preference>
 
         <!--        <Preference-->
         <!--            app:key="view_licenses"-->
