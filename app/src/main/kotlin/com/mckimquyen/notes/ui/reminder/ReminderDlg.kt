@@ -45,7 +45,7 @@ import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Provider
 
-class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePickerCallback, ConfirmDialog.Callback {
+class ReminderDlg : DialogFragment(), RecurrenceListCallback, RecurrencePickerCallback, ConfirmDialog.Callback {
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
@@ -54,12 +54,12 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
     }
 
     @Inject
-    lateinit var viewModelFactory: ReminderViewModel.Factory
+    lateinit var viewModelFactory: ReminderVM.Factory
     private val viewModel by navGraphViewModel(R.id.nav_graph_reminder) {
         viewModelFactory.create(it)
     }
 
-    private val args: ReminderDialogArgs by navArgs()
+    private val args: ReminderDlgArgs by navArgs()
 
     private val dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM)
     private val timeFormat = DateFormat.getTimeInstance(DateFormat.SHORT)
@@ -336,10 +336,8 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
     companion object {
         private const val NOTIF_PERMISSION_DIALOG = "notif-permission-dialog"
         private const val NOTIF_PERMISSION_DENIED_DIALOG = "notif-permission-denied-dialog"
-
         private const val DATE_DIALOG_TAG = "date-picker-dialog"
         private const val TIME_DIALOG_TAG = "time-picker-dialog"
-
         private const val RECURRENCE_LIST_DIALOG_TAG = "recurrence-list-dialog"
         private const val RECURRENCE_PICKER_DIALOG_TAG = "recurrence-picker-dialog"
     }

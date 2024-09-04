@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/fragment_search"
-        android:name="com.mckimquyen.notes.ui.search.SearchFragment"
+        android:name="com.mckimquyen.notes.ui.search.SearchFrm"
         tools:layout="@layout/f_note" />
 
     <fragment
@@ -98,7 +98,7 @@
 
         <dialog
             android:id="@+id/dialog_reminder"
-            android:name="com.mckimquyen.notes.ui.reminder.ReminderDialog"
+            android:name="com.mckimquyen.notes.ui.reminder.ReminderDlg"
             tools:layout="@layout/dlg_reminder">
             <argument
                 android:name="noteIds"

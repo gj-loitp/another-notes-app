@@ -23,7 +23,7 @@ import debugCheck
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SearchViewModel @AssistedInject constructor(
+class SearchVM @AssistedInject constructor(
     @Assisted savedStateHandle: SavedStateHandle,
     notesRepository: NotesRepository,
     labelsRepository: LabelsRepository,
@@ -112,7 +112,7 @@ class SearchViewModel @AssistedInject constructor(
     )
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<SearchViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): SearchViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<SearchVM> {
+        override fun create(savedStateHandle: SavedStateHandle): SearchVM
     }
 }

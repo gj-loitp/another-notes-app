@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 import java.util.Calendar
 import java.util.Date
 
-class ReminderViewModel @AssistedInject constructor(
+class ReminderVM @AssistedInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
     private val notesRepository: NotesRepository,
     private val reminderAlarmManager: ReminderAlarmManager,
@@ -92,7 +92,7 @@ class ReminderViewModel @AssistedInject constructor(
         }
 
         viewModelScope.launch {
-            this@ReminderViewModel.noteIds = noteIds
+            this@ReminderVM.noteIds = noteIds
             savedStateHandle[KEY_NOTE_IDS] = noteIds
 
             val reminder = if (noteIds.size == 1) {
@@ -269,8 +269,8 @@ class ReminderViewModel @AssistedInject constructor(
     data class ReminderDetails(val date: Long, val recurrence: Recurrence)
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<ReminderViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): ReminderViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<ReminderVM> {
+        override fun create(savedStateHandle: SavedStateHandle): ReminderVM
     }
 
     private fun Long.compareDateTo(other: Long): Int {

@@ -16,10 +16,10 @@ import com.mckimquyen.notes.ui.viewModel
 import javax.inject.Inject
 import com.google.android.material.R as RMaterial
 
-class SearchFragment : NoteFragment() {
+class SearchFrm : NoteFragment() {
 
     @Inject
-    lateinit var viewModelFactory: SearchViewModel.Factory
+    lateinit var viewModelFactory: SearchVM.Factory
 
     override val viewModel by viewModel {
         viewModelFactory.create(it)
