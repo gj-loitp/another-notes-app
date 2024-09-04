@@ -87,6 +87,6 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/label_create"
         android:src="@drawable/ic_plus"
-        app:layout_behavior="com.roy93group.notes.ui.common.SnackBarFloatingActionButtonBehaviour" />
+        app:layout_behavior="com.mckimquyen.notes.ui.common.SnackBarFloatingActionButtonBehaviour" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,6 @@
 
 
-package com.roy93group.notesshared
+package com.mckimquyen.notesshared
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.UnconfinedTestDispatcher

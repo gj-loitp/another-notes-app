@@ -1,6 +1,6 @@
 
 
-package com.roy93group.notesshared
+package com.mckimquyen.notesshared
 
 import android.os.Build
 import java.text.ParseException

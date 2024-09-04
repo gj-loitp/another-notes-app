@@ -1,9 +1,9 @@
 
 
-package com.roy93group.notes.di
+package com.mckimquyen.notes.di
 
-import com.roy93group.notes.ui.home.BuildTypeBehavior
-import com.roy93group.notes.ui.home.ReleaseBuildTypeBehavior
+import com.mckimquyen.notes.ui.home.BuildTypeBehavior
+import com.mckimquyen.notes.ui.home.ReleaseBuildTypeBehavior
 import dagger.Binds
 import dagger.Module
 

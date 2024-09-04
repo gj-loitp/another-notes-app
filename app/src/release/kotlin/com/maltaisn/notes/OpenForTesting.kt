@@ -1,6 +1,6 @@
 
 
-package com.roy93group.notes
+package com.mckimquyen.notes
 
 @Target(AnnotationTarget.CLASS)
 annotation class OpenForTesting

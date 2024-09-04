@@ -10,11 +10,11 @@
         android:shortcutLongLabel="@string/shortcut_text_note"
         android:shortcutShortLabel="@string/shortcut_text_note_short">
         <intent
-            android:action="com.roy93group.notes.CREATE"
-            android:targetClass="com.roy93group.notes.ui.main.MainActivity"
-            android:targetPackage="com.roy93group.notes">
+            android:action="com.mckimquyen.notes.CREATE"
+            android:targetClass="com.mckimquyen.notes.ui.main.MainActivity"
+            android:targetPackage="com.mckimquyen.notes">
             <extra
-                android:name="com.roy93group.notes.NOTE_TYPE"
+                android:name="com.mckimquyen.notes.NOTE_TYPE"
                 android:value="0" />
         </intent>
     </shortcut>
@@ -26,11 +26,11 @@
         android:shortcutLongLabel="@string/shortcut_list_note"
         android:shortcutShortLabel="@string/shortcut_list_note_short">
         <intent
-            android:action="com.roy93group.notes.CREATE"
-            android:targetClass="com.roy93group.notes.ui.main.MainActivity"
-            android:targetPackage="com.roy93group.notes">
+            android:action="com.mckimquyen.notes.CREATE"
+            android:targetClass="com.mckimquyen.notes.ui.main.MainActivity"
+            android:targetPackage="com.mckimquyen.notes">
             <extra
-                android:name="com.roy93group.notes.NOTE_TYPE"
+                android:name="com.mckimquyen.notes.NOTE_TYPE"
                 android:value="1" />
         </intent>
     </shortcut>
@@ -42,9 +42,9 @@
         android:shortcutLongLabel="@string/shortcut_reminders"
         android:shortcutShortLabel="@string/shortcut_reminders_short">
         <intent
-            android:action="com.roy93group.notes.SHOW_REMINDERS"
-            android:targetClass="com.roy93group.notes.ui.main.MainActivity"
-            android:targetPackage="com.roy93group.notes" />
+            android:action="com.mckimquyen.notes.SHOW_REMINDERS"
+            android:targetClass="com.mckimquyen.notes.ui.main.MainActivity"
+            android:targetPackage="com.mckimquyen.notes" />
     </shortcut>
 
 </shortcuts>

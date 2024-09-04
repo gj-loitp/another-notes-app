@@ -1,0 +1,47 @@
+package com.mckimquyen.notes.di
+
+import android.content.Context
+import com.mckimquyen.notes.App
+import com.mckimquyen.notes.receiver.AlarmReceiver
+import com.mckimquyen.notes.ui.edit.EditFragment
+import com.mckimquyen.notes.ui.home.HomeFragment
+import com.mckimquyen.notes.ui.labels.LabelEditDialog
+import com.mckimquyen.notes.ui.labels.LabelFragment
+import com.mckimquyen.notes.ui.main.MainActivity
+import com.mckimquyen.notes.ui.noti.NotificationActivity
+import com.mckimquyen.notes.ui.reminder.ReminderDialog
+import com.mckimquyen.notes.ui.search.SearchFragment
+import com.mckimquyen.notes.ui.settings.ExportPasswordDialog
+import com.mckimquyen.notes.ui.settings.ImportPasswordDialog
+import com.mckimquyen.notes.ui.settings.SettingsFragment
+import com.mckimquyen.notes.ui.sort.SortDialog
+import dagger.BindsInstance
+import dagger.Component
+import javax.inject.Singleton
+
+@Singleton
+@Component(modules = [AppModule::class])
+interface AppComponent {
+
+    fun inject(app: App)
+
+    fun inject(activity: MainActivity)
+    fun inject(activity: NotificationActivity)
+
+    fun inject(fragment: HomeFragment)
+    fun inject(fragment: SearchFragment)
+    fun inject(fragment: EditFragment)
+    fun inject(fragment: LabelFragment)
+    fun inject(fragment: SettingsFragment)
+    fun inject(dialog: ReminderDialog)
+    fun inject(dialog: LabelEditDialog)
+    fun inject(dialog: SortDialog)
+    fun inject(dialog: ExportPasswordDialog)
+    fun inject(dialog: ImportPasswordDialog)
+    fun inject(receiver: AlarmReceiver)
+
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance appContext: Context): AppComponent
+    }
+}

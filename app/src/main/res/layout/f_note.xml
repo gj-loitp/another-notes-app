@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:fitsSystemWindows="true"
         android:transitionName="toolbar"
-        app:layout_behavior="com.roy93group.notes.ui.common.AppBarLayoutWithPaddingBehavior"
+        app:layout_behavior="com.mckimquyen.notes.ui.common.AppBarLayoutWithPaddingBehavior"
         app:liftOnScroll="true"
         app:liftOnScrollTargetViewId="@id/recycler_view">
 
@@ -90,6 +90,6 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/edit_add_title"
         android:src="@drawable/ic_plus"
-        app:layout_behavior="com.roy93group.notes.ui.common.SnackBarFloatingActionButtonBehaviour" />
+        app:layout_behavior="com.mckimquyen.notes.ui.common.SnackBarFloatingActionButtonBehaviour" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

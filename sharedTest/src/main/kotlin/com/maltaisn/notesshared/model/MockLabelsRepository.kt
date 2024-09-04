@@ -1,12 +1,12 @@
 
 
-package com.roy93group.notesshared.model
+package com.mckimquyen.notesshared.model
 
-import com.roy93group.notes.model.LabelsRepository
-import com.roy93group.notes.model.entity.Label
-import com.roy93group.notes.model.entity.LabelRef
-import com.roy93group.notes.model.entity.Note
-import com.roy93group.notes.model.entity.NoteWithLabels
+import com.mckimquyen.notes.model.LabelsRepository
+import com.mckimquyen.notes.model.entity.Label
+import com.mckimquyen.notes.model.entity.LabelRef
+import com.mckimquyen.notes.model.entity.Note
+import com.mckimquyen.notes.model.entity.NoteWithLabels
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.map
 

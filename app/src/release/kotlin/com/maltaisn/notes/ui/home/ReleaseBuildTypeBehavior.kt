@@ -1,6 +1,6 @@
 
 
-package com.roy93group.notes.ui.home
+package com.mckimquyen.notes.ui.home
 
 import javax.inject.Inject
 

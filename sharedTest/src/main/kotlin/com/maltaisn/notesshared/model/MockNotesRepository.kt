@@ -1,15 +1,15 @@
 
 
-package com.roy93group.notesshared.model
+package com.mckimquyen.notesshared.model
 
-import com.roy93group.notes.model.NotesRepository
-import com.roy93group.notes.model.PrefsManager
-import com.roy93group.notes.model.SortDirection
-import com.roy93group.notes.model.SortField
-import com.roy93group.notes.model.entity.LabelRef
-import com.roy93group.notes.model.entity.Note
-import com.roy93group.notes.model.entity.NoteStatus
-import com.roy93group.notes.model.entity.NoteWithLabels
+import com.mckimquyen.notes.model.NotesRepository
+import com.mckimquyen.notes.model.PrefsManager
+import com.mckimquyen.notes.model.SortDirection
+import com.mckimquyen.notes.model.SortField
+import com.mckimquyen.notes.model.entity.LabelRef
+import com.mckimquyen.notes.model.entity.Note
+import com.mckimquyen.notes.model.entity.NoteStatus
+import com.mckimquyen.notes.model.entity.NoteWithLabels
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.distinctUntilChanged

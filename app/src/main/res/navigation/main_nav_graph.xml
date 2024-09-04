@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/fragment_home"
-        android:name="com.roy93group.notes.ui.home.HomeFragment"
+        android:name="com.mckimquyen.notes.ui.home.HomeFragment"
         tools:layout="@layout/f_note">
         <action
             android:id="@+id/action_home_to_search"
@@ -27,12 +27,12 @@
 
     <fragment
         android:id="@+id/fragment_search"
-        android:name="com.roy93group.notes.ui.search.SearchFragment"
+        android:name="com.mckimquyen.notes.ui.search.SearchFragment"
         tools:layout="@layout/f_note" />
 
     <fragment
         android:id="@+id/fragment_edit"
-        android:name="com.roy93group.notes.ui.edit.EditFragment"
+        android:name="com.mckimquyen.notes.ui.edit.EditFragment"
         tools:layout="@layout/f_edit">
         <argument
             android:name="noteId"
@@ -62,11 +62,11 @@
 
     <dialog
         android:id="@+id/dialog_sort"
-        android:name="com.roy93group.notes.ui.sort.SortDialog" />
+        android:name="com.mckimquyen.notes.ui.sort.SortDialog" />
 
     <fragment
         android:id="@+id/fragment_settings"
-        android:name="com.roy93group.notes.ui.settings.SettingsFragment"
+        android:name="com.mckimquyen.notes.ui.settings.SettingsFragment"
         tools:layout="@layout/f_settings">
         <action
             android:id="@+id/action_about_libraries"
@@ -78,7 +78,7 @@
 
     <fragment
         android:id="@+id/fragment_settings_nested"
-        android:name="com.roy93group.notes.ui.settings.NestedSettingsFragment"
+        android:name="com.mckimquyen.notes.ui.settings.NestedSettingsFragment"
         tools:layout="@layout/f_settings">
         <argument
             android:name="prefsXml"
@@ -98,7 +98,7 @@
 
         <dialog
             android:id="@+id/dialog_reminder"
-            android:name="com.roy93group.notes.ui.reminder.ReminderDialog"
+            android:name="com.mckimquyen.notes.ui.reminder.ReminderDialog"
             tools:layout="@layout/dlg_reminder">
             <argument
                 android:name="noteIds"
@@ -109,7 +109,7 @@
 
     <fragment
         android:id="@+id/fragment_label"
-        android:name="com.roy93group.notes.ui.labels.LabelFragment">
+        android:name="com.mckimquyen.notes.ui.labels.LabelFragment">
         <argument
             android:name="noteIds"
             app:argType="long[]" />
@@ -120,7 +120,7 @@
 
     <dialog
         android:id="@+id/dialog_label_edit"
-        android:name="com.roy93group.notes.ui.labels.LabelEditDialog">
+        android:name="com.mckimquyen.notes.ui.labels.LabelEditDialog">
         <argument
             android:name="labelId"
             android:defaultValue="0L"
