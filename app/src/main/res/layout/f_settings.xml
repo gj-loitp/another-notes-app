@@ -17,7 +17,7 @@
         android:fitsSystemWindows="true"
         app:layout_behavior="com.mckimquyen.notes.ui.common.AppBarLayoutWithPaddingBehavior"
         app:liftOnScroll="true"
-        app:liftOnScrollTargetViewId="@id/recycler_view">
+        app:liftOnScrollTargetViewId="@id/recyclerView">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"

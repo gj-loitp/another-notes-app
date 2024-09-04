@@ -17,7 +17,7 @@
         android:fitsSystemWindows="true"
         app:layout_behavior=".ui.common.AppBarLayoutWithPaddingBehavior"
         app:liftOnScroll="true"
-        app:liftOnScrollTargetViewId="@id/recycler_view">
+        app:liftOnScrollTargetViewId="@id/recyclerView">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -40,8 +40,9 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/placeholderImv"
             style="@style/PlaceholderImageViewStyle"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="-64dp"
             android:src="@drawable/ic_label_multiple_outline"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +64,7 @@
             tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="false"

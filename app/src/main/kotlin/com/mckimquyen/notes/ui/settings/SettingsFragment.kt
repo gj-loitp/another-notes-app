@@ -142,7 +142,7 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
         }
 
         // Apply padding so that the settings don't overlap with the navigation bar
-        val rcv = view.findViewById<RecyclerView>(R.id.recycler_view)
+        val rcv = view.findViewById<RecyclerView>(R.id.recyclerView)
 //        if (rcv == null) {
 //            Log.e("roy93~", "onViewCreated: rcv == null")
 //        } else {
