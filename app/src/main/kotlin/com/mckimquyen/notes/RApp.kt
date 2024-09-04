@@ -14,8 +14,6 @@ import javax.inject.Inject
 //TODO roy93~ applovin
 //TODO roy93~ double to exit app
 //TODO roy93~ change icon launcher
-//TODO roy93~ rate app, share app, more app
-//TODO roy93~ policy
 //TODO roy93~ keystore
 //TODo roy93~ switch ios, SwitchPreferenceCompat
 
@@ -23,6 +21,8 @@ import javax.inject.Inject
 //leakcanary
 //permission ad_id
 //proguard
+//roy93~ rate app, share app, more app
+//roy93~ policy
 
 class RApp : Application() {
 
