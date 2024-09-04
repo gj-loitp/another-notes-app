@@ -18,7 +18,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
-class NotificationViewModel @AssistedInject constructor(
+class NotificationVM @AssistedInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
     private val notesRepository: NotesRepository,
     private val reminderAlarmManager: ReminderAlarmManager,
@@ -125,13 +125,12 @@ class NotificationViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<NotificationViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): NotificationViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<NotificationVM> {
+        override fun create(savedStateHandle: SavedStateHandle): NotificationVM
     }
 
     companion object {
         private const val INTER_DIALOG_DELAY = 250L
-
         private const val KEY_NOTE_ID = "note_id"
         private const val KEY_POSTPONE_TIME = "postpone_time"
     }

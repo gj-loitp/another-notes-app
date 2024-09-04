@@ -13,7 +13,7 @@ import com.mckimquyen.notes.model.NotesRepository
 import com.mckimquyen.notes.model.ReminderAlarmManager
 import com.mckimquyen.notes.model.entity.Note
 import com.mckimquyen.notes.ui.main.MainActivity
-import com.mckimquyen.notes.ui.noti.NotificationActivity
+import com.mckimquyen.notes.ui.noti.NotificationAct
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -97,8 +97,8 @@ class AlarmReceiver : BroadcastReceiver() {
             )
 
             // Postpone action only if not recurring.
-            val postponeIntent = Intent(context, NotificationActivity::class.java).apply {
-                action = NotificationActivity.INTENT_ACTION_POSTPONE
+            val postponeIntent = Intent(context, NotificationAct::class.java).apply {
+                action = NotificationAct.INTENT_ACTION_POSTPONE
                 putExtra(EXTRA_NOTE_ID, noteId)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }

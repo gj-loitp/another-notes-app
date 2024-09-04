@@ -5,9 +5,9 @@ import com.mckimquyen.notes.model.entity.Label
 import com.mckimquyen.notes.model.entity.ListNoteItem
 import com.mckimquyen.notes.model.entity.Note
 import com.mckimquyen.notes.model.entity.NoteType
-import com.mckimquyen.notes.ui.note.adapter.NoteItemList
-import com.mckimquyen.notes.ui.note.adapter.NoteItemText
-import com.mckimquyen.notes.ui.note.adapter.NoteListLayoutMode
+import com.mckimquyen.notes.ui.note.adt.NoteItemList
+import com.mckimquyen.notes.ui.note.adt.NoteItemText
+import com.mckimquyen.notes.ui.note.adt.NoteListLayoutMode
 import javax.inject.Inject
 
 /**

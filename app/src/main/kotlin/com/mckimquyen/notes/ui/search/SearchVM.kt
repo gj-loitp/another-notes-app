@@ -14,8 +14,8 @@ import com.mckimquyen.notes.ui.AssistedSavedStateViewModelFactory
 import com.mckimquyen.notes.ui.note.NoteItemFactory
 import com.mckimquyen.notes.ui.note.NoteViewModel
 import com.mckimquyen.notes.ui.note.PlaceholderData
-import com.mckimquyen.notes.ui.note.adapter.HeaderItem
-import com.mckimquyen.notes.ui.note.adapter.NoteAdapter
+import com.mckimquyen.notes.ui.note.adt.HeaderItem
+import com.mckimquyen.notes.ui.note.adt.NoteAdapter
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

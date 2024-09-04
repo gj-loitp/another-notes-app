@@ -44,8 +44,8 @@ import com.mckimquyen.notes.ui.StatusChange
 import com.mckimquyen.notes.ui.common.ConfirmDialog
 import com.mckimquyen.notes.ui.main.MainActivity
 import com.mckimquyen.notes.ui.navGraphViewModel
-import com.mckimquyen.notes.ui.note.adapter.NoteAdapter
-import com.mckimquyen.notes.ui.note.adapter.NoteListLayoutMode
+import com.mckimquyen.notes.ui.note.adt.NoteAdapter
+import com.mckimquyen.notes.ui.note.adt.NoteListLayoutMode
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.startSharingData
 import com.mckimquyen.notes.utils.startSafeActionMode

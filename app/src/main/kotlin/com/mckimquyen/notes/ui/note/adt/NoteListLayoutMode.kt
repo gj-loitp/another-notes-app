@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.note.adapter
+package com.mckimquyen.notes.ui.note.adt
 
 import com.mckimquyen.notes.model.ValueEnum
 import com.mckimquyen.notes.model.findValueEnum

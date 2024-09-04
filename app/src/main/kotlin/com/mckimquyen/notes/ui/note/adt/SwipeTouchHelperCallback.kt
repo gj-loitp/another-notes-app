@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.note.adapter
+package com.mckimquyen.notes.ui.note.adt
 
 import android.annotation.SuppressLint
 import android.graphics.Canvas
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.ui.note.SwipeAction
-import com.mckimquyen.notes.ui.note.adapter.NoteAdapter.SwipeDirection
+import com.mckimquyen.notes.ui.note.adt.NoteAdapter.SwipeDirection
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 

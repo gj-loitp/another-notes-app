@@ -23,11 +23,11 @@ import com.mckimquyen.notes.ui.note.NoteItemFactory
 import com.mckimquyen.notes.ui.note.NoteViewModel
 import com.mckimquyen.notes.ui.note.PlaceholderData
 import com.mckimquyen.notes.ui.note.SwipeAction
-import com.mckimquyen.notes.ui.note.adapter.HeaderItem
-import com.mckimquyen.notes.ui.note.adapter.MessageItem
-import com.mckimquyen.notes.ui.note.adapter.NoteAdapter
-import com.mckimquyen.notes.ui.note.adapter.NoteItem
-import com.mckimquyen.notes.ui.note.adapter.NoteListItem
+import com.mckimquyen.notes.ui.note.adt.HeaderItem
+import com.mckimquyen.notes.ui.note.adt.MessageItem
+import com.mckimquyen.notes.ui.note.adt.NoteAdapter
+import com.mckimquyen.notes.ui.note.adt.NoteItem
+import com.mckimquyen.notes.ui.note.adt.NoteListItem
 import com.mckimquyen.notes.ui.send
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

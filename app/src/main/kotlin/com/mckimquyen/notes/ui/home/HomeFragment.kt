@@ -25,7 +25,7 @@ import com.mckimquyen.notes.model.entity.NoteStatus
 import com.mckimquyen.notes.ui.common.ConfirmDialog
 import com.mckimquyen.notes.ui.navigation.HomeDestination
 import com.mckimquyen.notes.ui.note.NoteFragment
-import com.mckimquyen.notes.ui.note.adapter.NoteListLayoutMode
+import com.mckimquyen.notes.ui.note.adt.NoteListLayoutMode
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.viewModel
 import javax.inject.Inject

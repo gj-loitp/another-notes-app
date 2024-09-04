@@ -71,7 +71,7 @@
         <item name="android:layout">@layout/f_settings</item>
     </style>
 
-    <!-- Used with NotificationActivity, because the activity itself isn't used. -->
+    <!-- Used with NotificationAct, because the activity itself isn't used. -->
     <style name="TransparentActivity" parent="AppTheme.DayNight">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

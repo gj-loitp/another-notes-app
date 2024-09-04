@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.note.adapter
+package com.mckimquyen.notes.ui.note.adt
 
 import androidx.annotation.Keep
 import androidx.annotation.PluralsRes
@@ -6,7 +6,7 @@ import androidx.annotation.StringRes
 import com.mckimquyen.notes.model.entity.Label
 import com.mckimquyen.notes.model.entity.Note
 import com.mckimquyen.notes.ui.note.Highlighted
-import com.mckimquyen.notes.ui.note.adapter.NoteAdapter.ViewType
+import com.mckimquyen.notes.ui.note.adt.NoteAdapter.ViewType
 
 sealed interface NoteListItem {
     val id: Long

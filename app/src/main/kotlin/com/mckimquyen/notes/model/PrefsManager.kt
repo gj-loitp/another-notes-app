@@ -10,7 +10,7 @@ import com.mckimquyen.notes.model.entity.NoteType
 import com.mckimquyen.notes.ui.AppTheme
 import com.mckimquyen.notes.ui.note.ShownDateField
 import com.mckimquyen.notes.ui.note.SwipeAction
-import com.mckimquyen.notes.ui.note.adapter.NoteListLayoutMode
+import com.mckimquyen.notes.ui.note.adt.NoteListLayoutMode
 import org.jetbrains.annotations.TestOnly
 import javax.inject.Inject
 import kotlin.properties.ReadWriteProperty

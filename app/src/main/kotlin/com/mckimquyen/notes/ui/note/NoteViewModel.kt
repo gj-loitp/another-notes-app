@@ -17,11 +17,11 @@ import com.mckimquyen.notes.model.entity.PinnedStatus
 import com.mckimquyen.notes.ui.Event
 import com.mckimquyen.notes.ui.ShareData
 import com.mckimquyen.notes.ui.StatusChange
-import com.mckimquyen.notes.ui.note.adapter.MessageItem
-import com.mckimquyen.notes.ui.note.adapter.NoteAdapter
-import com.mckimquyen.notes.ui.note.adapter.NoteItem
-import com.mckimquyen.notes.ui.note.adapter.NoteListItem
-import com.mckimquyen.notes.ui.note.adapter.NoteListLayoutMode
+import com.mckimquyen.notes.ui.note.adt.MessageItem
+import com.mckimquyen.notes.ui.note.adt.NoteAdapter
+import com.mckimquyen.notes.ui.note.adt.NoteItem
+import com.mckimquyen.notes.ui.note.adt.NoteListItem
+import com.mckimquyen.notes.ui.note.adt.NoteListLayoutMode
 import com.mckimquyen.notes.ui.send
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.note.adapter
+package com.mckimquyen.notes.ui.note.adt
 
 import android.text.SpannableString
 import android.text.format.DateUtils

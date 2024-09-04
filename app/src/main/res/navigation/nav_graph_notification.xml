@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment_notification"
-        android:name="com.mckimquyen.notes.ui.noti.NotificationFragment">
+        android:name="com.mckimquyen.notes.ui.noti.NotificationFrm">
         <action
             android:id="@+id/action_reminder_postpone_date"
             app:destination="@id/dialog_reminder_postpone_date" />

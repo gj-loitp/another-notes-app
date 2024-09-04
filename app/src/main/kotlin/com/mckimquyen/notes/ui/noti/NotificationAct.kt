@@ -20,10 +20,10 @@ import java.util.Calendar
 import java.util.TimeZone
 import javax.inject.Inject
 
-class NotificationActivity : AppCompatActivity() {
+class NotificationAct : AppCompatActivity() {
 
     @Inject
-    lateinit var viewModelFactory: NotificationViewModel.Factory
+    lateinit var viewModelFactory: NotificationVM.Factory
     private val viewModel by navGraphViewModel(R.id.nav_graph_notification) {
         viewModelFactory.create(it)
     }
@@ -142,9 +142,7 @@ class NotificationActivity : AppCompatActivity() {
     companion object {
         private const val DATE_DIALOG_TAG = "date-picker-dialog"
         private const val TIME_DIALOG_TAG = "time-picker-dialog"
-
         private const val KEY_INTENT_HANDLED = "com.mckimquyen.notes.INTENT_HANDLED"
-
         const val INTENT_ACTION_POSTPONE = "com.mckimquyen.notes.reminder.POSTPONE"
     }
 }

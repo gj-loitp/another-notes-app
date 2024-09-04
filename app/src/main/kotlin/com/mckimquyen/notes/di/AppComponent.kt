@@ -8,7 +8,7 @@ import com.mckimquyen.notes.ui.home.HomeFragment
 import com.mckimquyen.notes.ui.labels.LabelEditDialog
 import com.mckimquyen.notes.ui.labels.LabelFragment
 import com.mckimquyen.notes.ui.main.MainActivity
-import com.mckimquyen.notes.ui.noti.NotificationActivity
+import com.mckimquyen.notes.ui.noti.NotificationAct
 import com.mckimquyen.notes.ui.reminder.ReminderDlg
 import com.mckimquyen.notes.ui.search.SearchFrm
 import com.mckimquyen.notes.ui.setting.ExportPasswordDlg
@@ -26,7 +26,7 @@ interface AppComponent {
     fun inject(RApp: RApp)
 
     fun inject(activity: MainActivity)
-    fun inject(activity: NotificationActivity)
+    fun inject(activity: NotificationAct)
 
     fun inject(fragment: HomeFragment)
     fun inject(fragment: SearchFrm)
