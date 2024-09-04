@@ -11,17 +11,17 @@ import com.mckimquyen.notes.model.PrefsManager
 import com.mckimquyen.notes.ui.AppTheme
 import javax.inject.Inject
 
-//TODO applovin
-//TODO double to exit app
+//TODO roy93~ applovin
+//TODO roy93~ double to exit app
+//TODO roy93~ change icon launcher
+//TODO roy93~ rate app, share app, more app
+//TODO roy93~ policy
+//TODO roy93~ keystore
 
 //done
 //leakcanary
 //permission ad_id
 //proguard
-//change icon launcher
-//rate app, share app, more app
-//policy
-//keystore
 
 class App : Application() {
 
