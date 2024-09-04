@@ -48,7 +48,7 @@ import com.mckimquyen.notes.ui.note.adapter.NoteAdapter
 import com.mckimquyen.notes.ui.note.adapter.NoteListLayoutMode
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.startSharingData
-import com.mckimquyen.notes.ui.utils.startSafeActionMode
+import com.mckimquyen.notes.utils.startSafeActionMode
 import java.text.NumberFormat
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit

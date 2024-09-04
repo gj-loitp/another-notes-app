@@ -23,7 +23,7 @@ import javax.inject.Inject
 //permission ad_id
 //proguard
 
-class App : Application() {
+class RApp : Application() {
 
     val appComponent by lazy {
         DaggerAppComponent.factory().create(applicationContext)

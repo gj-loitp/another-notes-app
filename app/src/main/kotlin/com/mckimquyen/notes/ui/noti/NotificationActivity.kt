@@ -10,7 +10,7 @@ import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.model.entity.Note
 import com.mckimquyen.notes.receiver.AlarmReceiver
@@ -31,7 +31,7 @@ class NotificationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (applicationContext as App?)?.appComponent?.inject(this)
+        (applicationContext as RApp?)?.appComponent?.inject(this)
 
         setContentView(R.layout.a_notification)
 

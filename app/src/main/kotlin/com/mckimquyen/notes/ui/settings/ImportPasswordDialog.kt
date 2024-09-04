@@ -7,7 +7,7 @@ import android.view.WindowManager
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.DlgImportPasswordBinding
 import com.mckimquyen.notes.ext.hideCursorInAllViews
@@ -31,7 +31,7 @@ class ImportPasswordDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (requireContext().applicationContext as App?)?.appComponent?.inject(this)
+        (requireContext().applicationContext as RApp?)?.appComponent?.inject(this)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

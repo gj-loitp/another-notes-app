@@ -29,7 +29,7 @@ import com.maltaisn.recurpicker.list.RecurrenceListCallback
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerCallback
 import com.maltaisn.recurpicker.picker.RecurrencePickerDialog
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.DlgReminderBinding
 import com.mckimquyen.notes.ext.contains
@@ -69,7 +69,7 @@ class ReminderDialog : DialogFragment(), RecurrenceListCallback, RecurrencePicke
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireContext().applicationContext as App?)?.appComponent?.inject(this)
+        (requireContext().applicationContext as RApp?)?.appComponent?.inject(this)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -17,7 +17,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.Hold
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.NavGraphMainDirections
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.ext.navigateSafe
@@ -45,7 +45,7 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
         super.onCreate(savedInstanceState)
 
         val context = requireContext()
-        (context.applicationContext as App?)?.appComponent?.inject(this)
+        (context.applicationContext as RApp?)?.appComponent?.inject(this)
     }
 
     override fun onResume() {

@@ -22,7 +22,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.color.DynamicColors
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.NavGraphMainDirections
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.AMainBinding
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         setTheme(R.style.AppTheme_DayNight)
 
         super.onCreate(savedInstanceState)
-        (applicationContext as App).appComponent.inject(this)
+        (applicationContext as RApp).appComponent.inject(this)
 
         // Apply dynamic colors
         if (prefs.dynamicColors) {

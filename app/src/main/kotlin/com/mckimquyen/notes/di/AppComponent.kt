@@ -1,7 +1,7 @@
 package com.mckimquyen.notes.di
 
 import android.content.Context
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.receiver.AlarmReceiver
 import com.mckimquyen.notes.ui.edit.EditFragment
 import com.mckimquyen.notes.ui.home.HomeFragment
@@ -23,7 +23,7 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun inject(app: App)
+    fun inject(RApp: RApp)
 
     fun inject(activity: MainActivity)
     fun inject(activity: NotificationActivity)

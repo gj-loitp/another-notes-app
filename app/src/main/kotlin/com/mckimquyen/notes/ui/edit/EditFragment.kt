@@ -29,7 +29,7 @@ import androidx.transition.Transition
 import androidx.transition.TransitionListenerAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.NavGraphMainDirections
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.FEditBinding
@@ -88,7 +88,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
         })
 
         super.onCreate(savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
+        (requireContext().applicationContext as RApp).appComponent.inject(this)
     }
 
     override fun onCreateView(

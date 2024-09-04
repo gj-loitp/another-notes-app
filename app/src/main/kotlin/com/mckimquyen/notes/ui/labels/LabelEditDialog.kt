@@ -8,7 +8,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.DlgLabelEditBinding
 import com.mckimquyen.notes.ext.hideCursorInAllViews
@@ -36,7 +36,7 @@ class LabelEditDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireContext().applicationContext as App?)?.appComponent?.inject(this)
+        (requireContext().applicationContext as RApp?)?.appComponent?.inject(this)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

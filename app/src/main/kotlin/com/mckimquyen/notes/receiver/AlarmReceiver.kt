@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.model.NotesRepository
 import com.mckimquyen.notes.model.ReminderAlarmManager
@@ -33,7 +33,7 @@ class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent) {
         if (context == null) return
 
-        (context.applicationContext as App).appComponent.inject(this)
+        (context.applicationContext as RApp).appComponent.inject(this)
 
         coroutineScope.launch {
             val noteId = intent.getLongExtra(EXTRA_NOTE_ID, Note.NO_ID)
@@ -61,7 +61,7 @@ class AlarmReceiver : BroadcastReceiver() {
         }
 
         val noteText = note.asText(includeTitle = false).ifBlank { null }
-        val builder = NotificationCompat.Builder(context, App.NOTIFICATION_CHANNEL_ID)
+        val builder = NotificationCompat.Builder(context, RApp.NOTIFICATION_CHANNEL_ID)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setSmallIcon(R.drawable.ic_app_icon)
             .setGroup(NOTIFICATION_GROUP)

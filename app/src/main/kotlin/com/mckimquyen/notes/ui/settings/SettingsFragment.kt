@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialElevationScale
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.FSettingsBinding
 import com.mckimquyen.notes.ext.TAG
@@ -65,7 +65,7 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
         super.onCreate(state)
         val context = requireContext()
 
-        (context.applicationContext as App?)?.appComponent?.inject(this)
+        (context.applicationContext as RApp?)?.appComponent?.inject(this)
 
         exportDataLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             val uri = result.data?.data
@@ -185,7 +185,7 @@ class SettingsFragment : PreferenceFragmentCompat(), ConfirmDialog.Callback, Exp
         setPreferencesFromResource(R.xml.prefs, rootKey)
 
         requirePreference<DropDownPreference>(PrefsManager.THEME).setOnPreferenceChangeListener { _, theme ->
-            (context.applicationContext as App).updateTheme(AppTheme.fromValue(theme as String))
+            (context.applicationContext as RApp).updateTheme(AppTheme.fromValue(theme as String))
             true
         }
 

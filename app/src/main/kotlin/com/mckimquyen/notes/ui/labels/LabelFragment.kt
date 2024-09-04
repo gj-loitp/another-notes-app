@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.transition.MaterialElevationScale
-import com.mckimquyen.notes.App
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.FLabelBinding
 import com.mckimquyen.notes.ext.navigateSafe
@@ -30,7 +30,7 @@ import com.mckimquyen.notes.ui.common.ConfirmDialog
 import com.mckimquyen.notes.ui.labels.adapter.LabelAdapter
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
-import com.mckimquyen.notes.ui.utils.startSafeActionMode
+import com.mckimquyen.notes.utils.startSafeActionMode
 import com.mckimquyen.notes.ui.viewModel
 import java.text.NumberFormat
 import java.util.concurrent.Executors
@@ -71,7 +71,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (requireContext().applicationContext as App).appComponent.inject(this)
+        (requireContext().applicationContext as RApp).appComponent.inject(this)
 
         enterTransition = MaterialElevationScale(false).apply {
             duration = resources.getInteger(RMaterial.integer.material_motion_duration_short_2).toLong()

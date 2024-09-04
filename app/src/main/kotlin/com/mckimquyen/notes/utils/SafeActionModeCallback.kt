@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.utils
+package com.mckimquyen.notes.utils
 
 import android.view.ActionMode
 import android.view.Menu
@@ -14,15 +14,24 @@ import android.view.View
 private class SafeActionModeCallback(
     private var callback: ActionMode.Callback?,
 ) : ActionMode.Callback {
-    override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
+    override fun onCreateActionMode(
+        mode: ActionMode,
+        menu: Menu,
+    ): Boolean {
         return callback?.onCreateActionMode(mode, menu) ?: false
     }
 
-    override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
+    override fun onPrepareActionMode(
+        mode: ActionMode,
+        menu: Menu,
+    ): Boolean {
         return callback?.onPrepareActionMode(mode, menu) ?: false
     }
 
-    override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+    override fun onActionItemClicked(
+        mode: ActionMode,
+        item: MenuItem,
+    ): Boolean {
         return callback?.onActionItemClicked(mode, item) ?: false
     }
 

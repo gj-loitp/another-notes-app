@@ -41,16 +41,23 @@ class RelativeDateFormatter(
             1 -> resources.getString(R.string.date_rel_tomorrow, timeStr)
             -1 -> resources.getString(R.string.date_rel_yesterday, timeStr)
             in 2..maxRelativeDays -> resources.getQuantityString(
-                R.plurals.date_rel_days_future, days, days, timeStr
+                /* id = */ R.plurals.date_rel_days_future,
+                /* quantity = */ days,
+                /* ...formatArgs = */ days,
+                /* ...formatArgs = */ timeStr
             )
 
             in -2 downTo -maxRelativeDays -> resources.getQuantityString(
-                R.plurals.date_rel_days_past, -days, -days, timeStr
+                /* id = */ R.plurals.date_rel_days_past,
+                /* quantity = */ -days,
+                /* ...formatArgs = */ -days,
+                timeStr
             )
 
             else -> resources.getString(
-                R.string.date_rel_absolute,
-                absoluteDateFormatter(date), timeStr
+                /* id = */ R.string.date_rel_absolute,
+                /* ...formatArgs = */ absoluteDateFormatter(date),
+                /* ...formatArgs = */ timeStr
             )
         }
     }
