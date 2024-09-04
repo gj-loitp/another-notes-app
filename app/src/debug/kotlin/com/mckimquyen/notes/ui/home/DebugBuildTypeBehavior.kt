@@ -14,7 +14,7 @@ class DebugBuildTypeBehavior @Inject constructor(
     private val labelsRepository: LabelsRepository,
 ) : BuildTypeBehavior {
 
-    override suspend fun doExtraAction(viewModel: HomeViewModel) {
+    override suspend fun doExtraAction(viewModel: HomeVM) {
         // Add a few random notes of the currently selected status.
         val destination = viewModel.currentDestination
         if (destination is HomeDestination.Status) {

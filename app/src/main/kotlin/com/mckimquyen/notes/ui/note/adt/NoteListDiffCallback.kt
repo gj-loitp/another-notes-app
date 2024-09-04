@@ -1,11 +1,13 @@
 package com.mckimquyen.notes.ui.note.adt
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil
 
 class NoteListDiffCallback : DiffUtil.ItemCallback<NoteListItem>() {
 
     override fun areItemsTheSame(old: NoteListItem, new: NoteListItem) = old.id == new.id
 
+    @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(old: NoteListItem, new: NoteListItem): Boolean {
         if (new.type != old.type) {
             // Should never happen since items of different types can't have the same ID.

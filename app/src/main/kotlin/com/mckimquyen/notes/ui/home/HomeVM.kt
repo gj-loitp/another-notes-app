@@ -20,12 +20,12 @@ import com.mckimquyen.notes.ui.AssistedSavedStateViewModelFactory
 import com.mckimquyen.notes.ui.Event
 import com.mckimquyen.notes.ui.navigation.HomeDestination
 import com.mckimquyen.notes.ui.note.NoteItemFactory
-import com.mckimquyen.notes.ui.note.NoteViewModel
+import com.mckimquyen.notes.ui.note.NoteVM
 import com.mckimquyen.notes.ui.note.PlaceholderData
 import com.mckimquyen.notes.ui.note.SwipeAction
 import com.mckimquyen.notes.ui.note.adt.HeaderItem
 import com.mckimquyen.notes.ui.note.adt.MessageItem
-import com.mckimquyen.notes.ui.note.adt.NoteAdapter
+import com.mckimquyen.notes.ui.note.adt.NoteAdt
 import com.mckimquyen.notes.ui.note.adt.NoteItem
 import com.mckimquyen.notes.ui.note.adt.NoteListItem
 import com.mckimquyen.notes.ui.send
@@ -36,7 +36,7 @@ import debugCheck
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
-class HomeViewModel @AssistedInject constructor(
+class HomeVM @AssistedInject constructor(
     @Assisted savedStateHandle: SavedStateHandle,
     notesRepository: NotesRepository,
     labelsRepository: LabelsRepository,
@@ -44,8 +44,8 @@ class HomeViewModel @AssistedInject constructor(
     reminderAlarmManager: ReminderAlarmManager,
     noteItemFactory: NoteItemFactory,
     private val buildTypeBehavior: BuildTypeBehavior,
-) : NoteViewModel(savedStateHandle, notesRepository, labelsRepository, prefs, noteItemFactory, reminderAlarmManager),
-    NoteAdapter.Callback {
+) : NoteVM(savedStateHandle, notesRepository, labelsRepository, prefs, noteItemFactory, reminderAlarmManager),
+    NoteAdt.Callback {
 
     var currentDestination: HomeDestination = HomeDestination.Status(NoteStatus.ACTIVE)
         private set
@@ -161,7 +161,7 @@ class HomeViewModel @AssistedInject constructor(
 
     fun doExtraAction() {
         viewModelScope.launch {
-            buildTypeBehavior.doExtraAction(this@HomeViewModel)
+            buildTypeBehavior.doExtraAction(this@HomeVM)
         }
     }
 
@@ -207,18 +207,18 @@ class HomeViewModel @AssistedInject constructor(
         changeListItems { it.removeAt(pos) }
     }
 
-    override fun getNoteSwipeAction(direction: NoteAdapter.SwipeDirection): SwipeAction {
+    override fun getNoteSwipeAction(direction: NoteAdt.SwipeDirection): SwipeAction {
         return if (currentDestination == HomeDestination.Status(NoteStatus.ACTIVE) && selectedNotes.isEmpty()) {
             when (direction) {
-                NoteAdapter.SwipeDirection.LEFT -> prefs.swipeActionLeft
-                NoteAdapter.SwipeDirection.RIGHT -> prefs.swipeActionRight
+                NoteAdt.SwipeDirection.LEFT -> prefs.swipeActionLeft
+                NoteAdt.SwipeDirection.RIGHT -> prefs.swipeActionRight
             }
         } else {
             SwipeAction.NONE
         }
     }
 
-    override fun onNoteSwiped(pos: Int, direction: NoteAdapter.SwipeDirection) {
+    override fun onNoteSwiped(pos: Int, direction: NoteAdt.SwipeDirection) {
         val note = (noteItems.value!![pos] as NoteItem).note
         changeNotesStatus(
             setOf(note), when (getNoteSwipeAction(direction)) {
@@ -409,8 +409,8 @@ class HomeViewModel @AssistedInject constructor(
     data class NewNoteSettings(val labelId: Long, val initialReminder: Boolean)
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<HomeViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): HomeViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<HomeVM> {
+        override fun create(savedStateHandle: SavedStateHandle): HomeVM
     }
 
     companion object {

@@ -22,7 +22,7 @@ import com.mckimquyen.notes.model.entity.NoteStatus
 import com.mckimquyen.notes.model.entity.NoteType
 import com.mckimquyen.notes.ui.AssistedSavedStateViewModelFactory
 import com.mckimquyen.notes.ui.Event
-import com.mckimquyen.notes.ui.home.HomeFragmentDirections
+import com.mckimquyen.notes.ui.home.HomeFrmDirections
 import com.mckimquyen.notes.ui.navigation.HomeDestination
 import com.mckimquyen.notes.ui.send
 import dagger.assisted.Assisted
@@ -37,7 +37,7 @@ import kotlinx.coroutines.sync.withLock
 import java.io.OutputStream
 import kotlin.time.Duration.Companion.hours
 
-class MainViewModel @AssistedInject constructor(
+class MainVM @AssistedInject constructor(
     private val notesRepository: NotesRepository,
     private val labelsRepository: LabelsRepository,
     private val prefsManager: PrefsManager,
@@ -161,7 +161,10 @@ class MainViewModel @AssistedInject constructor(
         _currentHomeDestination.value = HomeDestination.Labels(label)
     }
 
-    fun navigationItemSelected(item: MenuItem, labelsMenu: Menu) {
+    fun navigationItemSelected(
+        item: MenuItem,
+        labelsMenu: Menu,
+    ) {
         _drawerCloseEvent.send()
 
         when (item.itemId) {
@@ -174,7 +177,7 @@ class MainViewModel @AssistedInject constructor(
             }
 
             R.id.drawerItemCreateLabel -> {
-                _navDirectionsEvent.send(HomeFragmentDirections.actionHomeToLabelEdit())
+                _navDirectionsEvent.send(HomeFrmDirections.actionHomeToLabelEdit())
             }
 
             R.id.drawerItemEditLabels -> {
@@ -190,7 +193,7 @@ class MainViewModel @AssistedInject constructor(
             }
 
             R.id.drawerItemSettings -> {
-                _navDirectionsEvent.send(HomeFragmentDirections.actionHomeToSettings())
+                _navDirectionsEvent.send(HomeFrmDirections.actionHomeToSettings())
             }
         }
 
@@ -243,16 +246,19 @@ class MainViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<MainViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): MainViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<MainVM> {
+        override fun create(savedStateHandle: SavedStateHandle): MainVM
     }
 
     @Keep
-    data class NewNoteData(val type: NoteType, val title: String = "", val content: String = "")
+    data class NewNoteData(
+        val type: NoteType,
+        val title: String = "",
+        val content: String = "",
+    )
 
     companion object {
         private const val KEY_HOME_DESTINATION = "destination"
-
         private val PERIODIC_TASK_INTERVAL = 1.hours
     }
 }

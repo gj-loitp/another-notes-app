@@ -48,7 +48,6 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
 
     abstract val cardView: MaterialCardView
     abstract val swipeImv: ImageView
-
     protected abstract val titleTxv: TextView
     protected abstract val dateTxv: TextView
     protected abstract val reminderChip: Chip
@@ -57,7 +56,7 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
 
     private val labelViewHolders = mutableListOf<LabelChipViewHolder>()
 
-    open fun bind(adapter: NoteAdapter, item: T) {
+    open fun bind(adapter: NoteAdt, item: T) {
         bindTitle(adapter, item)
         bindDate(adapter, item)
         bindReminder(item)
@@ -82,7 +81,7 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
         }
     }
 
-    private fun bindTitle(adapter: NoteAdapter, item: NoteItem) {
+    private fun bindTitle(adapter: NoteAdt, item: NoteItem) {
         titleTxv.text = getHighlightedText(
             text = item.title,
             bgColor = adapter.highlightBackgroundColor, fgColor = adapter.highlightForegroundColor
@@ -90,7 +89,7 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
         titleTxv.isVisible = item.title.content.isNotBlank()
     }
 
-    private fun bindDate(adapter: NoteAdapter, item: NoteItem) {
+    private fun bindDate(adapter: NoteAdt, item: NoteItem) {
         val note = item.note
         val dateField = adapter.prefsManager.shownDateField
         val date = when (dateField) {
@@ -123,7 +122,7 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
         }
     }
 
-    private fun bindLabels(adapter: NoteAdapter, item: NoteItem) {
+    private fun bindLabels(adapter: NoteAdt, item: NoteItem) {
         // Show labels in order up to the maximum, then show a +N chip at the end.
         val maxLabels = adapter.prefsManager.maximumPreviewLabels
         if (maxLabels > 0) {
@@ -146,7 +145,7 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
         }
     }
 
-    private fun bindActionBtn(adapter: NoteAdapter, item: NoteItem) {
+    private fun bindActionBtn(adapter: NoteAdt, item: NoteItem) {
         val bottomPadding: Int
         if (item.showMarkAsDone && !item.checked) {
             actionBtn.isVisible = true
@@ -172,7 +171,7 @@ sealed class NoteViewHolder<T : NoteItem>(itemView: View) :
      * Unbind a previously bound view holder.
      * This is used to free "secondary" view holders.
      */
-    open fun unbind(adapter: NoteAdapter) {
+    open fun unbind(adapter: NoteAdt) {
         // Free label view holders
         labelGroup.removeViews(0, labelGroup.childCount)
         for (viewHolder in labelViewHolders) {
@@ -194,7 +193,7 @@ class TextNoteViewHolder(private val binding: VItemNoteTextBinding) :
     override val labelGroup = binding.labelGroup
     override val actionBtn = binding.actionBtn
 
-    override fun bind(adapter: NoteAdapter, item: NoteItemText) {
+    override fun bind(adapter: NoteAdt, item: NoteItemText) {
         super.bind(adapter, item)
 
         val contentTxv = binding.contentTxv
@@ -222,7 +221,7 @@ class ListNoteViewHolder(private val binding: VItemNoteListBinding) :
 
     private val itemViewHolders = mutableListOf<ListNoteItemViewHolder>()
 
-    override fun bind(adapter: NoteAdapter, item: NoteItemList) {
+    override fun bind(adapter: NoteAdt, item: NoteItemList) {
         super.bind(adapter, item)
 
         // Bind list note items
@@ -249,7 +248,7 @@ class ListNoteViewHolder(private val binding: VItemNoteListBinding) :
         }
     }
 
-    override fun unbind(adapter: NoteAdapter) {
+    override fun unbind(adapter: NoteAdt) {
         super.unbind(adapter)
         // Free view holders used by the item.
         binding.itemsLayout.removeViews(0, binding.itemsLayout.childCount - 1)
@@ -263,7 +262,7 @@ class ListNoteViewHolder(private val binding: VItemNoteListBinding) :
 class MessageViewHolder(private val binding: VItemMessageBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: MessageItem, adapter: NoteAdapter) {
+    fun bind(item: MessageItem, adapter: NoteAdt) {
         binding.messageTxv.text = adapter.context.getString(item.message, *item.args.toTypedArray())
         binding.closeImv.setOnClickListener {
             adapter.callback.onMessageItemDismissed(item, bindingAdapterPosition)
@@ -289,7 +288,7 @@ class HeaderViewHolder(private val binding: VItemHeaderBinding) :
  */
 class ListNoteItemViewHolder(val binding: VItemNoteListItemBinding) {
 
-    fun bind(adapter: NoteAdapter, item: Highlighted, checked: Boolean) {
+    fun bind(adapter: NoteAdt, item: Highlighted, checked: Boolean) {
         binding.contentTxv.apply {
             text = getHighlightedText(
                 text = item,

@@ -12,10 +12,10 @@ import com.mckimquyen.notes.model.entity.NoteStatus
 import com.mckimquyen.notes.model.entity.NoteWithLabels
 import com.mckimquyen.notes.ui.AssistedSavedStateViewModelFactory
 import com.mckimquyen.notes.ui.note.NoteItemFactory
-import com.mckimquyen.notes.ui.note.NoteViewModel
+import com.mckimquyen.notes.ui.note.NoteVM
 import com.mckimquyen.notes.ui.note.PlaceholderData
 import com.mckimquyen.notes.ui.note.adt.HeaderItem
-import com.mckimquyen.notes.ui.note.adt.NoteAdapter
+import com.mckimquyen.notes.ui.note.adt.NoteAdt
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -30,7 +30,7 @@ class SearchVM @AssistedInject constructor(
     prefs: PrefsManager,
     reminderAlarmManager: ReminderAlarmManager,
     noteItemFactory: NoteItemFactory,
-) : NoteViewModel(
+) : NoteVM(
     savedStateHandle = savedStateHandle,
     notesRepository = notesRepository,
     labelsRepository = labelsRepository,
@@ -38,7 +38,7 @@ class SearchVM @AssistedInject constructor(
     noteItemFactory = noteItemFactory,
     reminderAlarmManager = reminderAlarmManager
 ),
-    NoteAdapter.Callback {
+    NoteAdt.Callback {
 
     companion object {
         val ARCHIVED_HEADER_ITEM = HeaderItem(-1, R.string.note_location_archived)

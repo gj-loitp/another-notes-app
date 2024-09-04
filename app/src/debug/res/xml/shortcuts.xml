@@ -11,7 +11,7 @@
         android:shortcutShortLabel="@string/shortcut_text_note_short">
         <intent
             android:action="com.mckimquyen.notes.CREATE"
-            android:targetClass="com.mckimquyen.notes.ui.main.MainActivity"
+            android:targetClass="com.mckimquyen.notes.ui.main.MainAct"
             android:targetPackage="com.mckimquyen.notes">
             <extra
                 android:name="com.mckimquyen.notes.NOTE_TYPE"
@@ -27,7 +27,7 @@
         android:shortcutShortLabel="@string/shortcut_list_note_short">
         <intent
             android:action="com.mckimquyen.notes.CREATE"
-            android:targetClass="com.mckimquyen.notes.ui.main.MainActivity"
+            android:targetClass="com.mckimquyen.notes.ui.main.MainAct"
             android:targetPackage="com.mckimquyen.notes">
             <extra
                 android:name="com.mckimquyen.notes.NOTE_TYPE"
@@ -43,7 +43,7 @@
         android:shortcutShortLabel="@string/shortcut_reminders_short">
         <intent
             android:action="com.mckimquyen.notes.SHOW_REMINDERS"
-            android:targetClass="com.mckimquyen.notes.ui.main.MainActivity"
+            android:targetClass="com.mckimquyen.notes.ui.main.MainAct"
             android:targetPackage="com.mckimquyen.notes" />
     </shortcut>
 

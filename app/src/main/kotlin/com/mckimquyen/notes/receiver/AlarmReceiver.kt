@@ -12,7 +12,7 @@ import com.mckimquyen.notes.R
 import com.mckimquyen.notes.model.NotesRepository
 import com.mckimquyen.notes.model.ReminderAlarmManager
 import com.mckimquyen.notes.model.entity.Note
-import com.mckimquyen.notes.ui.main.MainActivity
+import com.mckimquyen.notes.ui.main.MainAct
 import com.mckimquyen.notes.ui.noti.NotificationAct
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -71,8 +71,8 @@ class AlarmReceiver : BroadcastReceiver() {
             .setAutoCancel(true)
 
         // Edit/view main action
-        val notifIntent = Intent(context, MainActivity::class.java).apply {
-            action = MainActivity.INTENT_ACTION_EDIT
+        val notifIntent = Intent(context, MainAct::class.java).apply {
+            action = MainAct.INTENT_ACTION_EDIT
             putExtra(EXTRA_NOTE_ID, noteId)
         }
         builder.setContentIntent(

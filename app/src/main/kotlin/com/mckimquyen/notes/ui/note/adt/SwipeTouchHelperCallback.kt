@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.ui.note.SwipeAction
-import com.mckimquyen.notes.ui.note.adt.NoteAdapter.SwipeDirection
+import com.mckimquyen.notes.ui.note.adt.NoteAdt.SwipeDirection
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
 /**
  * Item touch helper callback for swiping items.
  */
-class SwipeTouchHelperCallback(private val callback: NoteAdapter.Callback) : ItemTouchHelper.Callback() {
+class SwipeTouchHelperCallback(private val callback: NoteAdt.Callback) : ItemTouchHelper.Callback() {
 
     override fun isLongPressDragEnabled() = false
     override fun isItemViewSwipeEnabled() = true
@@ -99,7 +99,10 @@ class SwipeTouchHelperCallback(private val callback: NoteAdapter.Callback) : Ite
         }
     }
 
-    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+    override fun clearView(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+    ) {
         clearView(viewHolder)
     }
 
@@ -117,7 +120,10 @@ class SwipeTouchHelperCallback(private val callback: NoteAdapter.Callback) : Ite
         target: RecyclerView.ViewHolder,
     ) = false
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+    override fun onSwiped(
+        viewHolder: RecyclerView.ViewHolder,
+        direction: Int,
+    ) {
         callback.onNoteSwiped(
             viewHolder.bindingAdapterPosition,
             if (direction == ItemTouchHelper.LEFT) SwipeDirection.LEFT else SwipeDirection.RIGHT

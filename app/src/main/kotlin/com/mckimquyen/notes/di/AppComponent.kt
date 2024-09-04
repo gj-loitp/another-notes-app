@@ -4,10 +4,10 @@ import android.content.Context
 import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.receiver.AlarmReceiver
 import com.mckimquyen.notes.ui.edit.EditFragment
-import com.mckimquyen.notes.ui.home.HomeFragment
+import com.mckimquyen.notes.ui.home.HomeFrm
 import com.mckimquyen.notes.ui.labels.LabelEditDialog
 import com.mckimquyen.notes.ui.labels.LabelFragment
-import com.mckimquyen.notes.ui.main.MainActivity
+import com.mckimquyen.notes.ui.main.MainAct
 import com.mckimquyen.notes.ui.noti.NotificationAct
 import com.mckimquyen.notes.ui.reminder.ReminderDlg
 import com.mckimquyen.notes.ui.search.SearchFrm
@@ -25,10 +25,10 @@ interface AppComponent {
 
     fun inject(RApp: RApp)
 
-    fun inject(activity: MainActivity)
+    fun inject(activity: MainAct)
     fun inject(activity: NotificationAct)
 
-    fun inject(fragment: HomeFragment)
+    fun inject(fragment: HomeFrm)
     fun inject(fragment: SearchFrm)
     fun inject(fragment: EditFragment)
     fun inject(fragment: LabelFragment)

@@ -11,12 +11,12 @@ import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.ext.hideKeyboard
 import com.mckimquyen.notes.ext.showKeyboard
-import com.mckimquyen.notes.ui.note.NoteFragment
+import com.mckimquyen.notes.ui.note.NoteFrm
 import com.mckimquyen.notes.ui.viewModel
 import javax.inject.Inject
 import com.google.android.material.R as RMaterial
 
-class SearchFrm : NoteFragment() {
+class SearchFrm : NoteFrm() {
 
     @Inject
     lateinit var viewModelFactory: SearchVM.Factory

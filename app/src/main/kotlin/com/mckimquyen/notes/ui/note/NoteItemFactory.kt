@@ -146,7 +146,8 @@ class NoteItemFactory @Inject constructor(
             HighlightHelper.getStartEllipsizedText(
                 text = item.content,
                 highlights = if (query == null) mutableListOf() else highlights[i],
-                startEllipsisThreshold = ellipsisThreshold, startEllipsisDistance = START_ELLIPSIS_DISTANCE_ITEM
+                startEllipsisThreshold = ellipsisThreshold,
+                startEllipsisDistance = START_ELLIPSIS_DISTANCE_ITEM
             )
         }
         val itemsChecked = items.map { it.checked }

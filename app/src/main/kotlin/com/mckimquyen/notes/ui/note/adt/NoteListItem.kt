@@ -6,7 +6,7 @@ import androidx.annotation.StringRes
 import com.mckimquyen.notes.model.entity.Label
 import com.mckimquyen.notes.model.entity.Note
 import com.mckimquyen.notes.ui.note.Highlighted
-import com.mckimquyen.notes.ui.note.adt.NoteAdapter.ViewType
+import com.mckimquyen.notes.ui.note.adt.NoteAdt.ViewType
 
 sealed interface NoteListItem {
     val id: Long

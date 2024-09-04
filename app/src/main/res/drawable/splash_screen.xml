@@ -5,7 +5,7 @@
         <color android:color="?android:colorBackground" />
     </item>
 
-    <item android:bottom="120dp">
+    <item android:bottom="0dp">
         <bitmap
             android:gravity="center"
             android:src="@mipmap/splash_screen_logo" />

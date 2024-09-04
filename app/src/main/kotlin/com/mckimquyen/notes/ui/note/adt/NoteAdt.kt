@@ -18,7 +18,7 @@ import com.mckimquyen.notes.databinding.VItemNoteTextBinding
 import com.mckimquyen.notes.model.PrefsManager
 import com.mckimquyen.notes.ui.note.SwipeAction
 
-class NoteAdapter(
+class NoteAdt(
     val context: Context,
     val callback: Callback,
     val prefsManager: PrefsManager,
@@ -58,23 +58,19 @@ class NoteAdapter(
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             ViewType.MESSAGE.ordinal -> MessageViewHolder(
-                VItemMessageBinding
-                    .inflate(inflater, parent, false)
+                VItemMessageBinding.inflate(inflater, parent, false)
             )
 
             ViewType.HEADER.ordinal -> HeaderViewHolder(
-                VItemHeaderBinding
-                    .inflate(inflater, parent, false)
+                VItemHeaderBinding.inflate(inflater, parent, false)
             )
 
             ViewType.TEXT_NOTE.ordinal -> TextNoteViewHolder(
-                VItemNoteTextBinding
-                    .inflate(inflater, parent, false)
+                VItemNoteTextBinding.inflate(inflater, parent, false)
             )
 
             ViewType.LIST_NOTE.ordinal -> ListNoteViewHolder(
-                VItemNoteListBinding
-                    .inflate(inflater, parent, false)
+                VItemNoteListBinding.inflate(inflater, parent, false)
             )
 
             else -> error("Unknown view type")
@@ -176,7 +172,7 @@ class NoteAdapter(
         fun getNoteSwipeAction(direction: SwipeDirection): SwipeAction
 
         /** Called when a [NoteItem] at [pos] is swiped. */
-        fun onNoteSwiped(pos: Int, direction: NoteAdapter.SwipeDirection)
+        fun onNoteSwiped(pos: Int, direction: NoteAdt.SwipeDirection)
 
         /** Whether strikethrough should be added to checked items or not. */
         val strikethroughCheckedItems: Boolean

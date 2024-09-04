@@ -5,7 +5,7 @@ import androidx.annotation.Keep
 import androidx.navigation.NavDirections
 import com.mckimquyen.notes.model.entity.Label
 import com.mckimquyen.notes.model.entity.NoteStatus
-import com.mckimquyen.notes.ui.home.HomeFragment
+import com.mckimquyen.notes.ui.home.HomeFrm
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -19,7 +19,7 @@ sealed interface NavigationDestination {
 }
 
 /**
- * A destination accessible only by changing the content of the [HomeFragment].
+ * A destination accessible only by changing the content of the [HomeFrm].
  */
 sealed interface HomeDestination : NavigationDestination, Parcelable {
     /**

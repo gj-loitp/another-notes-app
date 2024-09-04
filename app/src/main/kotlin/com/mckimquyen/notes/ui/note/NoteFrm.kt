@@ -42,9 +42,9 @@ import com.mckimquyen.notes.ext.navigateSafe
 import com.mckimquyen.notes.ui.SharedViewModel
 import com.mckimquyen.notes.ui.StatusChange
 import com.mckimquyen.notes.ui.common.ConfirmDialog
-import com.mckimquyen.notes.ui.main.MainActivity
+import com.mckimquyen.notes.ui.main.MainAct
 import com.mckimquyen.notes.ui.navGraphViewModel
-import com.mckimquyen.notes.ui.note.adt.NoteAdapter
+import com.mckimquyen.notes.ui.note.adt.NoteAdt
 import com.mckimquyen.notes.ui.note.adt.NoteListLayoutMode
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.startSharingData
@@ -59,7 +59,7 @@ import com.google.android.material.R as RMaterial
 /**
  * This fragment provides common code for home and search fragments.
  */
-abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Callback,
+abstract class NoteFrm : Fragment(), ActionMode.Callback, ConfirmDialog.Callback,
     NavController.OnDestinationChangedListener {
 
     @Inject
@@ -71,7 +71,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
     @Inject
     lateinit var prefsManager: PrefsManager
 
-    protected abstract val viewModel: NoteViewModel
+    protected abstract val viewModel: NoteVM
 
     private var _binding: FNoteBinding? = null
     protected val binding get() = _binding!!
@@ -118,12 +118,12 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
         val context = requireContext()
 
         // Drawer
-        val activity = requireActivity() as MainActivity
+        val activity = requireActivity() as MainAct
         drawerLayout = activity.drawerLayout
 
         val rcv = binding.recyclerView
         rcv.setHasFixedSize(true)
-        val adapter = NoteAdapter(context, viewModel, prefsManager)
+        val adapter = NoteAdt(context, viewModel, prefsManager)
         val layoutManager = StaggeredGridLayoutManager(spanCount, StaggeredGridLayoutManager.VERTICAL)
         this.layoutManager = layoutManager
         rcv.adapter = adapter
@@ -174,7 +174,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
         }
     }
 
-    private fun setupNoteItemsObserver(adapter: NoteAdapter) {
+    private fun setupNoteItemsObserver(adapter: NoteAdt) {
         viewModel.noteItems.observe(viewLifecycleOwner) { items ->
             adapter.submitList(items, ::noteListCommitCallback)
 
@@ -187,7 +187,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
     }
 
     private fun setupViewModelObservers(
-        adapter: NoteAdapter,
+        adapter: NoteAdt,
         layoutManager: StaggeredGridLayoutManager,
     ) {
         val navController = findNavController()
@@ -312,7 +312,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
         }
     }
 
-    private fun updateActionModeForSelection(selection: NoteViewModel.NoteSelection) {
+    private fun updateActionModeForSelection(selection: NoteVM.NoteSelection) {
         if (selection.count != 0 && actionMode == null) {
             actionMode = binding.toolbar.startSafeActionMode(this)
         } else if (selection.count == 0 && actionMode != null) {
@@ -321,7 +321,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
         }
     }
 
-    private fun updateItemsForSelection(selection: NoteViewModel.NoteSelection) {
+    private fun updateItemsForSelection(selection: NoteVM.NoteSelection) {
         actionMode?.let {
             it.title = NUMBER_FORMAT.format(selection.count)
 
@@ -553,9 +553,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
 
     companion object {
         private val NUMBER_FORMAT = NumberFormat.getInstance()
-
         private const val DELETE_CONFIRM_DIALOG_TAG = "delete_confirm_dialog"
-
         private const val STATUS_CHANGE_SNACKBAR_DURATION = 7500
     }
 }

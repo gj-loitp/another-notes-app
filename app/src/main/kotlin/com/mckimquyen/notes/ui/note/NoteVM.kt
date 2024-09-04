@@ -18,7 +18,7 @@ import com.mckimquyen.notes.ui.Event
 import com.mckimquyen.notes.ui.ShareData
 import com.mckimquyen.notes.ui.StatusChange
 import com.mckimquyen.notes.ui.note.adt.MessageItem
-import com.mckimquyen.notes.ui.note.adt.NoteAdapter
+import com.mckimquyen.notes.ui.note.adt.NoteAdt
 import com.mckimquyen.notes.ui.note.adt.NoteItem
 import com.mckimquyen.notes.ui.note.adt.NoteListItem
 import com.mckimquyen.notes.ui.note.adt.NoteListLayoutMode
@@ -30,14 +30,14 @@ import java.util.Date
 /**
  * This view model provides common behavior for home and search view models.
  */
-abstract class NoteViewModel(
+abstract class NoteVM(
     protected val savedStateHandle: SavedStateHandle,
     protected val notesRepository: NotesRepository,
     protected val labelsRepository: LabelsRepository,
     protected val prefs: PrefsManager,
     protected val noteItemFactory: NoteItemFactory,
     protected val reminderAlarmManager: ReminderAlarmManager,
-) : ViewModel(), NoteAdapter.Callback {
+) : ViewModel(), NoteAdt.Callback {
 
     protected var listItems: List<NoteListItem> = emptyList()
         set(value) {
@@ -392,9 +392,9 @@ abstract class NoteViewModel(
         // Do nothing.
     }
 
-    override fun getNoteSwipeAction(direction: NoteAdapter.SwipeDirection) = SwipeAction.NONE
+    override fun getNoteSwipeAction(direction: NoteAdt.SwipeDirection) = SwipeAction.NONE
 
-    override fun onNoteSwiped(pos: Int, direction: NoteAdapter.SwipeDirection) {
+    override fun onNoteSwiped(pos: Int, direction: NoteAdt.SwipeDirection) {
         // Do nothing.
     }
 

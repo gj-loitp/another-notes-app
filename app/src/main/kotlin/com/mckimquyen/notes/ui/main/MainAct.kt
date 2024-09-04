@@ -35,7 +35,7 @@ import com.mckimquyen.notes.model.entity.NoteStatus
 import com.mckimquyen.notes.model.entity.NoteType
 import com.mckimquyen.notes.receiver.AlarmReceiver
 import com.mckimquyen.notes.ui.SharedViewModel
-import com.mckimquyen.notes.ui.main.MainViewModel.NewNoteData
+import com.mckimquyen.notes.ui.main.MainVM.NewNoteData
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.navigation.HomeDestination
 import com.mckimquyen.notes.ui.observeEvent
@@ -45,7 +45,7 @@ import java.io.InputStreamReader
 import javax.inject.Inject
 import javax.inject.Provider
 
-class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
+class MainAct : AppCompatActivity(), NavController.OnDestinationChangedListener {
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     }
 
     @Inject
-    lateinit var viewModelFactory: MainViewModel.Factory
+    lateinit var viewModelFactory: MainVM.Factory
     private val viewModel by viewModel {
         viewModelFactory.create(it)
     }
@@ -284,7 +284,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                 }
 
                 INTENT_ACTION_SHOW_REMINDERS -> {
-                    // Show reminders screen in HomeFragment. Used by launcher shortcut.
+                    // Show reminders screen in HomeFrm. Used by launcher shortcut.
                     binding.navView.menu.findItem(R.id.drawerItemReminders).isChecked = true
                     sharedViewModel.changeHomeDestination(HomeDestination.Reminders)
                 }

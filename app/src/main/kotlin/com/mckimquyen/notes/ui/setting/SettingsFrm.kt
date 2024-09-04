@@ -35,7 +35,7 @@ import com.mckimquyen.notes.ext.shareApp
 import com.mckimquyen.notes.model.PrefsManager
 import com.mckimquyen.notes.ui.AppTheme
 import com.mckimquyen.notes.ui.common.ConfirmDialog
-import com.mckimquyen.notes.ui.main.MainActivity
+import com.mckimquyen.notes.ui.main.MainAct
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.viewModel
 import java.text.DateFormat
@@ -340,9 +340,9 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDialog.Callback, ExportPa
     override fun onDialogPositiveButtonClicked(tag: String?) {
         when (tag) {
             RESTART_DIALOG_TAG -> {
-                // Reload MainActivity to apply theming changes
+                // Reload MainAct to apply theming changes
                 requireActivity().finish()
-                startActivity(Intent(requireContext(), MainActivity::class.java))
+                startActivity(Intent(requireContext(), MainAct::class.java))
             }
 
             CLEAR_DATA_DIALOG_TAG -> {

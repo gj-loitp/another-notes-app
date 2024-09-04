@@ -24,7 +24,7 @@ import com.mckimquyen.notes.ext.navigateSafe
 import com.mckimquyen.notes.model.entity.NoteStatus
 import com.mckimquyen.notes.ui.common.ConfirmDialog
 import com.mckimquyen.notes.ui.navigation.HomeDestination
-import com.mckimquyen.notes.ui.note.NoteFragment
+import com.mckimquyen.notes.ui.note.NoteFrm
 import com.mckimquyen.notes.ui.note.adt.NoteListLayoutMode
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.viewModel
@@ -35,10 +35,10 @@ import com.google.android.material.R as RMaterial
  * Start screen fragment displaying a list of notes for different note status,
  * by label, or with a reminder.
  */
-class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
+class HomeFrm : NoteFrm(), Toolbar.OnMenuItemClickListener {
 
     @Inject
-    lateinit var viewModelFactory: HomeViewModel.Factory
+    lateinit var viewModelFactory: HomeVM.Factory
     override val viewModel by viewModel { viewModelFactory.create(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +82,7 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
         // Toolbar
         binding.toolbar.apply {
             inflateMenu(R.menu.menu_toolbar_home)
-            setOnMenuItemClickListener(this@HomeFragment)
+            setOnMenuItemClickListener(this@HomeFrm)
             setNavigationIcon(R.drawable.ic_menu)
             setNavigationContentDescription(R.string.content_descrp_open_drawer)
             setNavigationOnClickListener {
@@ -199,9 +199,9 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.itemSearch -> findNavController().navigateSafe(HomeFragmentDirections.actionHomeToSearch())
+            R.id.itemSearch -> findNavController().navigateSafe(HomeFrmDirections.actionHomeToSearch())
             R.id.itemLayout -> viewModel.toggleListLayoutMode()
-            R.id.itemSort -> findNavController().navigateSafe(HomeFragmentDirections.actionHomeToSort())
+            R.id.itemSort -> findNavController().navigateSafe(HomeFrmDirections.actionHomeToSort())
             R.id.itemEmptyTrash -> viewModel.emptyTrashPre()
             R.id.itemExtraAction -> viewModel.doExtraAction()
             else -> return false
