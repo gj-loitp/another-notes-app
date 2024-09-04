@@ -18,7 +18,7 @@ import kotlinx.serialization.json.Json
 
 @Module(
     includes = [
-        DatabaseModule::class,
+        DbModule::class,
         BuildTypeModule::class,
     ]
 )

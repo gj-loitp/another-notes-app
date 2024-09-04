@@ -22,12 +22,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
-
-    fun inject(RApp: RApp)
-
+    fun inject(rApp: RApp)
     fun inject(activity: MainAct)
     fun inject(activity: NotificationAct)
-
     fun inject(fragment: HomeFrm)
     fun inject(fragment: SearchFrm)
     fun inject(fragment: EditFrm)
