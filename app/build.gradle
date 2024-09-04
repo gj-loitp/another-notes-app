@@ -154,7 +154,7 @@ dependencies {
     implementation "com.maltaisn:recurpicker:2.1.7"
     implementation "com.mikepenz:aboutlibraries:10.9.2"
     implementation "com.mikepenz:aboutlibraries-core:10.9.2"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.23"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1"
