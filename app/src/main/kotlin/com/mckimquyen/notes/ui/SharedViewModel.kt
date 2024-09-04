@@ -70,7 +70,7 @@ class SharedViewModel @Inject constructor(
         get() = _noteCreatedEvent
 
     fun onBlankNoteDiscarded() {
-        // Not shown from EditFragment so that FAB is pushed up.
+        // Not shown from EditFrm so that FAB is pushed up.
         _messageEvent.send(R.string.edit_message_blank_note_discarded)
     }
 

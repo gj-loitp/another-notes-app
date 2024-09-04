@@ -189,7 +189,7 @@ class MainAct : AppCompatActivity(), NavController.OnDestinationChangedListener 
 
         viewModel.editItemEvent.observeEvent(this) { noteId ->
             // Allow navigating to same destination, in case notification is clicked while already editing a note.
-            // In this case the EditFragment will be opened multiple times.
+            // In this case the EditFrm will be opened multiple times.
             navController.navigateSafe(NavGraphMainDirections.actionEditNote(noteId), true)
         }
 

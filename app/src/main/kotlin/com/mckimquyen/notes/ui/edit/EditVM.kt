@@ -23,7 +23,7 @@ import com.mckimquyen.notes.ui.AssistedSavedStateViewModelFactory
 import com.mckimquyen.notes.ui.Event
 import com.mckimquyen.notes.ui.ShareData
 import com.mckimquyen.notes.ui.StatusChange
-import com.mckimquyen.notes.ui.edit.adt.EditAdapter
+import com.mckimquyen.notes.ui.edit.adt.EditAdt
 import com.mckimquyen.notes.ui.edit.adt.EditCheckedHeaderItem
 import com.mckimquyen.notes.ui.edit.adt.EditChipsItem
 import com.mckimquyen.notes.ui.edit.adt.EditContentItem
@@ -47,13 +47,13 @@ import java.util.Date
 /**
  * View model for the edit note screen.
  */
-class EditViewModel @AssistedInject constructor(
+class EditVM @AssistedInject constructor(
     private val notesRepository: NotesRepository,
     private val labelsRepository: LabelsRepository,
     private val prefs: PrefsManager,
     private val reminderAlarmManager: ReminderAlarmManager,
     @Assisted private val savedStateHandle: SavedStateHandle,
-) : ViewModel(), EditAdapter.Callback {
+) : ViewModel(), EditAdt.Callback {
 
     /**
      * Whether the current note is a new note.
@@ -203,7 +203,7 @@ class EditViewModel @AssistedInject constructor(
 
                 val note = notesRepository.getNoteById(savedStateHandle[KEY_NOTE_ID] ?: Note.NO_ID)
                 if (note != null) {
-                    this@EditViewModel.note = note
+                    this@EditVM.note = note
                 }
                 restoreNoteJob = null
             }
@@ -277,8 +277,8 @@ class EditViewModel @AssistedInject constructor(
                 savedStateHandle[KEY_IS_NEW_NOTE] = true
             }
 
-            this@EditViewModel.note = note
-            this@EditViewModel.labels = labels!!
+            this@EditVM.note = note
+            this@EditVM.labels = labels!!
             status = note.status
             pinned = note.pinned
             reminder = note.reminder
@@ -935,8 +935,8 @@ class EditViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<EditViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): EditViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<EditVM> {
+        override fun create(savedStateHandle: SavedStateHandle): EditVM
     }
 
     companion object {
@@ -956,7 +956,11 @@ class EditViewModel @AssistedInject constructor(
         private const val KEY_NOTE_ID = "noteId"
         private const val KEY_IS_NEW_NOTE = "isNewNote"
 
-        private val TEMP_ITEM =
-            EditItemItem(content = DefaultEditableText(), checked = false, editable = false, actualPos = 0)
+        private val TEMP_ITEM = EditItemItem(
+            content = DefaultEditableText(),
+            checked = false,
+            editable = false,
+            actualPos = 0
+        )
     }
 }

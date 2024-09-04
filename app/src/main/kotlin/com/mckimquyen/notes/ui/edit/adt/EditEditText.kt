@@ -12,10 +12,10 @@ import androidx.core.text.getSpans
 import androidx.core.text.util.LinkifyCompat
 import androidx.core.widget.doAfterTextChanged
 import com.mckimquyen.notes.R
-import com.mckimquyen.notes.ui.edit.EditFragment
+import com.mckimquyen.notes.ui.edit.EditFrm
 
 /**
- * Custom [EditText] class used for all fields of the [EditFragment].
+ * Custom [EditText] class used for all fields of the [EditFrm].
  */
 class EditEditText @JvmOverloads constructor(
     context: Context,
@@ -23,14 +23,14 @@ class EditEditText @JvmOverloads constructor(
     defStyleAddr: Int = android.R.attr.editTextStyle,
 ) : AppCompatEditText(context, attrs, defStyleAddr) {
 
-    val autoLink: Boolean
+    private val autoLink: Boolean =
+        context.obtainStyledAttributes(attrs, R.styleable.EditEditText, defStyleAddr, 0).use {
+            it.getBoolean(R.styleable.EditEditText_autoLink, false)
+        }
 
     var onLinkClickListener: ((text: String, url: String) -> Unit)? = null
 
     init {
-        autoLink = context.obtainStyledAttributes(attrs, R.styleable.EditEditText, defStyleAddr, 0).use {
-            it.getBoolean(R.styleable.EditEditText_autoLink, false)
-        }
 
         doAfterTextChanged { editable ->
             if (editable == null) return@doAfterTextChanged

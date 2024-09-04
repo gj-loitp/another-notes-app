@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/fragment_edit"
-        android:name="com.mckimquyen.notes.ui.edit.EditFragment"
+        android:name="com.mckimquyen.notes.ui.edit.EditFrm"
         tools:layout="@layout/f_edit">
         <argument
             android:name="noteId"

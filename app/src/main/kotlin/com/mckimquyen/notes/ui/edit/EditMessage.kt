@@ -1,7 +1,7 @@
 package com.mckimquyen.notes.ui.edit
 
 /**
- * Enum for Snackbar messages being shown in [EditFragment].
+ * Enum for Snackbar messages being shown in [EditFrm].
  */
 enum class EditMessage {
     BLANK_NOTE_DISCARDED,

@@ -219,7 +219,7 @@ class MainVM @AssistedInject constructor(
 
     fun editNote(id: Long) {
         viewModelScope.launch {
-            // If note doesn't exist, EditFragment would be opened to create a new note without this check.
+            // If note doesn't exist, EditFrm would be opened to create a new note without this check.
             if (notesRepository.getNoteById(id) != null) {
                 _editNoteEvent.send(id)
             }

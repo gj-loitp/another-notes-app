@@ -29,7 +29,6 @@ public class LinkArrowKeyMovementMethod extends ArrowKeyMovementMethod {
     private static final int CLICK = 1;
     private static final int UP = 2;
     private static final int DOWN = 3;
-
     private static final int HIDE_FLOATING_TOOLBAR_DELAY_MS = 200;
 
     @Override
@@ -85,7 +84,9 @@ public class LinkArrowKeyMovementMethod extends ArrowKeyMovementMethod {
         return super.right(widget, buffer);
     }
 
-    private static void linkOnClick(TextView widget, Spannable buffer, ClickableSpan link) {
+    private static void linkOnClick(TextView widget,
+                                    Spannable buffer,
+                                    ClickableSpan link) {
         if (link instanceof URLSpan) {
             int start = buffer.getSpanStart(link);
             int end = buffer.getSpanEnd(link);

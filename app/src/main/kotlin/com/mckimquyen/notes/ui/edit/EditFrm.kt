@@ -43,7 +43,7 @@ import com.mckimquyen.notes.model.entity.PinnedStatus
 import com.mckimquyen.notes.model.entity.Reminder
 import com.mckimquyen.notes.ui.SharedViewModel
 import com.mckimquyen.notes.ui.common.ConfirmDialog
-import com.mckimquyen.notes.ui.edit.adt.EditAdapter
+import com.mckimquyen.notes.ui.edit.adt.EditAdt
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.startSharingData
@@ -53,17 +53,17 @@ import javax.inject.Inject
 import javax.inject.Provider
 import com.google.android.material.R as RMaterial
 
-class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.Callback {
+class EditFrm : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.Callback {
 
     @Inject
-    lateinit var viewModelFactory: EditViewModel.Factory
+    lateinit var viewModelFactory: EditVM.Factory
     val viewModel by viewModel { viewModelFactory.create(it) }
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
     private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) { sharedViewModelProvider.get() }
 
-    private val args: EditFragmentArgs by navArgs()
+    private val args: EditFrmArgs by navArgs()
 
     private var _binding: FEditBinding? = null
     private val binding get() = _binding!!
@@ -125,7 +125,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
 
         // Toolbar
         binding.toolbar.apply {
-            setOnMenuItemClickListener(this@EditFragment)
+            setOnMenuItemClickListener(this@EditFrm)
             setNavigationOnClickListener {
                 view.hideKeyboard()
                 viewModel.saveNote()
@@ -144,7 +144,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
         // Recycler view
         val rcv = binding.recyclerView
         rcv.setHasFixedSize(true)
-        val adapter = EditAdapter(context, viewModel)
+        val adapter = EditAdt(context, viewModel)
         val layoutManager = LinearLayoutManager(context)
         rcv.adapter = adapter
         rcv.layoutManager = layoutManager
@@ -202,7 +202,7 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
     }
 
     @SuppressLint("WrongConstant")
-    private fun setupViewModelObservers(adapter: EditAdapter) {
+    private fun setupViewModelObservers(adapter: EditAdt) {
         val navController = findNavController()
 
         // Each observer must take care not to undo the work of another observer
@@ -446,7 +446,6 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
         private const val DELETE_CONFIRM_DIALOG_TAG = "delete_confirm_dialog"
         private const val REMOVE_CHECKED_CONFIRM_DIALOG_TAG = "remove_checked_confirm_dialog"
         private const val OPEN_LINK_DIALOG_TAG = "open_link_confirm_dialog"
-
         private const val CANT_EDIT_SNACKBAR_DURATION = 5000
     }
 }

@@ -16,9 +16,9 @@ import com.mckimquyen.notes.databinding.VItemEditItemBinding
 import com.mckimquyen.notes.databinding.VItemEditLabelsBinding
 import com.mckimquyen.notes.databinding.VItemEditTitleBinding
 import com.mckimquyen.notes.ext.hideKeyboard
-import com.mckimquyen.notes.ui.edit.EditViewModel
+import com.mckimquyen.notes.ui.edit.EditVM
 
-class EditAdapter(val context: Context, val callback: Callback) :
+class EditAdt(val context: Context, val callback: Callback) :
     ListAdapter<EditListItem, RecyclerView.ViewHolder>(EditDiffCallback()) {
 
     private var recyclerView: RecyclerView? = null
@@ -36,7 +36,7 @@ class EditAdapter(val context: Context, val callback: Callback) :
      * Pending focus change to be made when item will be bound
      * by RecyclerView, or `null` if none is pending.
      */
-    private var pendingFocusChange: EditViewModel.FocusChange? = null
+    private var pendingFocusChange: EditVM.FocusChange? = null
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         this.recyclerView = recyclerView
@@ -121,7 +121,7 @@ class EditAdapter(val context: Context, val callback: Callback) :
 
     override fun getItemViewType(position: Int) = getItem(position).type.ordinal
 
-    fun setItemFocus(focus: EditViewModel.FocusChange) {
+    fun setItemFocus(focus: EditVM.FocusChange) {
         val rcv = recyclerView ?: return
 
         // If item to focus on doesn't exist yet, save it for later.
@@ -179,7 +179,7 @@ class EditAdapter(val context: Context, val callback: Callback) :
         /** Called when any item is clicked on to start editing.*/
         fun onNoteClickedToEdit()
 
-        /** Called when a link with an [url] is clicked in the note text.*/
+        /** Called when a link with an url is clicked in the note text.*/
         fun onLinkClickedInNote(linkText: String, linkUrl: String)
 
         /** Whether to enabled the dragging of [EditItemItem].*/

@@ -55,7 +55,7 @@ class EditDateViewHolder(binding: VItemEditDateBinding) :
     }
 }
 
-class EditTitleViewHolder(binding: VItemEditTitleBinding, callback: EditAdapter.Callback) :
+class EditTitleViewHolder(binding: VItemEditTitleBinding, callback: EditAdt.Callback) :
     RecyclerView.ViewHolder(binding.root), EditFocusableViewHolder {
 
     private val titleEdt = binding.titleEdt
@@ -88,7 +88,10 @@ class EditTitleViewHolder(binding: VItemEditTitleBinding, callback: EditAdapter.
     }
 }
 
-class EditContentViewHolder(binding: VItemEditContentBinding, callback: EditAdapter.Callback) :
+class EditContentViewHolder(
+    binding: VItemEditContentBinding,
+    callback: EditAdt.Callback,
+) :
     RecyclerView.ViewHolder(binding.root), EditFocusableViewHolder {
 
     private val contentEdt = binding.contentEdt
@@ -122,7 +125,7 @@ class EditContentViewHolder(binding: VItemEditContentBinding, callback: EditAdap
     }
 }
 
-class EditItemViewHolder(binding: VItemEditItemBinding, callback: EditAdapter.Callback) :
+class EditItemViewHolder(binding: VItemEditItemBinding, callback: EditAdt.Callback) :
     RecyclerView.ViewHolder(binding.root), EditFocusableViewHolder {
 
     val dragImv = binding.dragImv
@@ -216,7 +219,7 @@ class EditItemViewHolder(binding: VItemEditItemBinding, callback: EditAdapter.Ca
     }
 }
 
-class EditItemAddViewHolder(binding: VItemEditItemAddBinding, callback: EditAdapter.Callback) :
+class EditItemAddViewHolder(binding: VItemEditItemAddBinding, callback: EditAdt.Callback) :
     RecyclerView.ViewHolder(binding.root) {
 
     init {
@@ -238,7 +241,7 @@ class EditHeaderViewHolder(binding: VItemEditHeaderBinding) :
     }
 }
 
-class EditItemLabelsViewHolder(binding: VItemEditLabelsBinding, callback: EditAdapter.Callback) :
+class EditItemLabelsViewHolder(binding: VItemEditLabelsBinding, callback: EditAdt.Callback) :
     RecyclerView.ViewHolder(binding.root) {
 
     private val chipGroup = binding.chipGroup

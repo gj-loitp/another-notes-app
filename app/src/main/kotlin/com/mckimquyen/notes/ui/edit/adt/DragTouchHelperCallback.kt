@@ -61,7 +61,10 @@ class DragTouchHelperCallback(
         }
     }
 
-    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+    override fun clearView(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+    ) {
         val view = viewHolder.itemView
         view.translationX = 0f
         view.translationY = 0f
@@ -77,5 +80,8 @@ class DragTouchHelperCallback(
         return true
     }
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) = Unit
+    override fun onSwiped(
+        viewHolder: RecyclerView.ViewHolder,
+        direction: Int,
+    ) = Unit
 }
