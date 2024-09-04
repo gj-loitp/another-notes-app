@@ -5,8 +5,8 @@ import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.receiver.AlarmReceiver
 import com.mckimquyen.notes.ui.edit.EditFragment
 import com.mckimquyen.notes.ui.home.HomeFrm
-import com.mckimquyen.notes.ui.labels.LabelEditDialog
-import com.mckimquyen.notes.ui.labels.LabelFragment
+import com.mckimquyen.notes.ui.labels.LabelEditDlg
+import com.mckimquyen.notes.ui.labels.LabelFrm
 import com.mckimquyen.notes.ui.main.MainAct
 import com.mckimquyen.notes.ui.noti.NotificationAct
 import com.mckimquyen.notes.ui.reminder.ReminderDlg
@@ -31,10 +31,10 @@ interface AppComponent {
     fun inject(fragment: HomeFrm)
     fun inject(fragment: SearchFrm)
     fun inject(fragment: EditFragment)
-    fun inject(fragment: LabelFragment)
+    fun inject(fragment: LabelFrm)
     fun inject(fragment: SettingsFrm)
     fun inject(dialog: ReminderDlg)
-    fun inject(dialog: LabelEditDialog)
+    fun inject(dialog: LabelEditDlg)
     fun inject(dialog: SortDialog)
     fun inject(dialog: ExportPasswordDlg)
     fun inject(dialog: ImportPasswordDlg)

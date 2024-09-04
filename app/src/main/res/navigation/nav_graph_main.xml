@@ -109,7 +109,7 @@
 
     <fragment
         android:id="@+id/fragment_label"
-        android:name="com.mckimquyen.notes.ui.labels.LabelFragment">
+        android:name="com.mckimquyen.notes.ui.labels.LabelFrm">
         <argument
             android:name="noteIds"
             app:argType="long[]" />
@@ -120,7 +120,7 @@
 
     <dialog
         android:id="@+id/dialog_label_edit"
-        android:name="com.mckimquyen.notes.ui.labels.LabelEditDialog">
+        android:name="com.mckimquyen.notes.ui.labels.LabelEditDlg">
         <argument
             android:name="labelId"
             android:defaultValue="0L"

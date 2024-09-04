@@ -27,7 +27,7 @@ import com.mckimquyen.notes.databinding.FLabelBinding
 import com.mckimquyen.notes.ext.navigateSafe
 import com.mckimquyen.notes.ui.SharedViewModel
 import com.mckimquyen.notes.ui.common.ConfirmDialog
-import com.mckimquyen.notes.ui.labels.adapter.LabelAdapter
+import com.mckimquyen.notes.ui.labels.adt.LabelAdapter
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.utils.startSafeActionMode
@@ -47,11 +47,11 @@ import com.google.android.material.R as RMaterial
  *
  * The mode is determined by the argument passed by the navigation component.
  */
-class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
+class LabelFrm : DialogFragment(), Toolbar.OnMenuItemClickListener,
     ActionMode.Callback, ConfirmDialog.Callback {
 
     @Inject
-    lateinit var viewModelFactory: LabelViewModel.Factory
+    lateinit var viewModelFactory: LabelVM.Factory
     val viewModel by viewModel {
         viewModelFactory.create(it)
     }
@@ -62,7 +62,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
         sharedViewModelProvider.get()
     }
 
-    private val args: LabelFragmentArgs by navArgs()
+    private val args: LabelFrmArgs by navArgs()
 
     private var _binding: FLabelBinding? = null
     private val binding get() = _binding!!
@@ -97,7 +97,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
         viewModel.start(args.noteIds.toList())
 
         binding.toolbar.apply {
-            setOnMenuItemClickListener(this@LabelFragment)
+            setOnMenuItemClickListener(this@LabelFrm)
             setNavigationIcon(R.drawable.ic_arrow_start)
             setNavigationOnClickListener {
                 findNavController().popBackStack()
@@ -113,7 +113,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
         }
 
         binding.fab.setOnClickListener {
-            findNavController().navigateSafe(LabelFragmentDirections.actionLabelToLabelEdit())
+            findNavController().navigateSafe(LabelFrmDirections.actionLabelToLabelEdit())
         }
 
         val rcv = binding.recyclerView
@@ -147,7 +147,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
         }
 
         viewModel.showRenameDialogEvent.observeEvent(viewLifecycleOwner) { labelId ->
-            findNavController().navigateSafe(LabelFragmentDirections.actionLabelToLabelEdit(labelId))
+            findNavController().navigateSafe(LabelFrmDirections.actionLabelToLabelEdit(labelId))
         }
 
         viewModel.showDeleteConfirmEvent.observeEvent(viewLifecycleOwner) {

@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.labels.adapter
+package com.mckimquyen.notes.ui.labels.adt
 
 import androidx.core.view.isInvisible
 import androidx.recyclerview.widget.RecyclerView

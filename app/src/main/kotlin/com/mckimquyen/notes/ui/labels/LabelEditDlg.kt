@@ -22,17 +22,17 @@ import debugCheck
 import javax.inject.Inject
 import javax.inject.Provider
 
-class LabelEditDialog : DialogFragment() {
+class LabelEditDlg : DialogFragment() {
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
     private val sharedViewModel by navGraphViewModel(R.id.nav_graph_main) { sharedViewModelProvider.get() }
 
     @Inject
-    lateinit var viewModelFactory: LabelEditViewModel.Factory
+    lateinit var viewModelFactory: LabelEditVM.Factory
     val viewModel by viewModel { viewModelFactory.create(it) }
 
-    private val args: LabelEditDialogArgs by navArgs()
+    private val args: LabelEditDlgArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,9 +71,9 @@ class LabelEditDialog : DialogFragment() {
         dialog.setOnShowListener {
             val okBtn = dialog.getButton(DialogInterface.BUTTON_POSITIVE)
             viewModel.nameError.observe(this) { error ->
-                okBtn.isEnabled = error == LabelEditViewModel.Error.NONE
-                nameInputLayout.isErrorEnabled = error == LabelEditViewModel.Error.DUPLICATE
-                if (error == LabelEditViewModel.Error.DUPLICATE) {
+                okBtn.isEnabled = error == LabelEditVM.Error.NONE
+                nameInputLayout.isErrorEnabled = error == LabelEditVM.Error.DUPLICATE
+                if (error == LabelEditVM.Error.DUPLICATE) {
                     nameInputLayout.error = getString(R.string.label_already_exists)
                 }
             }
@@ -95,7 +95,6 @@ class LabelEditDialog : DialogFragment() {
         }
 
         viewModel.labelAddEvent.observeEvent(this, sharedViewModel::onLabelAdd)
-
         viewModel.start(args.labelId)
 
         return dialog

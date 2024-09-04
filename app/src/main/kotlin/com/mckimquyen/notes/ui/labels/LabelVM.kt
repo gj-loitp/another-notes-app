@@ -10,8 +10,8 @@ import com.mckimquyen.notes.model.entity.Label
 import com.mckimquyen.notes.model.entity.LabelRef
 import com.mckimquyen.notes.ui.AssistedSavedStateViewModelFactory
 import com.mckimquyen.notes.ui.Event
-import com.mckimquyen.notes.ui.labels.adapter.LabelAdapter
-import com.mckimquyen.notes.ui.labels.adapter.LabelListItem
+import com.mckimquyen.notes.ui.labels.adt.LabelAdapter
+import com.mckimquyen.notes.ui.labels.adt.LabelListItem
 import com.mckimquyen.notes.ui.send
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -19,7 +19,7 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class LabelViewModel @AssistedInject constructor(
+class LabelVM @AssistedInject constructor(
     private val labelsRepository: LabelsRepository,
     @Assisted private val savedStateHandle: SavedStateHandle,
 ) : ViewModel(), LabelAdapter.Callback {
@@ -284,8 +284,8 @@ class LabelViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<LabelViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): LabelViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<LabelVM> {
+        override fun create(savedStateHandle: SavedStateHandle): LabelVM
     }
 
     companion object {

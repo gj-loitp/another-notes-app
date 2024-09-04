@@ -15,7 +15,7 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
-class LabelEditViewModel @AssistedInject constructor(
+class LabelEditVM @AssistedInject constructor(
     private val labelsRepository: LabelsRepository,
     @Assisted private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
@@ -116,8 +116,8 @@ class LabelEditViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface Factory : AssistedSavedStateViewModelFactory<LabelEditViewModel> {
-        override fun create(savedStateHandle: SavedStateHandle): LabelEditViewModel
+    interface Factory : AssistedSavedStateViewModelFactory<LabelEditVM> {
+        override fun create(savedStateHandle: SavedStateHandle): LabelEditVM
     }
 
     companion object {
