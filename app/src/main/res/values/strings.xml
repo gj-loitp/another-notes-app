@@ -1,11 +1,5 @@
-<resources>
-
-    <!-- Do not translate the app name -->
-<!--    <string name="app_name" translatable="false">Another Notes</string>-->
-
-    <!-- Can be translated to provided a sensible localized name for a "Notes" app -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name_short">Notes</string>
-
     <string name="action_archive">Archive</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_clear">Clear</string>

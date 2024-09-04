@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
     <!-- Do not translate the app name -->
     <!-- Can be translated to provided a sensible localized name for a "Notes" app -->
     <string name="app_name_short">Notas</string>
