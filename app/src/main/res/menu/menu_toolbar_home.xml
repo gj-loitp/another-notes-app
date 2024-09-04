@@ -8,7 +8,11 @@
         android:icon="@drawable/ic_search"
         android:title="@string/action_search"
         app:showAsAction="always" />
-
+    <item
+        android:id="@+id/itemSort"
+        android:icon="@drawable/ic_sort"
+        android:title="@string/sort_title"
+        app:showAsAction="always" />
     <item
         android:id="@+id/itemLayout"
         android:icon="@null"
@@ -18,19 +22,13 @@
         tools:title="@string/action_layout_grid" />
 
     <item
-        android:id="@+id/itemSort"
-        android:icon="@drawable/ic_sort"
-        android:title="@string/sort_title"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/itemEmptyTrash"
         android:title="@string/action_empty_trash"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/itemExtraAction"
         android:title="@string/action_extra"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
 </menu>

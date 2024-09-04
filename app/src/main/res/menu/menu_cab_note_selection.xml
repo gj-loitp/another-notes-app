@@ -40,17 +40,17 @@
 
     <item
         android:id="@+id/itemShare"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
         android:title="@string/action_share" />
 
     <item
         android:id="@+id/itemCopy"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
         android:title="@string/action_copy" />
 
     <item
         android:id="@+id/itemDelete"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
         android:title="@null"
         tools:title="@string/action_delete" />
 

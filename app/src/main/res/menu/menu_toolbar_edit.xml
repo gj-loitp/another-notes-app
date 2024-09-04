@@ -44,27 +44,27 @@
         android:id="@+id/itemShare"
         android:icon="@drawable/ic_share"
         android:title="@string/action_share"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/itemUncheckAll"
         android:title="@string/action_uncheck_all"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/itemDeleteChecked"
         android:title="@string/action_delete_checked"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/itemCopy"
         android:title="@string/action_copy"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/itemDelete"
         android:title="@null"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom"
         tools:title="@string/action_delete" />
 
 </menu>
