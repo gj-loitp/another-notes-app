@@ -169,22 +169,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.4"
     // Navigation component
-    implementation "androidx.navigation:navigation-ui-ktx:2.7.5"
-    implementation "androidx.navigation:navigation-fragment-ktx:2.7.5"
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.7"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.7"
     // Debug
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:2.12"
-//    debugImplementation "com.github.YarikSOffice.Venom:venom:0.6.0"
-//    releaseImplementation "com.github.YarikSOffice.Venom:venom-no-op:0.6.0"
-    // Dependencies for local unit tests
-//    testImplementation project(":sharedTest")
-    // Dependencies for android tests
-//    androidTestImplementation project(":sharedTest")
-//    androidTestImplementation "androidx.test:runner:1.5.2"
-//    androidTestImplementation "org.mockito:mockito-android:5.5.0"
-//    androidTestImplementation "androidx.room:room-testing:2.6.1"
-    // For screenshots
-//    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
-//    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.5.1"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:2.14"
 }
 
 tasks.named("build") {
