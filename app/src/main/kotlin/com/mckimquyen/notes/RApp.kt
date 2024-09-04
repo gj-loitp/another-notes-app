@@ -12,12 +12,13 @@ import com.mckimquyen.notes.ui.AppTheme
 import javax.inject.Inject
 
 //TODO roy93~ applovin
-//TODO roy93~ double to exit app
+
 //TODO roy93~ change icon launcher
 //TODO roy93~ keystore
 //TODo roy93~ switch ios, SwitchPreferenceCompat
 
 //done
+//double to exit app
 //leakcanary
 //permission ad_id
 //proguard

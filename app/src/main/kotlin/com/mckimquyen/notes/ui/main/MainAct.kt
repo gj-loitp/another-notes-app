@@ -3,10 +3,13 @@ package com.mckimquyen.notes.ui.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -67,6 +70,8 @@ class MainAct : AppCompatActivity(), NavController.OnDestinationChangedListener 
     private lateinit var navController: NavController
     private lateinit var binding: AMainBinding
 
+    private var doubleBackToExitPressedOnce = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_DayNight)
 
@@ -124,11 +129,26 @@ class MainAct : AppCompatActivity(), NavController.OnDestinationChangedListener 
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.closeDrawers()
             } else {
-                // The dispatcher only calls the topmost enabled callback, so temporarily
-                // disable it to be able to call the next callback on the stack.
-                isEnabled = false
-                onBackPressedDispatcher.onBackPressed()
-                isEnabled = true
+                val isLastFragment = navController.currentDestination?.id == R.id.fragment_home
+//                Log.d(
+//                    "",
+//                    "size ${navHostFragment.navController.currentDestination?.id}, isLastFragment $isLastFragment"
+//                )
+                if (isLastFragment) {
+                    if (doubleBackToExitPressedOnce) {
+                        isEnabled = false
+                        onBackPressedDispatcher.onBackPressed()
+                        isEnabled = true
+                    } else {
+                        doubleBackToExitPressedOnce = true
+                        Toast.makeText(this@MainAct, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+                        Handler(Looper.getMainLooper()).postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+                    }
+                } else {
+                    isEnabled = false
+                    onBackPressedDispatcher.onBackPressed()
+                    isEnabled = true
+                }
             }
         }
 
