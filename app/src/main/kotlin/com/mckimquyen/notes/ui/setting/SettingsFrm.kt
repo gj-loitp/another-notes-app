@@ -142,18 +142,12 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDlg.Callback, ExportPassw
         }
 
         // Apply padding so that the settings don't overlap with the navigation bar
-        val rcv = view.findViewById<RecyclerView>(R.id.recyclerView)
-//        if (rcv == null) {
-//            Log.e("roy93~", "onViewCreated: rcv == null")
-//        } else {
-//            Log.e("roy93~", "onViewCreated: rcv != null")
+//        val rcv = view.findViewById<RecyclerView>(R.id.recyclerView)
+//        ViewCompat.setOnApplyWindowInsetsListener(rcv) { _, insets ->
+//            val sysWindow = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+//            rcv.updatePadding(bottom = sysWindow.bottom)
+//            insets
 //        }
-
-        ViewCompat.setOnApplyWindowInsetsListener(rcv) { _, insets ->
-            val sysWindow = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
-            rcv.updatePadding(bottom = sysWindow.bottom)
-            insets
-        }
 
         setupViewModelObservers()
     }

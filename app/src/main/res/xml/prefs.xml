@@ -140,6 +140,12 @@
             app:key="version"
             app:title="@string/pref_about_version"
             tools:summary="1.0.0" />
+
+        <!--do not delete-->
+        <Preference
+            app:key=""
+            app:title=""
+            tools:summary="" />
     </PreferenceCategory>
 
 </PreferenceScreen>
