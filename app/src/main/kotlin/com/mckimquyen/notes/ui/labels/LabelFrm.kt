@@ -26,7 +26,7 @@ import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.FLabelBinding
 import com.mckimquyen.notes.ext.navigateSafe
 import com.mckimquyen.notes.ui.SharedViewModel
-import com.mckimquyen.notes.ui.common.ConfirmDialog
+import com.mckimquyen.notes.ui.common.ConfirmDlg
 import com.mckimquyen.notes.ui.labels.adt.LabelAdt
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
@@ -48,7 +48,7 @@ import com.google.android.material.R as RMaterial
  * The mode is determined by the argument passed by the navigation component.
  */
 class LabelFrm : DialogFragment(), Toolbar.OnMenuItemClickListener,
-    ActionMode.Callback, ConfirmDialog.Callback {
+    ActionMode.Callback, ConfirmDlg.Callback {
 
     @Inject
     lateinit var viewModelFactory: LabelVM.Factory
@@ -192,7 +192,7 @@ class LabelFrm : DialogFragment(), Toolbar.OnMenuItemClickListener,
     }
 
     private fun showDeleteConfirmDialog() {
-        ConfirmDialog.newInstance(
+        ConfirmDlg.newInstance(
             title = R.string.action_delete_selection,
             message = R.string.label_delete_message,
             btnPositive = R.string.action_delete

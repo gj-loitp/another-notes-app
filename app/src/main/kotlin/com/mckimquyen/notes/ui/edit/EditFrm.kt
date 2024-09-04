@@ -42,7 +42,7 @@ import com.mckimquyen.notes.model.entity.NoteType
 import com.mckimquyen.notes.model.entity.PinnedStatus
 import com.mckimquyen.notes.model.entity.Reminder
 import com.mckimquyen.notes.ui.SharedViewModel
-import com.mckimquyen.notes.ui.common.ConfirmDialog
+import com.mckimquyen.notes.ui.common.ConfirmDlg
 import com.mckimquyen.notes.ui.edit.adt.EditAdt
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
@@ -53,7 +53,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 import com.google.android.material.R as RMaterial
 
-class EditFrm : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.Callback {
+class EditFrm : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDlg.Callback {
 
     @Inject
     lateinit var viewModelFactory: EditVM.Factory
@@ -253,7 +253,7 @@ class EditFrm : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.Callb
         viewModel.shareEvent.observeEvent(viewLifecycleOwner, ::startSharingData)
 
         viewModel.showDeleteConfirmEvent.observeEvent(viewLifecycleOwner) {
-            ConfirmDialog.newInstance(
+            ConfirmDlg.newInstance(
                 title = R.string.action_delete_forever,
                 message = R.string.trash_delete_message,
                 btnPositive = R.string.action_delete
@@ -261,7 +261,7 @@ class EditFrm : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.Callb
         }
 
         viewModel.showRemoveCheckedConfirmEvent.observeEvent(viewLifecycleOwner) {
-            ConfirmDialog.newInstance(
+            ConfirmDlg.newInstance(
                 title = R.string.edit_convert_keep_checked,
                 btnPositive = R.string.action_delete,
                 btnNegative = R.string.action_keep
@@ -277,7 +277,7 @@ class EditFrm : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.Callb
         }
 
         viewModel.showLinkDialogEvent.observeEvent(viewLifecycleOwner) { linkText ->
-            ConfirmDialog.newInstance(
+            ConfirmDlg.newInstance(
                 btnPositive = R.string.action_open,
                 btnNegative = R.string.action_cancel,
                 messageStr = linkText,

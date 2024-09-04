@@ -41,7 +41,7 @@ import com.mckimquyen.notes.model.entity.PinnedStatus
 import com.mckimquyen.notes.ext.navigateSafe
 import com.mckimquyen.notes.ui.SharedViewModel
 import com.mckimquyen.notes.ui.StatusChange
-import com.mckimquyen.notes.ui.common.ConfirmDialog
+import com.mckimquyen.notes.ui.common.ConfirmDlg
 import com.mckimquyen.notes.ui.main.MainAct
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.note.adt.NoteAdt
@@ -59,7 +59,7 @@ import com.google.android.material.R as RMaterial
 /**
  * This fragment provides common code for home and search fragments.
  */
-abstract class NoteFrm : Fragment(), ActionMode.Callback, ConfirmDialog.Callback,
+abstract class NoteFrm : Fragment(), ActionMode.Callback, ConfirmDlg.Callback,
     NavController.OnDestinationChangedListener {
 
     @Inject
@@ -392,7 +392,7 @@ abstract class NoteFrm : Fragment(), ActionMode.Callback, ConfirmDialog.Callback
     }
 
     private fun showDeleteConfirmDialog() {
-        ConfirmDialog.newInstance(
+        ConfirmDlg.newInstance(
             title = R.string.action_delete_selection_forever,
             message = R.string.trash_delete_selected_message,
             btnPositive = R.string.action_delete

@@ -6,7 +6,7 @@ import android.app.NotificationManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import com.mckimquyen.notes.di.DaggerAppComponent
-import com.mckimquyen.notes.model.NotesDatabase
+import com.mckimquyen.notes.model.NotesDb
 import com.mckimquyen.notes.model.PrefsManager
 import com.mckimquyen.notes.ui.AppTheme
 import javax.inject.Inject
@@ -35,7 +35,7 @@ class RApp : Application() {
     // for UI tests, should be injected in test ideally
     // but this works for a temporary solution.
     @Inject
-    lateinit var database: NotesDatabase
+    lateinit var database: NotesDb
 
     override fun onCreate() {
         super.onCreate()

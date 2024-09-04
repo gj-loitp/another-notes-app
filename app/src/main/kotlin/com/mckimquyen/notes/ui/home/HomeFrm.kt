@@ -22,7 +22,7 @@ import com.mckimquyen.notes.NavGraphMainDirections
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.ext.navigateSafe
 import com.mckimquyen.notes.model.entity.NoteStatus
-import com.mckimquyen.notes.ui.common.ConfirmDialog
+import com.mckimquyen.notes.ui.common.ConfirmDlg
 import com.mckimquyen.notes.ui.navigation.HomeDestination
 import com.mckimquyen.notes.ui.note.NoteFrm
 import com.mckimquyen.notes.ui.note.adt.NoteListLayoutMode
@@ -190,7 +190,7 @@ class HomeFrm : NoteFrm(), Toolbar.OnMenuItemClickListener {
     }
 
     private fun showEmptyTrashConfirmDialog() {
-        ConfirmDialog.newInstance(
+        ConfirmDlg.newInstance(
             title = R.string.action_empty_trash,
             message = R.string.trash_empty_message,
             btnPositive = R.string.action_empty_trash_short

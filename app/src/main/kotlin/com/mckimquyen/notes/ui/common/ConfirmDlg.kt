@@ -12,7 +12,7 @@ import com.mckimquyen.notes.R
 /**
  * Simple dialog with a callback to ask user for confirmation.
  */
-class ConfirmDialog : DialogFragment() {
+class ConfirmDlg : DialogFragment() {
 
     override fun onCreateDialog(state: Bundle?): Dialog {
         val context = requireContext()
@@ -55,7 +55,7 @@ class ConfirmDialog : DialogFragment() {
     private val callback: Callback
         get() = (parentFragment as? Callback)
             ?: (activity as? Callback)
-            ?: error("No callback for ConfirmDialog")
+            ?: error("No callback for ConfirmDlg")
 
     interface Callback {
         fun onDialogPositiveButtonClicked(tag: String?) = Unit
@@ -77,8 +77,8 @@ class ConfirmDialog : DialogFragment() {
             @StringRes btnPositive: Int,
             @StringRes btnNegative: Int = R.string.action_cancel,
             messageStr: String = "",
-        ): ConfirmDialog {
-            val dialog = ConfirmDialog()
+        ): ConfirmDlg {
+            val dialog = ConfirmDlg()
             dialog.arguments = bundleOf(
                 ARG_TITLE to title,
                 ARG_MESSAGE to message,

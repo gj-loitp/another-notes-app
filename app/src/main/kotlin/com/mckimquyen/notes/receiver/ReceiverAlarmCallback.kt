@@ -28,7 +28,11 @@ class ReceiverAlarmCallback @Inject constructor(
                 AlarmManager.RTC_WAKEUP, time, alarmIntent
             )
         } else {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, alarmIntent)
+            alarmManager.setExact(
+                /* type = */ AlarmManager.RTC_WAKEUP,
+                /* triggerAtMillis = */ time,
+                /* operation = */ alarmIntent
+            )
         }
     }
 
@@ -46,6 +50,11 @@ class ReceiverAlarmCallback @Inject constructor(
         if (Build.VERSION.SDK_INT >= 23) {
             flags = flags or PendingIntent.FLAG_IMMUTABLE
         }
-        return PendingIntent.getBroadcast(context, noteId.toInt(), receiverIntent, flags)
+        return PendingIntent.getBroadcast(
+            /* context = */ context,
+            /* requestCode = */ noteId.toInt(),
+            /* intent = */ receiverIntent,
+            /* flags = */ flags
+        )
     }
 }

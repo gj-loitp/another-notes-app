@@ -168,7 +168,6 @@ class PrefsManager @Inject constructor(
         const val AUTO_EXPORT = "auto_export"
         const val IMPORT_DATA = "import_data"
         const val CLEAR_DATA = "clear_data"
-        const val VIEW_LICENSES = "view_licenses"
         const val VERSION = "version"
 
         // Other keys

@@ -1,5 +1,6 @@
 package com.mckimquyen.notes.ui.common
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -12,6 +13,7 @@ import java.lang.Float.min
 // See: https://github.com/material-components/material-components-android/issues/851#issuecomment-769752413
 class SnackBarFloatingActionButtonBehaviour(context: Context?, attrs: AttributeSet?) :
     CoordinatorLayout.Behavior<View>(context, attrs) {
+    @SuppressLint("RestrictedApi")
     override fun layoutDependsOn(
         parent: CoordinatorLayout,
         child: View,
@@ -26,9 +28,9 @@ class SnackBarFloatingActionButtonBehaviour(context: Context?, attrs: AttributeS
         dependency: View,
     ): Boolean {
         val translationY = min(
-            0f,
+            /* a = */ 0f,
             // Move the FAB upwards with the SnackBar
-            dependency.translationY - dependency.height
+            /* b = */ dependency.translationY - dependency.height
                     // Adjust the spacing between the two to match the margin of the FAB
                     + dependency.marginTop - child.marginBottom
         )
@@ -38,7 +40,11 @@ class SnackBarFloatingActionButtonBehaviour(context: Context?, attrs: AttributeS
         return true
     }
 
-    override fun onDependentViewRemoved(parent: CoordinatorLayout, child: View, dependency: View) {
+    override fun onDependentViewRemoved(
+        parent: CoordinatorLayout,
+        child: View,
+        dependency: View,
+    ) {
         child.translationY = 0f
         return
     }

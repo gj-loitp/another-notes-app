@@ -2,7 +2,7 @@ package com.mckimquyen.notes.di
 
 import android.content.Context
 import androidx.room.Room
-import com.mckimquyen.notes.model.NotesDatabase
+import com.mckimquyen.notes.model.NotesDb
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -14,14 +14,14 @@ object DatabaseModule {
     @Singleton
     fun providesDatabase(context: Context) = Room.databaseBuilder(
         context,
-        NotesDatabase::class.java, "notes_db"
+        NotesDb::class.java, "notes_db"
     )
-        .addMigrations(*NotesDatabase.ALL_MIGRATIONS)
+        .addMigrations(*NotesDb.ALL_MIGRATIONS)
         .build()
 
     @Provides
-    fun providesNotesDao(database: NotesDatabase) = database.notesDao()
+    fun providesNotesDao(database: NotesDb) = database.notesDao()
 
     @Provides
-    fun providesLabelsDao(database: NotesDatabase) = database.labelsDao()
+    fun providesLabelsDao(database: NotesDb) = database.labelsDao()
 }

@@ -35,7 +35,7 @@ import com.mckimquyen.notes.databinding.DlgReminderBinding
 import com.mckimquyen.notes.ext.contains
 import com.mckimquyen.notes.ext.setMaxWidth
 import com.mckimquyen.notes.ui.SharedViewModel
-import com.mckimquyen.notes.ui.common.ConfirmDialog
+import com.mckimquyen.notes.ui.common.ConfirmDlg
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
 import debugCheck
@@ -45,7 +45,7 @@ import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Provider
 
-class ReminderDlg : DialogFragment(), RecurrenceListCallback, RecurrencePickerCallback, ConfirmDialog.Callback {
+class ReminderDlg : DialogFragment(), RecurrenceListCallback, RecurrencePickerCallback, ConfirmDlg.Callback {
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
@@ -223,7 +223,7 @@ class ReminderDlg : DialogFragment(), RecurrenceListCallback, RecurrencePickerCa
                 } else {
                     // Ask user to go to the app's notification settings to grant the permission.
                     // Only do this if the permission wasn't requested just before.
-                    ConfirmDialog.newInstance(
+                    ConfirmDlg.newInstance(
                         message = R.string.reminder_notif_permission,
                         btnPositive = R.string.action_ok,
                     ).show(childFragmentManager, NOTIF_PERMISSION_DENIED_DIALOG)
@@ -240,7 +240,7 @@ class ReminderDlg : DialogFragment(), RecurrenceListCallback, RecurrencePickerCa
 
             shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
                 // Show dialog explaning permission request.
-                ConfirmDialog.newInstance(
+                ConfirmDlg.newInstance(
                     message = R.string.reminder_notif_permission,
                     btnPositive = R.string.action_ok,
                 ).show(childFragmentManager, NOTIF_PERMISSION_DIALOG)

@@ -34,7 +34,7 @@ import com.mckimquyen.notes.ext.rateApp
 import com.mckimquyen.notes.ext.shareApp
 import com.mckimquyen.notes.model.PrefsManager
 import com.mckimquyen.notes.ui.AppTheme
-import com.mckimquyen.notes.ui.common.ConfirmDialog
+import com.mckimquyen.notes.ui.common.ConfirmDlg
 import com.mckimquyen.notes.ui.main.MainAct
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.viewModel
@@ -42,7 +42,7 @@ import java.text.DateFormat
 import javax.inject.Inject
 import com.google.android.material.R as RMaterial
 
-class SettingsFrm : PreferenceFragmentCompat(), ConfirmDialog.Callback, ExportPasswordDlg.Callback,
+class SettingsFrm : PreferenceFragmentCompat(), ConfirmDlg.Callback, ExportPasswordDlg.Callback,
     ImportPasswordDlg.Callback {
 
     companion object {
@@ -192,7 +192,7 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDialog.Callback, ExportPa
         requirePreference<Preference>(PrefsManager.DYNAMIC_COLORS).apply {
             if (DynamicColors.isDynamicColorAvailable()) {
                 setOnPreferenceClickListener {
-                    ConfirmDialog.newInstance(
+                    ConfirmDlg.newInstance(
                         title = R.string.pref_restart_dialog_title,
                         message = R.string.pref_restart_dialog_description,
                         btnPositive = R.string.action_ok
@@ -239,7 +239,7 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDialog.Callback, ExportPa
 
         autoExportPref.setOnPreferenceChangeListener { _, newValue ->
             if (newValue == true) {
-                ConfirmDialog.newInstance(
+                ConfirmDlg.newInstance(
                     title = R.string.pref_data_auto_export,
                     message = R.string.auto_export_message,
                     btnPositive = R.string.action_ok
@@ -260,7 +260,7 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDialog.Callback, ExportPa
         }
 
         requirePreference<Preference>(PrefsManager.CLEAR_DATA).setOnPreferenceClickListener {
-            ConfirmDialog.newInstance(
+            ConfirmDlg.newInstance(
                 title = R.string.pref_data_clear,
                 message = R.string.pref_data_clear_confirm_message,
                 btnPositive = R.string.action_clear

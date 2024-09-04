@@ -18,7 +18,14 @@ class AppBarLayoutWithPaddingBehavior(context: Context?, attrs: AttributeSet?) :
     ): WindowInsetsCompat {
         // Set left and right toolbar padding to prevent buttons from overlapping with system bars in landscape mode
         val sysWindow = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-        child.findViewById<MaterialToolbar>(R.id.toolbar).updatePadding(left = sysWindow.left, right = sysWindow.right)
-        return super.onApplyWindowInsets(coordinatorLayout, child, insets)
+        child.findViewById<MaterialToolbar>(R.id.toolbar).updatePadding(
+            left = sysWindow.left,
+            right = sysWindow.right
+        )
+        return super.onApplyWindowInsets(
+            /* coordinatorLayout = */ coordinatorLayout,
+            /* child = */ child,
+            /* insets = */ insets
+        )
     }
 }

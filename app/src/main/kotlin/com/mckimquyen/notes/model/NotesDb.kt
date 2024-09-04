@@ -23,7 +23,7 @@ import com.mckimquyen.notes.model.entity.NoteFts
         Label::class,
         LabelRef::class,
     ],
-    version = NotesDatabase.VERSION
+    version = NotesDb.VERSION
 )
 @TypeConverters(
     DateTimeConverter::class,
@@ -33,7 +33,7 @@ import com.mckimquyen.notes.model.entity.NoteFts
     PinnedStatusConverter::class,
     RecurrenceConverter::class,
 )
-abstract class NotesDatabase : RoomDatabase() {
+abstract class NotesDb : RoomDatabase() {
 
     abstract fun notesDao(): NotesDao
 
