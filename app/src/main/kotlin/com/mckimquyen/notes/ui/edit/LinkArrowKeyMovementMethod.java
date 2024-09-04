@@ -17,7 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.mckimquyen.notes.ui.edit.adapter.EditEditText;
+import com.mckimquyen.notes.ui.edit.adt.EditEditText;
 
 import java.lang.reflect.Method;
 

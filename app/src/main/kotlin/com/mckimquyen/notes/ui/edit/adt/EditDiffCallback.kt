@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.edit.adapter
+package com.mckimquyen.notes.ui.edit.adt
 
 import androidx.recyclerview.widget.DiffUtil
 

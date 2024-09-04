@@ -1,7 +1,7 @@
-package com.mckimquyen.notes.ui.edit.adapter
+package com.mckimquyen.notes.ui.edit.adt
 
 import androidx.annotation.Keep
-import com.mckimquyen.notes.ui.edit.adapter.EditAdapter.ViewType
+import com.mckimquyen.notes.ui.edit.adt.EditAdapter.ViewType
 
 sealed class EditListItem {
     abstract val type: ViewType

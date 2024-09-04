@@ -6,21 +6,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.mckimquyen.notes.databinding.VItemLabelBinding
 
-class LabelAdapter(
+class LabelAdt(
     val context: Context,
     val callback: Callback,
-) : ListAdapter<LabelListItem, LabelListViewHolder>(LabelListDiffCallback()) {
+) : ListAdapter<LabelListItem, LabelListVH>(LabelListDiffCallback()) {
 
     init {
         setHasStableIds(true)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabelListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabelListVH {
         val inflater = LayoutInflater.from(parent.context)
-        return LabelListViewHolder(VItemLabelBinding.inflate(inflater, parent, false))
+        return LabelListVH(VItemLabelBinding.inflate(inflater, parent, false))
     }
 
-    override fun onBindViewHolder(holder: LabelListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LabelListVH, position: Int) {
         holder.bind(item = getItem(position), adapter = this)
     }
 

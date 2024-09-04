@@ -43,7 +43,7 @@ import com.mckimquyen.notes.model.entity.PinnedStatus
 import com.mckimquyen.notes.model.entity.Reminder
 import com.mckimquyen.notes.ui.SharedViewModel
 import com.mckimquyen.notes.ui.common.ConfirmDialog
-import com.mckimquyen.notes.ui.edit.adapter.EditAdapter
+import com.mckimquyen.notes.ui.edit.adt.EditAdapter
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.startSharingData

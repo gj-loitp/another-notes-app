@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.edit.adapter
+package com.mckimquyen.notes.ui.edit.adt
 
 import android.annotation.SuppressLint
 import android.content.Context

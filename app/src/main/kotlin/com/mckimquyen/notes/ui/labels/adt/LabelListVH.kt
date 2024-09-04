@@ -5,9 +5,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.VItemLabelBinding
 
-class LabelListViewHolder(val binding: VItemLabelBinding) : RecyclerView.ViewHolder(binding.root) {
+class LabelListVH(val binding: VItemLabelBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: LabelListItem, adapter: LabelAdapter) {
+    fun bind(item: LabelListItem, adapter: LabelAdt) {
         var name = item.label.name
         if (com.mckimquyen.notes.BuildConfig.ENABLE_DEBUG_FEATURES) {
             name += " (${item.label.id})"

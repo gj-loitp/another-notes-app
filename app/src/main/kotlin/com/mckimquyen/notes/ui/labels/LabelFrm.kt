@@ -27,7 +27,7 @@ import com.mckimquyen.notes.databinding.FLabelBinding
 import com.mckimquyen.notes.ext.navigateSafe
 import com.mckimquyen.notes.ui.SharedViewModel
 import com.mckimquyen.notes.ui.common.ConfirmDialog
-import com.mckimquyen.notes.ui.labels.adt.LabelAdapter
+import com.mckimquyen.notes.ui.labels.adt.LabelAdt
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.utils.startSafeActionMode
@@ -118,7 +118,7 @@ class LabelFrm : DialogFragment(), Toolbar.OnMenuItemClickListener,
 
         val rcv = binding.recyclerView
         rcv.setHasFixedSize(true)
-        val adapter = LabelAdapter(context, viewModel)
+        val adapter = LabelAdt(context, viewModel)
         val layoutManager = LinearLayoutManager(context)
         rcv.adapter = adapter
         rcv.layoutManager = layoutManager
@@ -131,7 +131,7 @@ class LabelFrm : DialogFragment(), Toolbar.OnMenuItemClickListener,
         _binding = null
     }
 
-    private fun setupViewModelObservers(adapter: LabelAdapter) {
+    private fun setupViewModelObservers(adapter: LabelAdt) {
         viewModel.labelItems.observe(viewLifecycleOwner) { items ->
             adapter.submitList(items)
         }

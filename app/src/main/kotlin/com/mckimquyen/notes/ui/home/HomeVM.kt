@@ -44,7 +44,14 @@ class HomeVM @AssistedInject constructor(
     reminderAlarmManager: ReminderAlarmManager,
     noteItemFactory: NoteItemFactory,
     private val buildTypeBehavior: BuildTypeBehavior,
-) : NoteVM(savedStateHandle, notesRepository, labelsRepository, prefs, noteItemFactory, reminderAlarmManager),
+) : NoteVM(
+    savedStateHandle = savedStateHandle,
+    notesRepository = notesRepository,
+    labelsRepository = labelsRepository,
+    prefs = prefs,
+    noteItemFactory = noteItemFactory,
+    reminderAlarmManager = reminderAlarmManager
+),
     NoteAdt.Callback {
 
     var currentDestination: HomeDestination = HomeDestination.Status(NoteStatus.ACTIVE)

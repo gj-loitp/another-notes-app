@@ -31,7 +31,7 @@
         android:minWidth="0dp"
         android:minHeight="0dp" />
 
-    <com.mckimquyen.notes.ui.edit.adapter.EditEditText
+    <com.mckimquyen.notes.ui.edit.adt.EditEditText
         android:id="@+id/contentEdt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

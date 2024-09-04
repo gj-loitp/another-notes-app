@@ -10,7 +10,7 @@ import com.mckimquyen.notes.model.entity.Label
 import com.mckimquyen.notes.model.entity.LabelRef
 import com.mckimquyen.notes.ui.AssistedSavedStateViewModelFactory
 import com.mckimquyen.notes.ui.Event
-import com.mckimquyen.notes.ui.labels.adt.LabelAdapter
+import com.mckimquyen.notes.ui.labels.adt.LabelAdt
 import com.mckimquyen.notes.ui.labels.adt.LabelListItem
 import com.mckimquyen.notes.ui.send
 import dagger.assisted.Assisted
@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 class LabelVM @AssistedInject constructor(
     private val labelsRepository: LabelsRepository,
     @Assisted private val savedStateHandle: SavedStateHandle,
-) : ViewModel(), LabelAdapter.Callback {
+) : ViewModel(), LabelAdt.Callback {
 
     private val _labelItems = MutableLiveData<List<LabelListItem>>()
     val labelItems: LiveData<List<LabelListItem>>
