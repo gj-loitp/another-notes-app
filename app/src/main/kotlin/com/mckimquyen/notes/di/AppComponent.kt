@@ -11,9 +11,9 @@ import com.mckimquyen.notes.ui.main.MainActivity
 import com.mckimquyen.notes.ui.noti.NotificationActivity
 import com.mckimquyen.notes.ui.reminder.ReminderDialog
 import com.mckimquyen.notes.ui.search.SearchFragment
-import com.mckimquyen.notes.ui.settings.ExportPasswordDlg
-import com.mckimquyen.notes.ui.settings.ImportPasswordDlg
-import com.mckimquyen.notes.ui.settings.SettingsFrm
+import com.mckimquyen.notes.ui.setting.ExportPasswordDlg
+import com.mckimquyen.notes.ui.setting.ImportPasswordDlg
+import com.mckimquyen.notes.ui.setting.SettingsFrm
 import com.mckimquyen.notes.ui.sort.SortDialog
 import dagger.BindsInstance
 import dagger.Component

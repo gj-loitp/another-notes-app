@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.settings
+package com.mckimquyen.notes.ui.setting
 
 import android.os.Build
 import android.security.keystore.KeyProperties

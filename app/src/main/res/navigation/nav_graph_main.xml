@@ -66,7 +66,7 @@
 
     <fragment
         android:id="@+id/fragment_settings"
-        android:name="com.mckimquyen.notes.ui.settings.SettingsFrm"
+        android:name="com.mckimquyen.notes.ui.setting.SettingsFrm"
         tools:layout="@layout/f_settings">
         <action
             android:id="@+id/action_about_libraries"
@@ -78,7 +78,7 @@
 
     <fragment
         android:id="@+id/fragment_settings_nested"
-        android:name="com.mckimquyen.notes.ui.settings.NestedSettingsFrm"
+        android:name="com.mckimquyen.notes.ui.setting.NestedSettingsFrm"
         tools:layout="@layout/f_settings">
         <argument
             android:name="prefsXml"

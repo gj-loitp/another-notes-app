@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.settings
+package com.mckimquyen.notes.ui.setting
 
 import android.os.Bundle
 import android.view.View

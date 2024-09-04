@@ -1,4 +1,4 @@
-package com.mckimquyen.notes.ui.settings
+package com.mckimquyen.notes.ui.setting
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
