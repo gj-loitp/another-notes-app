@@ -1,5 +1,6 @@
 package com.mckimquyen.notes.model.entity
 
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Fts4
@@ -9,6 +10,7 @@ import androidx.room.FtsOptions
     contentEntity = Note::class,
     tokenizer = FtsOptions.TOKENIZER_UNICODE61
 )
+@Keep
 @Entity(tableName = "notes_fts")
 data class NoteFts(
     @ColumnInfo(name = "title")

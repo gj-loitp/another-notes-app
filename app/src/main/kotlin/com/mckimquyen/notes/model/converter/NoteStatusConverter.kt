@@ -20,7 +20,10 @@ object NoteStatusConverter : KSerializer<NoteStatus> {
 
     override val descriptor = PrimitiveSerialDescriptor("NoteStatus", PrimitiveKind.INT)
 
-    override fun serialize(encoder: Encoder, value: NoteStatus) = encoder.encodeInt(toInt(value))
+    override fun serialize(
+        encoder: Encoder,
+        value: NoteStatus,
+    ) = encoder.encodeInt(toInt(value))
 
     override fun deserialize(decoder: Decoder) = toStatus(decoder.decodeInt())
 }

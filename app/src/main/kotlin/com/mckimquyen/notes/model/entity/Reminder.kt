@@ -2,6 +2,7 @@
 
 package com.mckimquyen.notes.model.entity
 
+import androidx.annotation.Keep
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.RecurrenceFinder
 import com.mckimquyen.notes.model.converter.DateTimeConverter
@@ -14,6 +15,7 @@ import java.util.Date
 /**
  * A reminder for a [Note].
  */
+@Keep
 @Serializable
 data class Reminder(
 
@@ -113,11 +115,17 @@ data class Reminder(
                 start
             } else {
                 Date(
-                    recurrenceFinder.find(recur, start.time, 1).firstOrNull()
+                    /* date = */ recurrenceFinder.find(recur, start.time, 1).firstOrNull()
                         ?: throw InvalidReminderException("Recurring reminder has no events.")
                 )
             }
-            return Reminder(start = start, recurrence = recur, next = date, count = 1, done = false)
+            return Reminder(
+                start = start,
+                recurrence = recur,
+                next = date,
+                count = 1,
+                done = false
+            )
         }
     }
 }

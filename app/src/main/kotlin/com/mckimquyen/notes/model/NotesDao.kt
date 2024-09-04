@@ -156,5 +156,8 @@ interface NotesDao {
      * Used for deleting notes in trash.
      */
     @Query("DELETE FROM notes WHERE status == :status AND modified_date < :minDate")
-    suspend fun deleteNotesByStatusAndDate(status: NoteStatus, minDate: Long)
+    suspend fun deleteNotesByStatusAndDate(
+        status: NoteStatus,
+        minDate: Long,
+    )
 }

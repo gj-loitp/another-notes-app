@@ -5,4 +5,7 @@ package com.mckimquyen.notes.model
  * during deserialization of data from a future version of the app.
  * This is used to catch forward compatibility fails.
  */
-class BadDataException(message: String = "", cause: Throwable? = null) : IllegalStateException(message, cause)
+class BadDataException(
+    message: String = "",
+    cause: Throwable? = null,
+) : IllegalStateException(message, cause)

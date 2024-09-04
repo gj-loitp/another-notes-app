@@ -15,7 +15,7 @@ object DateTimeConverter : KSerializer<Date> {
 
     private val threadLocalDateFormat = ThreadLocal<SimpleDateFormat>()
 
-    val dateFormat: SimpleDateFormat
+    private val dateFormat: SimpleDateFormat
         get() {
             // SimpleDateFormat is not thread-safe therefore a ThreadLocal is used here. It's only
             // used for serialization so it technically doesn't have to be thread-safe, but whatever.

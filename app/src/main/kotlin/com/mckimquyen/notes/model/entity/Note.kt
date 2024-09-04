@@ -164,7 +164,7 @@ data class Note(
                             appendLine(item.content)
                         }
                     }
-                    if (length > 0) {
+                    if (isNotEmpty()) {
                         deleteCharAt(lastIndex)
                     }
                 }

@@ -13,7 +13,10 @@ interface JsonManager {
      * Import notes data from JSON, merging with existing data.
      * Returns true if import was successful, false otherwise.
      */
-    suspend fun importJsonData(data: String, importKey: SecretKey? = null): ImportResult
+    suspend fun importJsonData(
+        data: String,
+        importKey: SecretKey? = null,
+    ): ImportResult
 
     enum class ImportResult {
         SUCCESS,

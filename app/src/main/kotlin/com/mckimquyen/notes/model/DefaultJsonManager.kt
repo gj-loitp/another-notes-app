@@ -100,7 +100,10 @@ class DefaultJsonManager @Inject constructor(
         )
     }
 
-    override suspend fun importJsonData(data: String, importKey: SecretKey?): ImportResult {
+    override suspend fun importJsonData(
+        data: String,
+        importKey: SecretKey?,
+    ): ImportResult {
         // JSON can either describe an EncryptedNotesData object or a NotesData object.
         val jsonData: String = try {
             val encryptedNotesData: EncryptedNotesData = json.decodeFromString(data)
@@ -198,7 +201,10 @@ class DefaultJsonManager @Inject constructor(
         return newLabelsMap
     }
 
-    private suspend fun importNotes(notesData: NotesData, newLabelsMap: Map<Long, Long>) {
+    private suspend fun importNotes(
+        notesData: NotesData,
+        newLabelsMap: Map<Long, Long>,
+    ) {
         val existingNotes = notesDao.getAll().associateBy { it.note.id }
         val labelRefs = mutableListOf<LabelRef>()
         for ((id, ns) in notesData.notes) {
@@ -250,7 +256,10 @@ class DefaultJsonManager @Inject constructor(
         labelsDao.insertRefs(labelRefs)
     }
 
-    private fun mergeNotes(old: Note, new: Note): Note? {
+    private fun mergeNotes(
+        old: Note,
+        new: Note,
+    ): Note? {
         val reminder = when {
             old.reminder == null && new.reminder != null -> new.reminder
             old.reminder != null && new.reminder == null -> old.reminder
@@ -266,7 +275,10 @@ class DefaultJsonManager @Inject constructor(
         return new.copy(reminder = reminder)
     }
 
-    private fun compareReminders(old: Reminder, new: Reminder) =
+    private fun compareReminders(
+        old: Reminder,
+        new: Reminder,
+    ) =
         old.start == new.start && old.recurrence == new.recurrence
 
     companion object {
