@@ -17,7 +17,7 @@ import javax.inject.Inject
 //TODO roy93~ rate app, share app, more app
 //TODO roy93~ policy
 //TODO roy93~ keystore
-//TODo roy93~ switch ios
+//TODo roy93~ switch ios, SwitchPreferenceCompat
 
 //done
 //leakcanary
