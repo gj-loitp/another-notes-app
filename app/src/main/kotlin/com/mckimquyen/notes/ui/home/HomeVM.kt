@@ -32,7 +32,7 @@ import com.mckimquyen.notes.ui.send
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import com.maltaisn.notes.debugCheck
+import debugCheck
 import kotlinx.coroutines.launch
 import java.util.Calendar
 

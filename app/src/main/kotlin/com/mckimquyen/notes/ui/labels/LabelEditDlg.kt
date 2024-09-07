@@ -18,7 +18,7 @@ import com.mckimquyen.notes.ui.SharedViewModel
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.viewModel
-import com.maltaisn.notes.debugCheck
+import debugCheck
 import javax.inject.Inject
 import javax.inject.Provider
 
