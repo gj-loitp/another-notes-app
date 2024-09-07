@@ -23,17 +23,23 @@ class ReceiverAlarmCallback @Inject constructor(
     @SuppressLint("ScheduleExactAlarm")
     override fun addAlarm(noteId: Long, time: Long) {
         val alarmIntent = getAlarmPendingIndent(noteId)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP, time, alarmIntent
-            )
-        } else {
-            alarmManager.setExact(
-                /* type = */ AlarmManager.RTC_WAKEUP,
-                /* triggerAtMillis = */ time,
-                /* operation = */ alarmIntent
-            )
-        }
+        //TODO roy93~ co the chuyen sang dung alarm chinh xac setExactAndAllowWhileIdle trong tuong lai
+//        alarmManager.setExactAndAllowWhileIdle(
+//            /* type = */ AlarmManager.RTC_WAKEUP,
+//            /* triggerAtMillis = */ time,
+//            /* operation = */ alarmIntent,
+//        )
+//        alarmManager.setInexactRepeating(
+//            AlarmManager.RTC_WAKEUP,
+//            time,
+//            AlarmManager.INTERVAL_FIFTEEN_MINUTES,
+//            alarmIntent
+//        )
+        alarmManager.set(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            alarmIntent
+        )
     }
 
     override fun removeAlarm(noteId: Long) {
@@ -47,9 +53,7 @@ class ReceiverAlarmCallback @Inject constructor(
             putExtra(AlarmReceiver.EXTRA_NOTE_ID, noteId)
         }
         var flags = 0
-        if (Build.VERSION.SDK_INT >= 23) {
-            flags = flags or PendingIntent.FLAG_IMMUTABLE
-        }
+        flags = flags or PendingIntent.FLAG_IMMUTABLE
         return PendingIntent.getBroadcast(
             /* context = */ context,
             /* requestCode = */ noteId.toInt(),
