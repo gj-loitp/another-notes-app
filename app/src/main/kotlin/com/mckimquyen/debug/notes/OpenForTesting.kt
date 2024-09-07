@@ -1,6 +1,6 @@
 
 
-package com.mckimquyen.notes
+package com.mckimquyen.debug.notes
 
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)
 annotation class OpenClass

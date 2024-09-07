@@ -1,11 +1,14 @@
 
 
-package com.mckimquyen.notes.ui.home
+package com.mckimquyen.debug.notes.ui.home
 
+import com.mckimquyen.debug.notes.DebugUtils
 import com.mckimquyen.notes.model.LabelsRepository
 import com.mckimquyen.notes.model.NotesRepository
 import com.mckimquyen.notes.model.entity.LabelRef
 import com.mckimquyen.notes.model.entity.NoteStatus
+import com.mckimquyen.notes.ui.home.BuildTypeBehavior
+import com.mckimquyen.notes.ui.home.HomeVM
 import com.mckimquyen.notes.ui.navigation.HomeDestination
 import javax.inject.Inject
 
@@ -19,7 +22,7 @@ class DebugBuildTypeBehavior @Inject constructor(
         val destination = viewModel.currentDestination
         if (destination is HomeDestination.Status) {
             repeat(3) {
-                notesRepository.insertNote(com.mckimquyen.notes.DebugUtils.getRandomNote(destination.status))
+                notesRepository.insertNote(DebugUtils.getRandomNote(destination.status))
             }
 
             // For performance testing
@@ -36,7 +39,7 @@ class DebugBuildTypeBehavior @Inject constructor(
 //            }
         } else if (destination is HomeDestination.Labels) {
             repeat(3) {
-                val id = notesRepository.insertNote(com.mckimquyen.notes.DebugUtils.getRandomNote(NoteStatus.ACTIVE))
+                val id = notesRepository.insertNote(DebugUtils.getRandomNote(NoteStatus.ACTIVE))
                 labelsRepository.insertLabelRefs(listOf(LabelRef(id, destination.label.id)))
             }
         }

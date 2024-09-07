@@ -1,6 +1,6 @@
 
 
-package com.mckimquyen.notes
+package com.mckimquyen.debug.notes
 
 import com.mckimquyen.notes.model.entity.BlankNoteMetadata
 import com.mckimquyen.notes.model.entity.ListNoteMetadata
@@ -19,21 +19,21 @@ import kotlin.time.Duration.Companion.days
 object DebugUtils {
 
     fun getRandomNote(status: NoteStatus): Note {
-        val title = com.mckimquyen.notes.DebugUtils.getRandomString(10..32)
+        val title = getRandomString(10..32)
         val type = NoteType.values().random()
 
         val content: String
         val metadata: NoteMetadata
         when (type) {
             NoteType.TEXT -> {
-                content = com.mckimquyen.notes.DebugUtils.getRandomString(32..256)
+                content = getRandomString(32..256)
                 metadata = BlankNoteMetadata
             }
             NoteType.LIST -> {
                 val size = (1..10).random()
                 content = buildString {
                     repeat(size) {
-                        appendLine(com.mckimquyen.notes.DebugUtils.getRandomString(16..128))
+                        appendLine(getRandomString(16..128))
                     }
                     deleteCharAt(lastIndex)
                 }
@@ -41,8 +41,8 @@ object DebugUtils {
             }
         }
 
-        val added = com.mckimquyen.notes.DebugUtils.getRandomDate()
-        val modified = com.mckimquyen.notes.DebugUtils.getRandomDate(added)
+        val added = getRandomDate()
+        val modified = getRandomDate(added)
 
         return Note(0, type, title, content, metadata, added, modified, status,
             if (status == NoteStatus.ACTIVE) PinnedStatus.UNPINNED else PinnedStatus.CANT_PIN, null)
@@ -50,21 +50,21 @@ object DebugUtils {
 
     private fun getRandomString(size: IntRange): String {
         val s = size.random()
-        var start = (0 until com.mckimquyen.notes.DebugUtils.LOREM_IPSUM.length - s).random()
+        var start = (0 until LOREM_IPSUM.length - s).random()
         while (start > 0) {
-            if (!com.mckimquyen.notes.DebugUtils.LOREM_IPSUM[start].isLetter()) {
+            if (!LOREM_IPSUM[start].isLetter()) {
                 break
             }
             start--
         }
         var end = start + s
-        while (end < com.mckimquyen.notes.DebugUtils.LOREM_IPSUM.length) {
-            if (!com.mckimquyen.notes.DebugUtils.LOREM_IPSUM[end].isLetter()) {
+        while (end < LOREM_IPSUM.length) {
+            if (!LOREM_IPSUM[end].isLetter()) {
                 break
             }
             end++
         }
-        return com.mckimquyen.notes.DebugUtils.LOREM_IPSUM.substring(start + 1, end)
+        return LOREM_IPSUM.substring(start + 1, end)
             .trim().replaceFirstChar { it.titlecaseChar() }
     }
 
