@@ -13,9 +13,8 @@ import javax.inject.Inject
 
 //TODO roy93~ applovin
 
-//TODO roy93~ keystore
-
 //done
+//keystore
 //switch ios, SwitchPreferenceCompat
 //roy93~ change icon launcher
 //double to exit app
