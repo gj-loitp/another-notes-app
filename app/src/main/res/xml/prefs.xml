@@ -17,12 +17,14 @@
         <SwitchPreferenceCompat
             android:defaultValue="true"
             app:key="dynamic_colors"
-            app:title="@string/pref_dynamic_colors" />
+            app:title="@string/pref_dynamic_colors"
+            app:widgetLayout="@drawable/ic_material_switch" />
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
             app:key="strikethrough_checked"
-            app:title="@string/pref_strikethrough_checked" />
+            app:title="@string/pref_strikethrough_checked"
+            app:widgetLayout="@drawable/ic_material_switch" />
 
         <SeekBarPreference
             android:defaultValue="2"
@@ -68,7 +70,8 @@
         <SwitchPreferenceCompat
             app:defaultValue="false"
             app:key="move_checked_to_bottom"
-            app:title="@string/pref_behavior_move_checked" />
+            app:title="@string/pref_behavior_move_checked"
+            app:widgetLayout="@drawable/ic_material_switch" />
 
     </PreferenceCategory>
 
@@ -84,13 +87,15 @@
             android:title="@string/pref_data_encrypted_export"
             app:defaultValue="false"
             app:key="encrypted_export"
-            app:summary="@string/pref_data_encrypted_export_summary" />
+            app:summary="@string/pref_data_encrypted_export_summary"
+            app:widgetLayout="@drawable/ic_material_switch" />
 
         <SwitchPreferenceCompat
             app:defaultValue="false"
             app:key="auto_export"
             app:summary="@string/pref_data_auto_export_summary"
-            app:title="@string/pref_data_auto_export" />
+            app:title="@string/pref_data_auto_export"
+            app:widgetLayout="@drawable/ic_material_switch" />
 
         <Preference
             app:icon="@drawable/ic_import"
