@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.maltaisn.notes.debugCheck
 import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
 import com.mckimquyen.notes.databinding.DlgSortBinding
@@ -14,7 +15,6 @@ import com.mckimquyen.notes.ui.SharedViewModel
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
 import com.mckimquyen.notes.ui.viewModel
-import debugCheck
 import javax.inject.Inject
 import javax.inject.Provider
 
