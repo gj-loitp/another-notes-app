@@ -1,6 +1,4 @@
-
-
-package com.mckimquyen.notes
+package com.maltaisn.notes
 
 @Target(AnnotationTarget.CLASS)
 annotation class OpenForTesting

@@ -3,7 +3,7 @@
 package com.mckimquyen.notes.di
 
 import com.mckimquyen.notes.ui.home.BuildTypeBehavior
-import com.mckimquyen.notes.ui.home.ReleaseBuildTypeBehavior
+import com.maltaisn.notes.ui.home.ReleaseBuildTypeBehavior
 import dagger.Binds
 import dagger.Module
 
