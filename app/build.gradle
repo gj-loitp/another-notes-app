@@ -173,6 +173,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.7.7"
     // Debug
     debugImplementation "com.squareup.leakcanary:leakcanary-android:2.14"
+    implementation 'com.applovin:applovin-sdk:13.0.0'
 }
 
 tasks.named("build") {
