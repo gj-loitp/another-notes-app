@@ -20,8 +20,8 @@ android {
         compileSdk 34
         buildToolsVersion = "34.0.0"
         targetSdkVersion 34
-        versionCode 20240921
-        versionName "2024.09.21"
+        versionCode 20240928
+        versionName "2024.09.28"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
