@@ -3,24 +3,24 @@ package com.mckimquyen.notes.ui.noti
 import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateFormat
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.model.entity.Note
 import com.mckimquyen.notes.receiver.AlarmReceiver
+import com.mckimquyen.notes.ui.main.BaseAct
 import com.mckimquyen.notes.ui.navGraphViewModel
 import com.mckimquyen.notes.ui.observeEvent
 import java.util.Calendar
 import java.util.TimeZone
 import javax.inject.Inject
 
-class NotificationAct : AppCompatActivity() {
+class NotificationAct : BaseAct() {
 
     @Inject
     lateinit var viewModelFactory: NotificationVM.Factory

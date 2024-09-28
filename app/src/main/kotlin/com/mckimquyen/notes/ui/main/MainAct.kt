@@ -11,7 +11,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.addCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -25,9 +24,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.color.DynamicColors
-import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.NavGraphMainDirections
 import com.mckimquyen.notes.R
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.databinding.AMainBinding
 import com.mckimquyen.notes.ext.TAG
 import com.mckimquyen.notes.ext.navigateSafe
@@ -48,7 +47,7 @@ import java.io.InputStreamReader
 import javax.inject.Inject
 import javax.inject.Provider
 
-class MainAct : AppCompatActivity(), NavController.OnDestinationChangedListener {
+class MainAct : BaseAct(), NavController.OnDestinationChangedListener {
 
     @Inject
     lateinit var sharedViewModelProvider: Provider<SharedViewModel>
