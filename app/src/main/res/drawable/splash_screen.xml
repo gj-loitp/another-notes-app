@@ -8,7 +8,7 @@
     <item android:bottom="0dp">
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/splash_screen_logo" />
+            android:src="@drawable/ic_launcher_round" />
     </item>
 
 </layer-list>
