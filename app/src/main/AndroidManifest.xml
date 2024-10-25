@@ -4,10 +4,10 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-<!--    <uses-permission-->
-<!--        android:name="android.permission.SCHEDULE_EXACT_ALARM"-->
-<!--        android:maxSdkVersion="32" />-->
-<!--    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />-->
+    <!--    <uses-permission-->
+    <!--        android:name="android.permission.SCHEDULE_EXACT_ALARM"-->
+    <!--        android:maxSdkVersion="32" />-->
+    <!--    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />-->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
@@ -21,6 +21,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.DayNight"
         tools:ignore="DiscouragedApi,LockedOrientationActivity,AllowBackup">
+
+        <activity
+            android:name=".ui.splash.SplashAct"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.main.MainAct"
             android:exported="true"
@@ -28,10 +38,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.DayNight.Launcher">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
             <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
