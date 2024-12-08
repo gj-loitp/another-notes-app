@@ -14,10 +14,9 @@ import javax.inject.Inject
 //TODO roy93~ review in app
 //TODO roy93~ applovin
 
-//TODO roy93~ 120hz
-//TODO roy93~ font scale
-
 //done
+//120hz
+//font scale
 //keystore
 //switch ios, SwitchPreferenceCompat
 //roy93~ change icon launcher
