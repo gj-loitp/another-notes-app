@@ -11,10 +11,10 @@ import com.mckimquyen.notes.model.PrefsManager
 import com.mckimquyen.notes.ui.AppTheme
 import javax.inject.Inject
 
-//TODO roy93~ review in app
 //TODO roy93~ applovin
 
 //done
+//review in app
 //120hz
 //font scale
 //keystore
