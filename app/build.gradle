@@ -159,8 +159,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3"
-    implementation "com.google.dagger:dagger:2.50"
-    kapt "com.google.dagger:dagger-compiler:2.50"
+    implementation "com.google.dagger:dagger:2.52"
+    kapt "com.google.dagger:dagger-compiler:2.51"
     //noinspection KaptUsageInsteadOfKsp
     kapt "androidx.room:room-compiler:2.6.1"
     implementation "androidx.room:room-runtime:2.6.1"
