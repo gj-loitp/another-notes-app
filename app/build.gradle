@@ -21,8 +21,8 @@ android {
         buildToolsVersion = "35.0.0"
         //noinspection EditedTargetSdkVersion
         targetSdkVersion 35
-        versionCode 20241214
-        versionName "2024.12.14"
+        versionCode 20241218
+        versionName "2024.12.18"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
