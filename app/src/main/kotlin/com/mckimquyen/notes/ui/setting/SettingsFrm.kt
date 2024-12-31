@@ -9,24 +9,22 @@ import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
 import androidx.navigation.fragment.findNavController
 import androidx.preference.DropDownPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreferenceCompat
-import androidx.recyclerview.widget.RecyclerView
+import com.applovin.mediation.ads.MaxAdView
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialElevationScale
-import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.R
+import com.mckimquyen.notes.RApp
 import com.mckimquyen.notes.databinding.FSettingsBinding
 import com.mckimquyen.notes.ext.TAG
+import com.mckimquyen.notes.ext.createAdBanner
+import com.mckimquyen.notes.ext.destroyAdBanner
 import com.mckimquyen.notes.ext.moreApp
 import com.mckimquyen.notes.ext.navigateSafe
 import com.mckimquyen.notes.ext.openBrowserPolicy
@@ -60,6 +58,9 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDlg.Callback, ExportPassw
     private var exportDataLauncher: ActivityResultLauncher<Intent>? = null
     private var autoExportLauncher: ActivityResultLauncher<Intent>? = null
     private var importDataLauncher: ActivityResultLauncher<Intent>? = null
+
+    private var binding: FSettingsBinding? = null
+    private var adView: MaxAdView? = null
 
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
@@ -135,9 +136,9 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDlg.Callback, ExportPassw
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FSettingsBinding.bind(view)
+        binding = FSettingsBinding.bind(view)
 
-        binding.toolbar.setNavigationOnClickListener {
+        binding?.toolbar?.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
@@ -150,6 +151,11 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDlg.Callback, ExportPassw
 //        }
 
         setupViewModelObservers()
+        adView = requireActivity().createAdBanner(
+            logTag = SettingsFrm::class.simpleName,
+            viewGroup = binding?.flAd,
+            isAdaptiveBanner = true,
+        )
     }
 
     private fun setupViewModelObservers() {
@@ -296,6 +302,7 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDlg.Callback, ExportPassw
     }
 
     override fun onDestroy() {
+        binding?.flAd?.destroyAdBanner(adView)
         super.onDestroy()
         exportDataLauncher = null
         autoExportLauncher = null
@@ -369,7 +376,6 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDlg.Callback, ExportPassw
     private val exportEncryptionPref: SwitchPreferenceCompat
         get() = requirePreference(PrefsManager.ENCRYPTED_EXPORT)
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onExportPasswordDialogPositiveButtonClicked(password: String) {
         viewModel.generateExportKeyFromPassword(password)
     }
@@ -382,7 +388,6 @@ class SettingsFrm : PreferenceFragmentCompat(), ConfirmDlg.Callback, ExportPassw
         exportEncryptionPref.isChecked = false
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onImportPasswordDialogPositiveButtonClicked(password: String) {
         viewModel.importSavedEncryptedJsonData(password)
     }
