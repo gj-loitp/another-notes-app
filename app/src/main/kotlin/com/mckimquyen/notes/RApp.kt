@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import com.mckimquyen.notes.di.DaggerAppComponent
+import com.mckimquyen.notes.ext.setupApplovinAd
 import com.mckimquyen.notes.model.NotesDb
 import com.mckimquyen.notes.model.PrefsManager
 import com.mckimquyen.notes.ui.AppTheme
@@ -42,7 +43,7 @@ class RApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        this.setupApplovinAd()
         appComponent.inject(this)
 
         // Initialize shared preferences
