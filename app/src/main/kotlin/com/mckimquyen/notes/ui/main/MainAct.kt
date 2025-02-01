@@ -69,7 +69,8 @@ class MainAct : BaseAct(), NavController.OnDestinationChangedListener {
     private lateinit var navController: NavController
     private lateinit var binding: AMainBinding
 
-    private var doubleBackToExitPressedOnce = false
+    //set to false to make it work, but i do not like
+    private var doubleBackToExitPressedOnce = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_DayNight)
