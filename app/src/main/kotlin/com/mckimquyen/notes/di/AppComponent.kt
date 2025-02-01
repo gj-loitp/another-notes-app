@@ -15,6 +15,7 @@ import com.mckimquyen.notes.ui.setting.ExportPasswordDlg
 import com.mckimquyen.notes.ui.setting.ImportPasswordDlg
 import com.mckimquyen.notes.ui.setting.SettingsFrm
 import com.mckimquyen.notes.ui.sort.SortDialog
+import com.mckimquyen.notes.ui.splash.SplashAct
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -25,6 +26,7 @@ interface AppComponent {
     fun inject(rApp: RApp)
     fun inject(activity: MainAct)
     fun inject(activity: NotificationAct)
+    fun inject(activity: SplashAct)
     fun inject(fragment: HomeFrm)
     fun inject(fragment: SearchFrm)
     fun inject(fragment: EditFrm)
